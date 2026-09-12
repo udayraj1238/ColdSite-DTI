@@ -1,0 +1,3276 @@
+{
+ "AAK1": {
+  "davis_length": 961,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 961
+ },
+ "ABL1": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(E255K)": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(F317I)": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(F317I)p": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(F317L)": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(F317L)p": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(H396P)": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(H396P)p": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(M351T)": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(Q252H)": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(Q252H)p": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(T315I)": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(T315I)p": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1(Y253F)": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL1p": {
+  "aligned_residues": 1104,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1130
+ },
+ "ABL2": {
+  "aligned_residues": 1130,
+  "davis_length": 1167,
+  "residues_after": 18,
+  "residues_before": 18,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1182
+ },
+ "ACVR1": {
+  "davis_length": 509,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 509
+ },
+ "ACVR1B": {
+  "davis_length": 505,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 505
+ },
+ "ACVR2A": {
+  "davis_length": 513,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 513
+ },
+ "ACVR2B": {
+  "davis_length": 512,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 512
+ },
+ "ACVRL1": {
+  "davis_length": 503,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 503
+ },
+ "ADCK3": {
+  "davis_length": 647,
+  "residues_after": 9,
+  "residues_before": 9,
+  "status": "identical",
+  "uniprot_length": 647
+ },
+ "ADCK4": {
+  "davis_length": 544,
+  "residues_after": 9,
+  "residues_before": 9,
+  "status": "identical",
+  "uniprot_length": 544
+ },
+ "AKT1": {
+  "davis_length": 480,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 480
+ },
+ "AKT2": {
+  "davis_length": 481,
+  "residues_after": 13,
+  "residues_before": 13,
+  "status": "identical",
+  "uniprot_length": 481
+ },
+ "AKT3": {
+  "davis_length": 479,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 479
+ },
+ "ALK": {
+  "davis_length": 1620,
+  "residues_after": 7,
+  "residues_before": 7,
+  "status": "identical",
+  "uniprot_length": 1620
+ },
+ "AMPK-alpha1": {
+  "davis_length": 559,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 559
+ },
+ "AMPK-alpha2": {
+  "davis_length": 552,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 552
+ },
+ "ANKK1": {
+  "davis_length": 765,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 765
+ },
+ "ARK5": {
+  "davis_length": 661,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 661
+ },
+ "ASK1": {
+  "davis_length": 1374,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1374
+ },
+ "ASK2": {
+  "davis_length": 1288,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1288
+ },
+ "AURKA": {
+  "aligned_residues": 403,
+  "davis_length": 403,
+  "residues_after": 9,
+  "residues_before": 9,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 403
+ },
+ "AURKB": {
+  "davis_length": 344,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 344
+ },
+ "AURKC": {
+  "davis_length": 309,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 309
+ },
+ "AXL": {
+  "aligned_residues": 894,
+  "davis_length": 894,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 894
+ },
+ "BIKE": {
+  "davis_length": 1161,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1161
+ },
+ "BLK": {
+  "aligned_residues": 483,
+  "davis_length": 599,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 505
+ },
+ "BMPR1A": {
+  "davis_length": 532,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 532
+ },
+ "BMPR1B": {
+  "davis_length": 502,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 502
+ },
+ "BMPR2": {
+  "davis_length": 1038,
+  "residues_after": 17,
+  "residues_before": 17,
+  "status": "identical",
+  "uniprot_length": 1038
+ },
+ "BMX": {
+  "davis_length": 675,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 675
+ },
+ "BRAF": {
+  "davis_length": 766,
+  "residues_after": 19,
+  "residues_before": 19,
+  "status": "identical",
+  "uniprot_length": 766
+ },
+ "BRAF(V600E)": {
+  "davis_length": 766,
+  "residues_after": 19,
+  "residues_before": 19,
+  "status": "identical",
+  "uniprot_length": 766
+ },
+ "BRK": {
+  "davis_length": 451,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 451
+ },
+ "BRSK1": {
+  "davis_length": 778,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 778
+ },
+ "BRSK2": {
+  "davis_length": 736,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 736
+ },
+ "BTK": {
+  "aligned_residues": 483,
+  "davis_length": 483,
+  "residues_after": 9,
+  "residues_before": 28,
+  "residues_dropped": 19,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 659
+ },
+ "CAMK1": {
+  "davis_length": 370,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 370
+ },
+ "CAMK1D": {
+  "davis_length": 385,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 385
+ },
+ "CAMK1G": {
+  "davis_length": 476,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 476
+ },
+ "CAMK2A": {
+  "davis_length": 478,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 478
+ },
+ "CAMK2B": {
+  "davis_length": 666,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 666
+ },
+ "CAMK2D": {
+  "davis_length": 499,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 499
+ },
+ "CAMK2G": {
+  "aligned_residues": 555,
+  "davis_length": 558,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 558
+ },
+ "CAMK4": {
+  "davis_length": 473,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 473
+ },
+ "CAMKK1": {
+  "davis_length": 505,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 505
+ },
+ "CAMKK2": {
+  "davis_length": 588,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 588
+ },
+ "CASK": {
+  "davis_length": 926,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 926
+ },
+ "CDC2L1": {
+  "aligned_residues": 541,
+  "davis_length": 542,
+  "residues_after": 14,
+  "residues_before": 14,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 795
+ },
+ "CDC2L2": {
+  "aligned_residues": 475,
+  "davis_length": 475,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 783
+ },
+ "CDC2L5": {
+  "aligned_residues": 312,
+  "davis_length": 324,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1512
+ },
+ "CDK11": {
+  "davis_length": 502,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 502
+ },
+ "CDK2": {
+  "davis_length": 298,
+  "residues_after": 27,
+  "residues_before": 27,
+  "status": "identical",
+  "uniprot_length": 298
+ },
+ "CDK3": {
+  "davis_length": 305,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 305
+ },
+ "CDK4-cyclinD1": {
+  "davis_length": 303,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 303
+ },
+ "CDK4-cyclinD3": {
+  "davis_length": 303,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 303
+ },
+ "CDK5": {
+  "davis_length": 292,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 292
+ },
+ "CDK7": {
+  "davis_length": 346,
+  "residues_after": 19,
+  "residues_before": 19,
+  "status": "identical",
+  "uniprot_length": 346
+ },
+ "CDK8": {
+  "davis_length": 464,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 464
+ },
+ "CDK9": {
+  "davis_length": 372,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 372
+ },
+ "CDKL1": {
+  "aligned_residues": 357,
+  "davis_length": 357,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 357
+ },
+ "CDKL2": {
+  "davis_length": 493,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 493
+ },
+ "CDKL3": {
+  "davis_length": 592,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 592
+ },
+ "CDKL5": {
+  "aligned_residues": 904,
+  "davis_length": 1030,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 960
+ },
+ "CHEK1": {
+  "davis_length": 476,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 476
+ },
+ "CHEK2": {
+  "davis_length": 543,
+  "residues_after": 20,
+  "residues_before": 20,
+  "status": "identical",
+  "uniprot_length": 543
+ },
+ "CIT": {
+  "davis_length": 2027,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 2027
+ },
+ "CLK1": {
+  "davis_length": 484,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 484
+ },
+ "CLK2": {
+  "davis_length": 499,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 499
+ },
+ "CLK3": {
+  "aligned_residues": 490,
+  "davis_length": 638,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 490
+ },
+ "CLK4": {
+  "davis_length": 481,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 481
+ },
+ "CSF1R": {
+  "davis_length": 972,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 972
+ },
+ "CSK": {
+  "davis_length": 450,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 450
+ },
+ "CSNK1A1": {
+  "davis_length": 337,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 337
+ },
+ "CSNK1A1L": {
+  "davis_length": 337,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 337
+ },
+ "CSNK1D": {
+  "davis_length": 415,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 415
+ },
+ "CSNK1E": {
+  "davis_length": 416,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 416
+ },
+ "CSNK1G1": {
+  "davis_length": 422,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 422
+ },
+ "CSNK1G2": {
+  "davis_length": 415,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 415
+ },
+ "CSNK1G3": {
+  "davis_length": 447,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 447
+ },
+ "CSNK2A1": {
+  "davis_length": 391,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 391
+ },
+ "CSNK2A2": {
+  "davis_length": 350,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 350
+ },
+ "CTK": {
+  "davis_length": 507,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 507
+ },
+ "DAPK1": {
+  "davis_length": 1430,
+  "residues_after": 16,
+  "residues_before": 16,
+  "status": "identical",
+  "uniprot_length": 1430
+ },
+ "DAPK2": {
+  "davis_length": 370,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 370
+ },
+ "DAPK3": {
+  "davis_length": 454,
+  "residues_after": 13,
+  "residues_before": 13,
+  "status": "identical",
+  "uniprot_length": 454
+ },
+ "DCAMKL1": {
+  "davis_length": 740,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 740
+ },
+ "DCAMKL2": {
+  "davis_length": 766,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 766
+ },
+ "DCAMKL3": {
+  "davis_length": 648,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 648
+ },
+ "DDR1": {
+  "davis_length": 913,
+  "residues_after": 20,
+  "residues_before": 20,
+  "status": "identical",
+  "uniprot_length": 913
+ },
+ "DDR2": {
+  "davis_length": 855,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 855
+ },
+ "DLK": {
+  "davis_length": 859,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 859
+ },
+ "DMPK": {
+  "davis_length": 629,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 629
+ },
+ "DMPK2": {
+  "davis_length": 1551,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1551
+ },
+ "DRAK1": {
+  "davis_length": 414,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 414
+ },
+ "DRAK2": {
+  "davis_length": 372,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 372
+ },
+ "DYRK1A": {
+  "davis_length": 763,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 763
+ },
+ "DYRK1B": {
+  "davis_length": 629,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 629
+ },
+ "DYRK2": {
+  "davis_length": 601,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 601
+ },
+ "EGFR": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(E746A750del)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(G719C)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(G719S)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(L747E749del)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(L747S752del)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(L747T751del)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(L858R)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(L858RT790M)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(L861Q)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(S752I759del)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EGFR(T790M)": {
+  "davis_length": 1210,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "EIF2AK1": {
+  "davis_length": 630,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 630
+ },
+ "EPHA1": {
+  "davis_length": 976,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "EPHA2": {
+  "davis_length": 976,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "EPHA3": {
+  "aligned_residues": 983,
+  "davis_length": 983,
+  "residues_after": 17,
+  "residues_before": 17,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 983
+ },
+ "EPHA4": {
+  "davis_length": 986,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 986
+ },
+ "EPHA5": {
+  "aligned_residues": 1002,
+  "davis_length": 1017,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1037
+ },
+ "EPHA6": {
+  "aligned_residues": 441,
+  "davis_length": 547,
+  "residues_after": 0,
+  "residues_before": 11,
+  "residues_dropped": 11,
+  "status": "no_sites_survive",
+  "substitutions_mapped": 1,
+  "uniprot_length": 1036
+ },
+ "EPHA7": {
+  "davis_length": 998,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 998
+ },
+ "EPHA8": {
+  "davis_length": 1005,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1005
+ },
+ "EPHB1": {
+  "davis_length": 984,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 984
+ },
+ "EPHB2": {
+  "aligned_residues": 476,
+  "davis_length": 482,
+  "residues_after": 0,
+  "residues_before": 11,
+  "residues_dropped": 11,
+  "status": "no_sites_survive",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1055
+ },
+ "EPHB3": {
+  "davis_length": 998,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 998
+ },
+ "EPHB4": {
+  "aligned_residues": 935,
+  "davis_length": 935,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 987
+ },
+ "EPHB6": {
+  "davis_length": 1021,
+  "residues_after": 9,
+  "residues_before": 9,
+  "status": "identical",
+  "uniprot_length": 1021
+ },
+ "ERBB2": {
+  "davis_length": 1255,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1255
+ },
+ "ERBB3": {
+  "davis_length": 1342,
+  "residues_after": 20,
+  "residues_before": 20,
+  "status": "identical",
+  "uniprot_length": 1342
+ },
+ "ERBB4": {
+  "davis_length": 1308,
+  "residues_after": 20,
+  "residues_before": 20,
+  "status": "identical",
+  "uniprot_length": 1308
+ },
+ "ERK1": {
+  "davis_length": 379,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 379
+ },
+ "ERK2": {
+  "davis_length": 360,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 360
+ },
+ "ERK3": {
+  "davis_length": 721,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 721
+ },
+ "ERK4": {
+  "davis_length": 587,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 587
+ },
+ "ERK5": {
+  "davis_length": 816,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 816
+ },
+ "ERK8": {
+  "davis_length": 544,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 544
+ },
+ "ERN1": {
+  "davis_length": 977,
+  "residues_after": 19,
+  "residues_before": 19,
+  "status": "identical",
+  "uniprot_length": 977
+ },
+ "FAK": {
+  "aligned_residues": 1052,
+  "davis_length": 1074,
+  "residues_after": 12,
+  "residues_before": 12,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1052
+ },
+ "FER": {
+  "davis_length": 822,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 822
+ },
+ "FES": {
+  "davis_length": 822,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 822
+ },
+ "FGFR1": {
+  "davis_length": 822,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 822
+ },
+ "FGFR2": {
+  "davis_length": 821,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 821
+ },
+ "FGFR3": {
+  "aligned_residues": 475,
+  "davis_length": 480,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 806
+ },
+ "FGFR3(G697C)": {
+  "aligned_residues": 475,
+  "davis_length": 480,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 806
+ },
+ "FGFR4": {
+  "davis_length": 802,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 802
+ },
+ "FGR": {
+  "davis_length": 529,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 529
+ },
+ "FLT1": {
+  "davis_length": 1338,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1338
+ },
+ "FLT3": {
+  "davis_length": 993,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 993
+ },
+ "FLT3(D835H)": {
+  "davis_length": 993,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 993
+ },
+ "FLT3(D835Y)": {
+  "davis_length": 993,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 993
+ },
+ "FLT3(ITD)": {
+  "davis_length": 993,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 993
+ },
+ "FLT3(K663Q)": {
+  "davis_length": 993,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 993
+ },
+ "FLT3(N841I)": {
+  "davis_length": 993,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 993
+ },
+ "FLT3(R834Q)": {
+  "davis_length": 993,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 993
+ },
+ "FLT4": {
+  "davis_length": 1363,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1363
+ },
+ "FRK": {
+  "davis_length": 505,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 505
+ },
+ "FYN": {
+  "davis_length": 537,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 537
+ },
+ "GAK": {
+  "davis_length": 1311,
+  "residues_after": 1,
+  "residues_before": 1,
+  "status": "identical",
+  "uniprot_length": 1311
+ },
+ "GCN2(KinDom2S808G)": {
+  "davis_length": 1649,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1649
+ },
+ "GRK1": {
+  "davis_length": 563,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 563
+ },
+ "GRK4": {
+  "davis_length": 578,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 578
+ },
+ "GRK7": {
+  "davis_length": 553,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 553
+ },
+ "GSK3A": {
+  "davis_length": 483,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 483
+ },
+ "GSK3B": {
+  "davis_length": 420,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 420
+ },
+ "HCK": {
+  "davis_length": 526,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 526
+ },
+ "HIPK1": {
+  "davis_length": 1210,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1210
+ },
+ "HIPK2": {
+  "davis_length": 1198,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1198
+ },
+ "HIPK3": {
+  "davis_length": 1215,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1215
+ },
+ "HIPK4": {
+  "davis_length": 616,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 616
+ },
+ "HPK1": {
+  "davis_length": 833,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 833
+ },
+ "HUNK": {
+  "davis_length": 714,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 714
+ },
+ "ICK": {
+  "davis_length": 632,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 632
+ },
+ "IGF1R": {
+  "davis_length": 1367,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1367
+ },
+ "IKK-alpha": {
+  "davis_length": 745,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 745
+ },
+ "IKK-beta": {
+  "davis_length": 756,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 756
+ },
+ "IKK-epsilon": {
+  "davis_length": 716,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 716
+ },
+ "INSR": {
+  "davis_length": 1382,
+  "residues_after": 13,
+  "residues_before": 13,
+  "status": "identical",
+  "uniprot_length": 1382
+ },
+ "INSRR": {
+  "davis_length": 1297,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1297
+ },
+ "IRAK1": {
+  "davis_length": 712,
+  "residues_after": 16,
+  "residues_before": 16,
+  "status": "identical",
+  "uniprot_length": 712
+ },
+ "IRAK3": {
+  "davis_length": 596,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 596
+ },
+ "IRAK4": {
+  "davis_length": 460,
+  "residues_after": 16,
+  "residues_before": 16,
+  "status": "identical",
+  "uniprot_length": 460
+ },
+ "ITK": {
+  "davis_length": 620,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 620
+ },
+ "JAK1(JH1domain-catalytic)": {
+  "davis_length": 1154,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1154
+ },
+ "JAK1(JH2domain-pseudokinase)": {
+  "davis_length": 1154,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1154
+ },
+ "JAK2(JH1domain-catalytic)": {
+  "davis_length": 1132,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1132
+ },
+ "JAK3(JH1domain-catalytic)": {
+  "davis_length": 1124,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1124
+ },
+ "JNK1": {
+  "davis_length": 427,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 427
+ },
+ "JNK2": {
+  "davis_length": 424,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 424
+ },
+ "JNK3": {
+  "davis_length": 464,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 464
+ },
+ "KIT": {
+  "davis_length": 976,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "KIT(A829P)": {
+  "davis_length": 976,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "KIT(D816H)": {
+  "davis_length": 976,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "KIT(D816V)": {
+  "davis_length": 976,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "KIT(L576P)": {
+  "davis_length": 976,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "KIT(V559D)": {
+  "davis_length": 976,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "KIT(V559D-T670I)": {
+  "davis_length": 976,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "KIT(V559D-V654A)": {
+  "davis_length": 976,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 976
+ },
+ "LATS1": {
+  "davis_length": 1130,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1130
+ },
+ "LATS2": {
+  "davis_length": 1088,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1088
+ },
+ "LCK": {
+  "davis_length": 509,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 509
+ },
+ "LIMK1": {
+  "davis_length": 647,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 647
+ },
+ "LIMK2": {
+  "davis_length": 638,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 638
+ },
+ "LKB1": {
+  "davis_length": 433,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 433
+ },
+ "LOK": {
+  "davis_length": 968,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 968
+ },
+ "LRRK2": {
+  "davis_length": 2527,
+  "residues_after": 53,
+  "residues_before": 53,
+  "status": "identical",
+  "uniprot_length": 2527
+ },
+ "LRRK2(G2019S)": {
+  "davis_length": 2527,
+  "residues_after": 53,
+  "residues_before": 53,
+  "status": "identical",
+  "uniprot_length": 2527
+ },
+ "LTK": {
+  "davis_length": 864,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 864
+ },
+ "LYN": {
+  "aligned_residues": 491,
+  "davis_length": 582,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 512
+ },
+ "LZK": {
+  "davis_length": 966,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 966
+ },
+ "MAK": {
+  "davis_length": 623,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1705
+ },
+ "MAP3K1": {
+  "davis_length": 1512,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1512
+ },
+ "MAP3K15": {
+  "davis_length": 1313,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1313
+ },
+ "MAP3K2": {
+  "davis_length": 619,
+  "residues_after": 12,
+  "residues_before": 12,
+  "status": "identical",
+  "uniprot_length": 619
+ },
+ "MAP3K3": {
+  "davis_length": 626,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 626
+ },
+ "MAP3K4": {
+  "davis_length": 1608,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1608
+ },
+ "MAP4K2": {
+  "davis_length": 820,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 820
+ },
+ "MAP4K3": {
+  "davis_length": 894,
+  "residues_after": 12,
+  "residues_before": 12,
+  "status": "identical",
+  "uniprot_length": 894
+ },
+ "MAP4K4": {
+  "aligned_residues": 1208,
+  "davis_length": 1273,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1239
+ },
+ "MAP4K5": {
+  "aligned_residues": 846,
+  "davis_length": 846,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 846
+ },
+ "MAPKAPK2": {
+  "davis_length": 400,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 400
+ },
+ "MAPKAPK5": {
+  "davis_length": 473,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 473
+ },
+ "MARK1": {
+  "davis_length": 795,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 795
+ },
+ "MARK2": {
+  "davis_length": 788,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 788
+ },
+ "MARK3": {
+  "aligned_residues": 753,
+  "davis_length": 753,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 753
+ },
+ "MARK4": {
+  "davis_length": 752,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 752
+ },
+ "MAST1": {
+  "davis_length": 1570,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1570
+ },
+ "MEK1": {
+  "davis_length": 393,
+  "residues_after": 33,
+  "residues_before": 33,
+  "status": "identical",
+  "uniprot_length": 393
+ },
+ "MEK2": {
+  "davis_length": 400,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 400
+ },
+ "MEK3": {
+  "davis_length": 347,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 347
+ },
+ "MEK4": {
+  "davis_length": 399,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 399
+ },
+ "MEK5": {
+  "davis_length": 448,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 448
+ },
+ "MEK6": {
+  "davis_length": 334,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 334
+ },
+ "MELK": {
+  "davis_length": 651,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 651
+ },
+ "MERTK": {
+  "davis_length": 999,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 999
+ },
+ "MET": {
+  "davis_length": 1390,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1390
+ },
+ "MET(M1250T)": {
+  "davis_length": 1390,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1390
+ },
+ "MET(Y1235D)": {
+  "davis_length": 1390,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1390
+ },
+ "MINK": {
+  "davis_length": 1332,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1332
+ },
+ "MKK7": {
+  "davis_length": 419,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 419
+ },
+ "MKNK1": {
+  "davis_length": 465,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 465
+ },
+ "MKNK2": {
+  "davis_length": 465,
+  "residues_after": 18,
+  "residues_before": 18,
+  "status": "identical",
+  "uniprot_length": 465
+ },
+ "MLCK": {
+  "davis_length": 819,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 819
+ },
+ "MLK1": {
+  "aligned_residues": 373,
+  "davis_length": 373,
+  "residues_after": 0,
+  "residues_before": 11,
+  "residues_dropped": 11,
+  "status": "no_sites_survive",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1104
+ },
+ "MLK2": {
+  "davis_length": 954,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 954
+ },
+ "MLK3": {
+  "davis_length": 847,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 847
+ },
+ "MRCKA": {
+  "davis_length": 1732,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1732
+ },
+ "MRCKB": {
+  "davis_length": 1711,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1711
+ },
+ "MST1": {
+  "davis_length": 487,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 487
+ },
+ "MST1R": {
+  "aligned_residues": 1400,
+  "davis_length": 1400,
+  "residues_after": 16,
+  "residues_before": 16,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 1400
+ },
+ "MST2": {
+  "davis_length": 491,
+  "residues_after": 13,
+  "residues_before": 13,
+  "status": "identical",
+  "uniprot_length": 491
+ },
+ "MST3": {
+  "davis_length": 443,
+  "residues_after": 16,
+  "residues_before": 16,
+  "status": "identical",
+  "uniprot_length": 443
+ },
+ "MST4": {
+  "davis_length": 416,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 416
+ },
+ "MTOR": {
+  "davis_length": 2549,
+  "residues_after": 17,
+  "residues_before": 17,
+  "status": "identical",
+  "uniprot_length": 2549
+ },
+ "MUSK": {
+  "davis_length": 869,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 869
+ },
+ "MYLK": {
+  "davis_length": 1914,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1914
+ },
+ "MYLK2": {
+  "davis_length": 596,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 596
+ },
+ "MYLK4": {
+  "davis_length": 388,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 388
+ },
+ "MYO3A": {
+  "davis_length": 1616,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1616
+ },
+ "MYO3B": {
+  "davis_length": 1341,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1341
+ },
+ "NDR1": {
+  "davis_length": 465,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 465
+ },
+ "NDR2": {
+  "davis_length": 464,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 464
+ },
+ "NEK1": {
+  "davis_length": 1258,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1258
+ },
+ "NEK11": {
+  "davis_length": 645,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 645
+ },
+ "NEK2": {
+  "davis_length": 445,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 445
+ },
+ "NEK3": {
+  "davis_length": 506,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 506
+ },
+ "NEK4": {
+  "aligned_residues": 447,
+  "davis_length": 451,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 841
+ },
+ "NEK5": {
+  "davis_length": 708,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 708
+ },
+ "NEK6": {
+  "davis_length": 313,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 313
+ },
+ "NEK7": {
+  "davis_length": 302,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 302
+ },
+ "NEK9": {
+  "davis_length": 979,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 979
+ },
+ "NIM1": {
+  "davis_length": 436,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 436
+ },
+ "NLK": {
+  "davis_length": 527,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 527
+ },
+ "OSR1": {
+  "davis_length": 527,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 527
+ },
+ "PAK1": {
+  "davis_length": 545,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 545
+ },
+ "PAK2": {
+  "davis_length": 524,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 524
+ },
+ "PAK3": {
+  "davis_length": 559,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 559
+ },
+ "PAK4": {
+  "davis_length": 591,
+  "residues_after": 17,
+  "residues_before": 17,
+  "status": "identical",
+  "uniprot_length": 591
+ },
+ "PAK6": {
+  "davis_length": 681,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 681
+ },
+ "PAK7": {
+  "davis_length": 719,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 719
+ },
+ "PCTK1": {
+  "aligned_residues": 448,
+  "davis_length": 448,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 496
+ },
+ "PCTK2": {
+  "davis_length": 523,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 523
+ },
+ "PCTK3": {
+  "aligned_residues": 430,
+  "davis_length": 436,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 474
+ },
+ "PDGFRA": {
+  "davis_length": 1089,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1089
+ },
+ "PDGFRB": {
+  "aligned_residues": 754,
+  "davis_length": 777,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1106
+ },
+ "PDPK1": {
+  "davis_length": 556,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 556
+ },
+ "PFCDPK1(Pfalciparum)": {
+  "davis_length": 524,
+  "residues_after": 31,
+  "residues_before": 31,
+  "status": "identical",
+  "uniprot_length": 524
+ },
+ "PFPK5(Pfalciparum)": {
+  "davis_length": 288,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 288
+ },
+ "PFTAIRE2": {
+  "davis_length": 435,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 435
+ },
+ "PFTK1": {
+  "davis_length": 469,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 469
+ },
+ "PHKG1": {
+  "davis_length": 387,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 387
+ },
+ "PHKG2": {
+  "davis_length": 406,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 406
+ },
+ "PIK3C2B": {
+  "davis_length": 1634,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1634
+ },
+ "PIK3C2G": {
+  "davis_length": 1445,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1486
+ },
+ "PIK3CA": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(C420R)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(E542K)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(E545A)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(E545K)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(H1047L)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(H1047Y)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(I800L)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(M1043I)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CA(Q546K)": {
+  "davis_length": 1069,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1068
+ },
+ "PIK3CB": {
+  "davis_length": 1070,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1070
+ },
+ "PIK3CD": {
+  "davis_length": 1044,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 1044
+ },
+ "PIK3CG": {
+  "davis_length": 1102,
+  "residues_after": 28,
+  "residues_before": 28,
+  "status": "identical",
+  "uniprot_length": 1102
+ },
+ "PIK4CB": {
+  "davis_length": 816,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 816
+ },
+ "PIM1": {
+  "aligned_residues": 313,
+  "davis_length": 404,
+  "residues_after": 13,
+  "residues_before": 13,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 313
+ },
+ "PIM2": {
+  "davis_length": 311,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 311
+ },
+ "PIM3": {
+  "davis_length": 326,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 326
+ },
+ "PIP5K1A": {
+  "davis_length": 562,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 562
+ },
+ "PIP5K1C": {
+  "davis_length": 668,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 668
+ },
+ "PIP5K2B": {
+  "davis_length": 416,
+  "residues_after": 8,
+  "residues_before": 8,
+  "status": "identical",
+  "uniprot_length": 416
+ },
+ "PIP5K2C": {
+  "davis_length": 421,
+  "residues_after": 0,
+  "residues_before": 0,
+  "status": "no_sites",
+  "uniprot_length": 421
+ },
+ "PKAC-alpha": {
+  "davis_length": 351,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 351
+ },
+ "PKAC-beta": {
+  "davis_length": 351,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 351
+ },
+ "PKMYT1": {
+  "davis_length": 499,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 499
+ },
+ "PKN1": {
+  "davis_length": 942,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 942
+ },
+ "PKN2": {
+  "davis_length": 984,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 984
+ },
+ "PKNB(Mtuberculosis)": {
+  "davis_length": 626,
+  "residues_after": 21,
+  "residues_before": 21,
+  "status": "identical",
+  "uniprot_length": 626
+ },
+ "PLK1": {
+  "davis_length": 603,
+  "residues_after": 17,
+  "residues_before": 17,
+  "status": "identical",
+  "uniprot_length": 603
+ },
+ "PLK2": {
+  "davis_length": 685,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 685
+ },
+ "PLK3": {
+  "davis_length": 646,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 646
+ },
+ "PLK4": {
+  "davis_length": 970,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 970
+ },
+ "PRKCD": {
+  "davis_length": 676,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 676
+ },
+ "PRKCE": {
+  "davis_length": 737,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 737
+ },
+ "PRKCH": {
+  "davis_length": 683,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 683
+ },
+ "PRKCI": {
+  "davis_length": 596,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 596
+ },
+ "PRKCQ": {
+  "davis_length": 706,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 706
+ },
+ "PRKD1": {
+  "davis_length": 912,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 912
+ },
+ "PRKD2": {
+  "aligned_residues": 878,
+  "davis_length": 878,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 878
+ },
+ "PRKD3": {
+  "davis_length": 890,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 890
+ },
+ "PRKG1": {
+  "davis_length": 671,
+  "residues_after": 38,
+  "residues_before": 38,
+  "status": "identical",
+  "uniprot_length": 671
+ },
+ "PRKG2": {
+  "davis_length": 762,
+  "residues_after": 32,
+  "residues_before": 32,
+  "status": "identical",
+  "uniprot_length": 762
+ },
+ "PRKR": {
+  "aligned_residues": 510,
+  "davis_length": 513,
+  "residues_after": 12,
+  "residues_before": 12,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 551
+ },
+ "PRKX": {
+  "davis_length": 358,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 358
+ },
+ "PRP4": {
+  "davis_length": 1007,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1007
+ },
+ "PYK2": {
+  "davis_length": 1009,
+  "residues_after": 18,
+  "residues_before": 18,
+  "status": "identical",
+  "uniprot_length": 1009
+ },
+ "QSK": {
+  "aligned_residues": 1263,
+  "davis_length": 1263,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1321
+ },
+ "RAF1": {
+  "davis_length": 648,
+  "residues_after": 19,
+  "residues_before": 19,
+  "status": "identical",
+  "uniprot_length": 648
+ },
+ "RET": {
+  "aligned_residues": 430,
+  "davis_length": 458,
+  "residues_after": 15,
+  "residues_before": 35,
+  "residues_dropped": 20,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1114
+ },
+ "RET(M918T)": {
+  "aligned_residues": 430,
+  "davis_length": 458,
+  "residues_after": 15,
+  "residues_before": 35,
+  "residues_dropped": 20,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1114
+ },
+ "RET(V804L)": {
+  "aligned_residues": 430,
+  "davis_length": 458,
+  "residues_after": 15,
+  "residues_before": 35,
+  "residues_dropped": 20,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1114
+ },
+ "RET(V804M)": {
+  "aligned_residues": 430,
+  "davis_length": 458,
+  "residues_after": 15,
+  "residues_before": 35,
+  "residues_dropped": 20,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1114
+ },
+ "RIOK1": {
+  "davis_length": 568,
+  "residues_after": 7,
+  "residues_before": 7,
+  "status": "identical",
+  "uniprot_length": 568
+ },
+ "RIOK2": {
+  "davis_length": 552,
+  "residues_after": 2,
+  "residues_before": 2,
+  "status": "identical",
+  "uniprot_length": 552
+ },
+ "RIOK3": {
+  "davis_length": 519,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 519
+ },
+ "RIPK1": {
+  "davis_length": 671,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 671
+ },
+ "RIPK2": {
+  "davis_length": 540,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 540
+ },
+ "RIPK4": {
+  "aligned_residues": 781,
+  "davis_length": 784,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 832
+ },
+ "RIPK5": {
+  "davis_length": 929,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 929
+ },
+ "ROCK1": {
+  "davis_length": 1354,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1354
+ },
+ "ROCK2": {
+  "aligned_residues": 703,
+  "davis_length": 703,
+  "residues_after": 0,
+  "residues_before": 11,
+  "residues_dropped": 11,
+  "status": "no_sites_survive",
+  "substitutions_mapped": 0,
+  "uniprot_length": 1388
+ },
+ "ROS1": {
+  "davis_length": 2347,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 2347
+ },
+ "RPS6KA4(KinDom.1-N-terminal)": {
+  "davis_length": 772,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 772
+ },
+ "RPS6KA4(KinDom.2-C-terminal)": {
+  "davis_length": 772,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 772
+ },
+ "RPS6KA5(KinDom.1-N-terminal)": {
+  "davis_length": 802,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 802
+ },
+ "RPS6KA5(KinDom.2-C-terminal)": {
+  "davis_length": 802,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 802
+ },
+ "RSK1(KinDom.1-N-terminal)": {
+  "davis_length": 735,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 735
+ },
+ "RSK1(KinDom.2-C-terminal)": {
+  "davis_length": 735,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 735
+ },
+ "RSK2(KinDom.1-N-terminal)": {
+  "davis_length": 740,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 740
+ },
+ "RSK3(KinDom.1-N-terminal)": {
+  "davis_length": 733,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 733
+ },
+ "RSK3(KinDom.2-C-terminal)": {
+  "davis_length": 733,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 733
+ },
+ "RSK4(KinDom.1-N-terminal)": {
+  "davis_length": 745,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 745
+ },
+ "RSK4(KinDom.2-C-terminal)": {
+  "davis_length": 745,
+  "residues_after": 22,
+  "residues_before": 22,
+  "status": "identical",
+  "uniprot_length": 745
+ },
+ "S6K1": {
+  "davis_length": 525,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 525
+ },
+ "SBK1": {
+  "davis_length": 424,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 424
+ },
+ "SGK3": {
+  "davis_length": 496,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 496
+ },
+ "SIK": {
+  "davis_length": 783,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 783
+ },
+ "SIK2": {
+  "davis_length": 926,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 926
+ },
+ "SLK": {
+  "davis_length": 1235,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1235
+ },
+ "SNARK": {
+  "davis_length": 628,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 628
+ },
+ "SNRK": {
+  "davis_length": 765,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 765
+ },
+ "SRC": {
+  "davis_length": 536,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 536
+ },
+ "SRMS": {
+  "davis_length": 488,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 488
+ },
+ "SRPK1": {
+  "davis_length": 655,
+  "residues_after": 14,
+  "residues_before": 14,
+  "status": "identical",
+  "uniprot_length": 655
+ },
+ "SRPK2": {
+  "davis_length": 688,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 688
+ },
+ "SRPK3": {
+  "davis_length": 567,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 567
+ },
+ "STK16": {
+  "davis_length": 305,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 305
+ },
+ "STK33": {
+  "davis_length": 514,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 514
+ },
+ "STK35": {
+  "davis_length": 534,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 534
+ },
+ "STK36": {
+  "davis_length": 1315,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1315
+ },
+ "STK39": {
+  "davis_length": 545,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 545
+ },
+ "SYK": {
+  "davis_length": 635,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 635
+ },
+ "SgK110": {
+  "davis_length": 359,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 359
+ },
+ "TAK1": {
+  "davis_length": 606,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 606
+ },
+ "TAOK1": {
+  "davis_length": 1001,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1001
+ },
+ "TAOK2": {
+  "davis_length": 1235,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1235
+ },
+ "TAOK3": {
+  "davis_length": 898,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 898
+ },
+ "TBK1": {
+  "davis_length": 729,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 729
+ },
+ "TEC": {
+  "davis_length": 631,
+  "residues_after": 15,
+  "residues_before": 15,
+  "status": "identical",
+  "uniprot_length": 631
+ },
+ "TESK1": {
+  "aligned_residues": 241,
+  "davis_length": 244,
+  "residues_after": 2,
+  "residues_before": 11,
+  "residues_dropped": 9,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 626
+ },
+ "TGFBR1": {
+  "davis_length": 503,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 503
+ },
+ "TGFBR2": {
+  "davis_length": 567,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 567
+ },
+ "TIE1": {
+  "davis_length": 1138,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1138
+ },
+ "TIE2": {
+  "aligned_residues": 1124,
+  "davis_length": 1157,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 1124
+ },
+ "TLK1": {
+  "davis_length": 766,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 766
+ },
+ "TLK2": {
+  "davis_length": 772,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 772
+ },
+ "TNIK": {
+  "davis_length": 1360,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1360
+ },
+ "TNK1": {
+  "davis_length": 666,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 666
+ },
+ "TNK2": {
+  "davis_length": 1038,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1038
+ },
+ "TNNI3K": {
+  "davis_length": 835,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 835
+ },
+ "TRKA": {
+  "aligned_residues": 790,
+  "davis_length": 790,
+  "residues_after": 11,
+  "residues_before": 11,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 0,
+  "uniprot_length": 796
+ },
+ "TRKB": {
+  "aligned_residues": 466,
+  "davis_length": 477,
+  "residues_after": 0,
+  "residues_before": 11,
+  "residues_dropped": 11,
+  "status": "no_sites_survive",
+  "substitutions_mapped": 0,
+  "uniprot_length": 822
+ },
+ "TRKC": {
+  "davis_length": 839,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 839
+ },
+ "TRPM6": {
+  "davis_length": 2022,
+  "residues_after": 13,
+  "residues_before": 13,
+  "status": "identical",
+  "uniprot_length": 2022
+ },
+ "TSSK1B": {
+  "davis_length": 367,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 367
+ },
+ "TTK": {
+  "davis_length": 857,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 857
+ },
+ "TXK": {
+  "davis_length": 527,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 527
+ },
+ "TYK2(JH1domain-catalytic)": {
+  "davis_length": 1187,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1187
+ },
+ "TYK2(JH2domain-pseudokinase)": {
+  "davis_length": 1187,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1187
+ },
+ "TYRO3": {
+  "davis_length": 890,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 890
+ },
+ "ULK1": {
+  "davis_length": 1050,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1050
+ },
+ "ULK2": {
+  "davis_length": 1036,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1036
+ },
+ "ULK3": {
+  "davis_length": 472,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 472
+ },
+ "VEGFR2": {
+  "davis_length": 1356,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1356
+ },
+ "VRK2": {
+  "davis_length": 508,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 508
+ },
+ "WEE1": {
+  "aligned_residues": 646,
+  "davis_length": 646,
+  "residues_after": 15,
+  "residues_before": 15,
+  "residues_dropped": 0,
+  "status": "remapped",
+  "substitutions_mapped": 1,
+  "uniprot_length": 646
+ },
+ "WEE2": {
+  "davis_length": 567,
+  "residues_after": 13,
+  "residues_before": 13,
+  "status": "identical",
+  "uniprot_length": 567
+ },
+ "YANK1": {
+  "davis_length": 396,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 396
+ },
+ "YANK2": {
+  "davis_length": 414,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 414
+ },
+ "YANK3": {
+  "davis_length": 486,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 486
+ },
+ "YES": {
+  "davis_length": 543,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 543
+ },
+ "YSK1": {
+  "davis_length": 426,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 426
+ },
+ "YSK4": {
+  "davis_length": 1328,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 1328
+ },
+ "ZAK": {
+  "davis_length": 800,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 800
+ },
+ "ZAP70": {
+  "davis_length": 619,
+  "residues_after": 10,
+  "residues_before": 10,
+  "status": "identical",
+  "uniprot_length": 619
+ },
+ "p38-alpha": {
+  "davis_length": 360,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 360
+ },
+ "p38-beta": {
+  "davis_length": 364,
+  "residues_after": 12,
+  "residues_before": 12,
+  "status": "identical",
+  "uniprot_length": 364
+ },
+ "p38-delta": {
+  "davis_length": 365,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 365
+ },
+ "p38-gamma": {
+  "davis_length": 367,
+  "residues_after": 11,
+  "residues_before": 11,
+  "status": "identical",
+  "uniprot_length": 367
+ }
+}

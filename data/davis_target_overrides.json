@@ -1,14 +1,32 @@
 {
+  "CDK11": {
+    "note": "Verified by sequence: the DAVIS sequence for 'CDK11' is identical, residue for residue, to Q9BWU1 (CDK19, cyclin-dependent kinase 19 (formerly also named CDK11)). Found by src/data/align_ground_truth.py, which could align none of it to the protein name search had chosen.",
+    "reason_it_failed": "WRONG PROTEIN -- resolved to P21127, cyclin-dependent kinase 11B",
+    "uniprot_accession": "Q9BWU1",
+    "unresolvable": ""
+  },
   "MAK": {
     "note": "verified: correct protein, annotation genuinely absent",
     "reason_it_failed": "no_sites",
     "uniprot_accession": "",
     "unresolvable": "UniProt entry Q96L96 (ALPK3) is correct. Alpha-kinases have an atypical fold and no annotated binding site."
   },
+  "MLCK": {
+    "note": "Verified by sequence: the DAVIS sequence for 'MLCK' is identical, residue for residue, to Q32MK0 (MYLK3, myosin light chain kinase 3 (cardiac)). Found by src/data/align_ground_truth.py, which could align none of it to the protein name search had chosen.",
+    "reason_it_failed": "WRONG PROTEIN -- resolved to Q15746, smooth-muscle myosin light chain kinase (MYLK)",
+    "uniprot_accession": "Q32MK0",
+    "unresolvable": ""
+  },
   "MST1": {
     "note": "DAVIS 'MST1' means the STK4 kinase. UniProt files MST1 as macrophage-stimulating 1 (hepatocyte growth factor-like), a different protein with no binding-site annotation.",
     "reason_it_failed": "WRONG PROTEIN -- resolved to P26927, macrophage-stimulating 1 (hepatocyte growth factor-like), which is not a kinase",
     "uniprot_accession": "Q13043",
+    "unresolvable": ""
+  },
+  "PAK1": {
+    "note": "Verified by sequence: the DAVIS sequence for 'PAK1' is identical, residue for residue, to Q13153 (PAK1, serine/threonine-protein kinase PAK 1). Found by src/data/align_ground_truth.py, which could align none of it to the protein name search had chosen.",
+    "reason_it_failed": "WRONG PROTEIN -- resolved to Q16512, PKN1 -- which carries 'PAK1' as an old alias",
+    "uniprot_accession": "Q13153",
     "unresolvable": ""
   },
   "PFPK5(Pfalciparum)": {
@@ -124,6 +142,12 @@
     "reason_it_failed": "no_sites",
     "uniprot_accession": "",
     "unresolvable": "UniProt entry Q8TBX8 (PIP4K2C) is correct but carries no Binding site / Active site / Nucleotide binding annotation. Lipid-kinase ATP pockets are largely unannotated in UniProt. Real coverage gap, not a mapping error."
+  },
+  "PKAC-alpha": {
+    "note": "Verified by sequence: the DAVIS sequence for 'PKAC-alpha' is identical, residue for residue, to P17612 (PRKACA, cAMP-dependent protein kinase catalytic subunit alpha). Found by src/data/align_ground_truth.py, which could align none of it to the protein name search had chosen.",
+    "reason_it_failed": "WRONG PROTEIN -- resolved to P17252, protein kinase C alpha",
+    "uniprot_accession": "P17612",
+    "unresolvable": ""
   },
   "PRP4": {
     "note": "HGNC symbol is PRP4K; PRPF4B is only a synonym, so the gene search for PRPF4B returned nothing.",

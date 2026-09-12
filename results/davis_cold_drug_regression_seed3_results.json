@@ -1,0 +1,23 @@
+{
+  "tag": "davis_cold_drug_regression_seed3",
+  "dataset": "davis",
+  "split": "cold_drug",
+  "task": "regression",
+  "seed": 3,
+  "checkpoint": "/kaggle/working/results/coldsite_dti_davis_cold_drug_regression_seed3.pt",
+  "best_epoch": 13,
+  "selection": {
+    "best_epoch": 14,
+    "best_val_loss": 0.6073882296613978,
+    "min_epochs": 10,
+    "min_epochs_applied": 10
+  },
+  "train_subsample": null,
+  "n_train_rows": 21658,
+  "test_metrics": {
+    "mse": 0.6406656773655941,
+    "rmse": 0.8004159402245773,
+    "pearson": 0.37129349078343554,
+    "ci": 0.6176945326951677
+  }
+}

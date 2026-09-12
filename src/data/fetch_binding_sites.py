@@ -296,8 +296,12 @@ def main():
 
     if args.dataset:
         from src.data.load_data import load_deepdta_dataset
+        from src.data.align_ground_truth import uniprot_numbered_path
         target_ids = list(load_deepdta_dataset(args.dataset)["Target_ID"].unique())
-        out_path = args.out or f"data/{args.dataset}_ground_truth_sites.json"
+        # UniProt numbers its own sequence, and DAVIS's sequences are not all
+        # UniProt's -- some are fragments or other isoforms. The fetch writes the
+        # UniProt-numbered file; align_ground_truth derives the one evaluation reads.
+        out_path = args.out or uniprot_numbered_path(args.dataset)
     elif args.ids:
         target_ids = args.ids
         out_path = args.out or "data/custom_ground_truth_sites.json"
@@ -310,7 +314,10 @@ def main():
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(result["sites"], f, indent=2)
-    provenance_path = out_path.replace(".json", "_provenance.json")
+    # The provenance name predates the split into two site files; keep it.
+    provenance_path = (f"data/{args.dataset}_ground_truth_sites_provenance.json"
+                       if args.dataset and not args.out
+                       else out_path.replace(".json", "_provenance.json"))
     with open(provenance_path, "w") as f:
         json.dump(result["provenance"], f, indent=2)
 
@@ -320,6 +327,8 @@ def main():
     print(f"{variants} were variant IDs resolved to a wild-type entry")
     print(f"Saved -> {out_path}")
     print(f"Saved -> {provenance_path}")
+    if args.dataset == "davis" and not args.out:
+        print("\nNow align to DAVIS's sequences:  python -m src.data.align_ground_truth")
     print("\nNow verify with:  python -m src.data.ground_truth")
 
 

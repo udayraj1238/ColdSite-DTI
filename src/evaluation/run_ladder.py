@@ -158,10 +158,14 @@ def write_results(results: dict, out_dir: str, tag: str, k: int = 10,
             for level in LEVELS if level in results and k in results[level]["by_k"]
         }}
         figure_path = os.path.join(out_dir, f"headline_{tag}.png")
+        at_k = {l: results[l]["by_k"][k] for l in LEVELS
+                if l in results and k in results[l]["by_k"]}
         plot_degradation_curve(
             grid, {model_name: {l: accuracy.get(l, float("nan")) for l in LEVELS}},
             title=f"Explanation fidelity vs accuracy — {tag}",
-            save_path=figure_path)
+            save_path=figure_path,
+            chance={l: e["chance"] for l, e in at_k.items() if e.get("chance") is not None},
+            ceiling={l: e["ceiling"] for l, e in at_k.items() if e.get("ceiling") is not None})
     elif len(fidelity) == 4:
         print("\nAccuracy values not supplied, so the headline figure was not "
               "drawn. Pass --accuracy-json with one AUROC/CI per level; the "

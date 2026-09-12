@@ -19,10 +19,12 @@ from src.model.run_grid import (
     TASK,
     format_preflight,
     grid_cells,
+    main,
     preflight,
     status_table,
     train_command,
     verify_cell,
+    write_status,
 )
 
 
@@ -195,6 +197,123 @@ def test_an_unloadable_checkpoint_is_caught(tmp_path):
 
 
 # --------------------------------------------------------------------------
+# resuming after an interrupted run
+# --------------------------------------------------------------------------
+
+def _run_grid_over_one_cell(tmp_path, monkeypatch, cell):
+    """Drive main() over a single cell, recording whether it trained.
+
+    Returns the list of cells run_cell was called on, so a test can tell a
+    skipped cell from a retrained one.
+    """
+    import src.model.run_grid as run_grid
+
+    trained = []
+
+    def fake_run_cell(cell, split_root, results_dir, task, epochs, extra=(),
+                      dry_run=False):
+        trained.append(cell)
+        _finish_cell(tmp_path / "r", cell)
+        return {"cell": cell, "status": "ok", "accuracy": 0.5,
+                "checkpoint": str(tmp_path / "r" / checkpoint_name(
+                    cell["dataset"], cell["split"], TASK, cell["seed"]))}
+
+    monkeypatch.setattr(run_grid, "run_cell", fake_run_cell)
+    monkeypatch.setattr("sys.argv", [
+        "run_grid",
+        "--datasets", cell["dataset"], "--splits", cell["split"],
+        "--seeds", str(cell["seed"]),
+        "--split-root", str(_make_splits(tmp_path / "s")),
+        "--results-dir", str(tmp_path / "r"),
+        "--skip-validation-cell",
+    ])
+    main()
+    return trained
+
+
+@pytest.mark.slow
+def test_an_interrupted_cell_is_retrained_not_skipped(tmp_path, monkeypatch):
+    """A checkpoint on disk does not mean the cell finished.
+
+    train() saves on the first improving epoch -- usually epoch 0 -- and writes
+    the results JSON only after the test pass. A dropped session therefore
+    leaves a checkpoint with no results JSON. Skipping on the checkpoint alone
+    banked a half-trained model as a finished cell, with no accuracy, and the
+    grid reported success.
+    """
+    import torch
+
+    cell = {"dataset": "davis", "split": "random", "seed": 1}
+    results = tmp_path / "r"
+    results.mkdir()
+    # what an interrupted run leaves behind: a checkpoint, no results JSON
+    torch.save({"model_state": {"w": torch.zeros(2)}, "epoch": 0},
+               results / checkpoint_name("davis", "random", TASK, 1))
+    assert not verify_cell(cell, str(results))["valid"]
+
+    trained = _run_grid_over_one_cell(tmp_path, monkeypatch, cell)
+
+    assert trained == [cell], "an interrupted cell must be retrained, not skipped"
+
+
+@pytest.mark.slow
+def test_the_validation_cell_is_the_first_unfinished_one(tmp_path, monkeypatch):
+    """Resuming must not retrain a finished cell just because it sorts first.
+
+    The validation cell used to be cells[0] unconditionally. On a resumed
+    session that cell is usually already complete, so every restart spent an
+    hour retraining it -- and overwrote a checkpoint and results JSON whose
+    accuracy was already reported, with cuDNN free to return a slightly
+    different number the second time.
+    """
+    import src.model.run_grid as run_grid
+
+    results = tmp_path / "r"
+    results.mkdir()
+    done = {"dataset": "davis", "split": "random", "seed": 1}
+    todo = {"dataset": "davis", "split": "random", "seed": 2}
+    _finish_cell(results, done)
+    assert verify_cell(done, str(results))["valid"]
+
+    trained = []
+
+    def fake_run_cell(cell, split_root, results_dir, task, epochs, extra=(),
+                      dry_run=False):
+        trained.append(cell)
+        _finish_cell(results, cell)
+        return {"cell": cell, "status": "ok", "accuracy": 0.5,
+                "checkpoint": str(results / checkpoint_name(
+                    cell["dataset"], cell["split"], TASK, cell["seed"]))}
+
+    monkeypatch.setattr(run_grid, "run_cell", fake_run_cell)
+    monkeypatch.setattr("sys.argv", [
+        "run_grid", "--datasets", "davis", "--splits", "random",
+        "--seeds", "1,2",
+        "--split-root", str(_make_splits(tmp_path / "s")),
+        "--results-dir", str(results),
+    ])
+    main()
+
+    assert done not in trained, (
+        "the finished cell was retrained as the validation cell")
+    assert trained == [todo], f"expected only the unfinished cell, got {trained}"
+
+
+@pytest.mark.slow
+def test_a_complete_cell_is_still_skipped(tmp_path, monkeypatch):
+    """The other half of the same decision: finished work is not redone."""
+    cell = {"dataset": "davis", "split": "random", "seed": 1}
+    results = tmp_path / "r"
+    results.mkdir()
+    _finish_cell(results, cell)
+    assert verify_cell(cell, str(results))["valid"]
+
+    trained = _run_grid_over_one_cell(tmp_path, monkeypatch, cell)
+
+    assert trained == [], "a complete cell must not be retrained"
+
+
+# --------------------------------------------------------------------------
 # the status table
 # --------------------------------------------------------------------------
 
@@ -257,3 +376,63 @@ def test_the_metric_mapping_has_one_definition():
 def test_an_unknown_task_raises_rather_than_guessing():
     with pytest.raises(ValueError, match="no accuracy metric"):
         accuracy_metric_for("ranking")
+
+
+# --------------------------------------------------------------------------
+# the status file, when two processes share a results directory
+# --------------------------------------------------------------------------
+
+def _share(split_types):
+    return [{"dataset": "davis", "split": sp, "seed": seed}
+            for sp in split_types for seed in SEEDS]
+
+
+@pytest.mark.slow
+def test_the_last_process_to_finish_writes_the_whole_grid(tmp_path):
+    """Two GPUs, one results directory, each process training half the split
+    types. The status used to be built from the caller's memory, so the last
+    process to finish overwrote the other's file with its own half: a 12-cell
+    grid reported "6 of 6 cells complete". Built from disk, the last writer
+    describes all twelve.
+    """
+    gpu0, gpu1 = _share(["random", "cold_drug"]), _share(["cold_target", "cold_pair"])
+    for cell in gpu0 + gpu1:
+        _finish_cell(tmp_path, cell)
+
+    def outcomes(cells):
+        return [{"cell": c, "status": "ok", "accuracy": 0.72,
+                 "checkpoint": str(tmp_path / checkpoint_name(
+                     c["dataset"], c["split"], TASK, c["seed"]))} for c in cells]
+
+    write_status(outcomes(gpu1), str(tmp_path), ["davis"])       # finishes first
+    _, table_path, rows = write_status(outcomes(gpu0), str(tmp_path), ["davis"])
+
+    text = open(table_path).read()
+    assert "12 of 12 cells complete" in text, text
+    assert len(rows) == 12
+    # a cell only the *other* process trained must still be in the table
+    assert "| davis | cold_pair | 3 |" in text
+
+
+@pytest.mark.slow
+def test_a_resumed_grid_counts_skipped_cells_as_complete(tmp_path):
+    """On a resumed run every finished cell comes back as "skipped", and the
+    count only included "ok" -- a complete grid read as nearly empty."""
+    cells = _share(["random", "cold_drug", "cold_target", "cold_pair"])
+    for cell in cells:
+        _finish_cell(tmp_path, cell)
+    skipped = [{"cell": c, "status": "skipped", "accuracy": 0.72} for c in cells]
+
+    _, table_path, _ = write_status(skipped, str(tmp_path), ["davis"])
+
+    assert "12 of 12 cells complete" in open(table_path).read()
+
+
+def test_a_cell_nobody_has_reached_is_not_a_failure(tmp_path):
+    """The other GPU's unstarted share is "missing", not a failure."""
+    _, table_path, rows = write_status([], str(tmp_path), ["davis"])
+    text = open(table_path).read()
+
+    assert {r["status"] for r in rows} == {"missing"}
+    assert "0 of 12 cells complete" in text
+    assert "## Failures" not in text

@@ -641,13 +641,13 @@
   },
   "CDK11": {
     "resolved_from": "CDK11",
-    "uniprot_accession": "P21127",
-    "resolution": "gene_search(exact_longest_of_2)",
+    "uniprot_accession": "Q9BWU1",
+    "resolution": "manual_override",
     "is_variant": false,
-    "n_features": 14,
-    "gene_name": "CDK11B",
-    "protein_name": "Cyclin-dependent kinase 11B",
-    "sequence_length": 795
+    "n_features": 3,
+    "gene_name": "CDK19",
+    "protein_name": "Cyclin-dependent kinase 19",
+    "note": "Verified by sequence: the DAVIS sequence for 'CDK11' is identical, residue for residue, to Q9BWU1 (CDK19, cyclin-dependent kinase 19 (formerly also named CDK11)). Found by src/data/align_ground_truth.py, which could align none of it to the protein name search had chosen."
   },
   "CDK2": {
     "resolved_from": "CDK2",
@@ -2521,13 +2521,13 @@
   },
   "MLCK": {
     "resolved_from": "MLCK",
-    "uniprot_accession": "Q15746",
-    "resolution": "gene_search(exact_longest_of_2)",
+    "uniprot_accession": "Q32MK0",
+    "resolution": "manual_override",
     "is_variant": false,
     "n_features": 3,
-    "gene_name": "MYLK",
-    "protein_name": "Myosin light chain kinase, smooth muscle",
-    "sequence_length": 1914
+    "gene_name": "MYLK3",
+    "protein_name": "Myosin light chain kinase 3",
+    "note": "Verified by sequence: the DAVIS sequence for 'MLCK' is identical, residue for residue, to Q32MK0 (MYLK3, myosin light chain kinase 3 (cardiac)). Found by src/data/align_ground_truth.py, which could align none of it to the protein name search had chosen."
   },
   "MLK1": {
     "resolved_from": "MLK1",
@@ -2587,8 +2587,6 @@
     "n_features": 3,
     "gene_name": "STK4",
     "protein_name": "Serine/threonine-protein kinase 4",
-    "sequence_length": 487,
-    "organism_name": "Homo sapiens",
     "note": "DAVIS 'MST1' means the STK4 kinase. UniProt files MST1 as macrophage-stimulating 1 (hepatocyte growth factor-like), a different protein with no binding-site annotation."
   },
   "MST1R": {
@@ -2883,13 +2881,13 @@
   },
   "PAK1": {
     "resolved_from": "PAK1",
-    "uniprot_accession": "Q16512",
-    "resolution": "gene_search(exact_longest_of_2)",
+    "uniprot_accession": "Q13153",
+    "resolution": "manual_override",
     "is_variant": false,
-    "n_features": 3,
-    "gene_name": "PKN1",
-    "protein_name": "Serine/threonine-protein kinase N1",
-    "sequence_length": 942
+    "n_features": 4,
+    "gene_name": "PAK1",
+    "protein_name": "Serine/threonine-protein kinase PAK 1",
+    "note": "Verified by sequence: the DAVIS sequence for 'PAK1' is identical, residue for residue, to Q13153 (PAK1, serine/threonine-protein kinase PAK 1). Found by src/data/align_ground_truth.py, which could align none of it to the protein name search had chosen."
   },
   "PAK2": {
     "resolved_from": "PAK2",
@@ -3019,8 +3017,6 @@
     "n_features": 3,
     "gene_name": "CRK2",
     "protein_name": "Cyclin-dependent kinase 2 homolog",
-    "sequence_length": 288,
-    "organism_name": "Plasmodium falciparum (isolate 3D7)",
     "note": "PfPK5 is an alternative protein name; the gene symbol is CRK2. Pinned to the 3D7 reference strain (P61075); Q07785 is the K1 strain with an identical 288-residue sequence."
   },
   "PFTAIRE2": {
@@ -3295,13 +3291,13 @@
   },
   "PKAC-alpha": {
     "resolved_from": "PKAC-alpha",
-    "uniprot_accession": "P17252",
-    "resolution": "alias(PRKACA|exact_longest_of_2)",
+    "uniprot_accession": "P17612",
+    "resolution": "manual_override",
     "is_variant": false,
-    "n_features": 18,
-    "gene_name": "PRKCA",
-    "protein_name": "Protein kinase C alpha type",
-    "sequence_length": 672
+    "n_features": 5,
+    "gene_name": "PRKACA",
+    "protein_name": "cAMP-dependent protein kinase catalytic subunit alpha",
+    "note": "Verified by sequence: the DAVIS sequence for 'PKAC-alpha' is identical, residue for residue, to P17612 (PRKACA, cAMP-dependent protein kinase catalytic subunit alpha). Found by src/data/align_ground_truth.py, which could align none of it to the protein name search had chosen."
   },
   "PKAC-beta": {
     "resolved_from": "PKAC-beta",
@@ -3521,8 +3517,6 @@
     "n_features": 3,
     "gene_name": "PRP4K",
     "protein_name": "Serine/threonine-protein kinase PRP4 homolog",
-    "sequence_length": 1007,
-    "organism_name": "Homo sapiens",
     "note": "HGNC symbol is PRP4K; PRPF4B is only a synonym, so the gene search for PRPF4B returned nothing."
   },
   "PYK2": {

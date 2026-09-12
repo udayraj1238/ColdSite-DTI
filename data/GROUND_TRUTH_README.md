@@ -36,12 +36,50 @@ with perfect attention it returns 0.67 instead of 1.00
 
 | field | meaning |
 |---|---|
-| `start`, `end` | 1-indexed, **inclusive** UniProt residue numbers. `52–60` is nine residues. |
+| `start`, `end` | 1-indexed, **inclusive** residue numbers. `52–60` is nine residues. For DAVIS they number **the DAVIS sequence the model reads**; for KIBA, UniProt's. See below. |
 | `type` | UniProt feature type. Only `Binding site`, `Active site`, `Nucleotide binding` are collected. |
 | `description` | free text, informational only |
+| `uniprot_start`, `uniprot_end` | DAVIS only, on remapped features: the UniProt residues the feature came from |
 
 A sibling `*_provenance.json` records, per target, which UniProt accession was
 used and how it was resolved.
+
+## DAVIS: two site files, and why
+
+UniProt numbers residues along its own canonical sequence. The model reads DAVIS's
+sequence, and those are not always UniProt's: for 54 targets with annotated sites
+DAVIS holds a kinase-domain fragment, a longer isoform or a construct with extra
+residues. A UniProt residue number then points at the wrong residue of what the model
+saw -- or past its end. So DAVIS has two files, each with one writer:
+
+| file | numbering | written by |
+|---|---|---|
+| `davis_ground_truth_sites_uniprot.json` | UniProt | `fetch_binding_sites`, `resolve_unmapped --apply` |
+| `davis_ground_truth_sites.json` | **the DAVIS sequence** -- what evaluation reads | `align_ground_truth`, only |
+
+`python -m src.data.align_ground_truth` aligns each DAVIS sequence to its UniProt
+sequence and carries every annotated residue across only where the two agree; a
+single-residue substitution between long aligned stretches carries too, so point
+mutants keep their gatekeeper. Anything outside a fragment is dropped. The per-target
+outcome is in `davis_ground_truth_alignment.json`; the UniProt sequences are cached in
+`davis_uniprot_sequences.json`, so re-running needs no network.
+
+**After re-fetching or applying overrides, re-run the alignment**, or evaluation keeps
+reading the previous sites.
+
+What the alignment found, beyond the numbering:
+
+- **Four targets carried another protein's binding sites.** Name search had resolved
+  PKAC-alpha to PKC-alpha, PAK1 to PKN1 (which carries "PAK1" as an old alias), MLCK to
+  smooth-muscle MLCK and CDK11 to CDK11B. In each case the DAVIS sequence is identical,
+  residue for residue, to a different entry -- PRKACA, PAK1, MYLK3 and CDK19 -- and none
+  of it aligned to the entry that had been chosen. They are corrected through
+  `davis_target_overrides.json`, like MST1 before them.
+- **Some DAVIS sequences do not contain the kinase domain.** DAVIS's ROCK2 is UniProt
+  residues 686-1388 and its MLK1 732-1104, while their annotated sites lie in the kinase
+  domain earlier in the chain. The model never sees those sites. Five targets lose every
+  site this way and drop out of the ladder as unusable, rather than being scored against
+  residues they do not contain.
 
 ## What the adapter gives you
 
@@ -68,9 +106,12 @@ Current impact at `max_len=1000`:
 
 | | DAVIS | KIBA |
 |---|---|---|
-| annotated positions past the cut | 283 | 165 |
+| annotated positions past the cut | 280 | 164 |
 | targets losing at least one position | **24** | **14** |
-| targets losing everything (dropped) | **15** | **8** |
+| targets losing everything (dropped) | **16** | **9** |
+
+(Regenerated 2026-09-12 by `python -m src.data.ground_truth`, after the DAVIS
+alignment.)
 
 > **Figures corrected 2026-08-09 (124AD0015).** This line previously read
 > "283 positions / 15 targets" and "165 positions / 10 targets", which conflated
@@ -103,12 +144,16 @@ Run `python -m src.data.ground_truth` to regenerate these numbers.
 
 | | DAVIS | KIBA |
 |---|---|---|
-| targets in file | 409 | 224 |
-| usable at `max_len=1000` | 394 | 214 |
-| distinct wild-type accessions | 336 | 214 |
-| total 0-indexed positions | 4,902 | 2,732 |
+| targets in file | 442 | 229 |
+| usable at `max_len=1000` | 402 | 212 |
+| distinct wild-type accessions | 353 | 212 |
+| total 0-indexed positions | 5,035 | 2,726 |
 
-> ⚠️ **These files need regenerating.** They were produced by a fetcher that
+(2026-09-12, DAVIS after the alignment above.) Both files now carry `type` on every
+feature -- `dropped_description` is 0 and nothing depends on the heuristic below any
+more. The note is kept for history.
+
+> ⚠️ **(Historical -- done.) These files needed regenerating.** They were produced by a fetcher that
 > also collected UniProt's `Site` catch-all type, which carries protease
 > cleavage points and chromosomal breakpoints — positions no drug binds to,
 > counted as correct answers. The adapter currently filters them by description

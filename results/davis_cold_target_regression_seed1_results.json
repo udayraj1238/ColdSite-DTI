@@ -1,0 +1,23 @@
+{
+  "tag": "davis_cold_target_regression_seed1",
+  "dataset": "davis",
+  "split": "cold_target",
+  "task": "regression",
+  "seed": 1,
+  "checkpoint": "/kaggle/working/results/coldsite_dti_davis_cold_target_regression_seed1.pt",
+  "best_epoch": 22,
+  "selection": {
+    "best_epoch": 23,
+    "best_val_loss": 0.38252138788687357,
+    "min_epochs": 10,
+    "min_epochs_applied": 10
+  },
+  "train_subsample": null,
+  "n_train_rows": 21080,
+  "test_metrics": {
+    "mse": 0.4407982335930972,
+    "rmse": 0.6639263766360674,
+    "pearson": 0.655369051350412,
+    "ci": 0.7970116843698672
+  }
+}

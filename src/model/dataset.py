@@ -20,6 +20,15 @@ SMILES_COLUMNS = ["compound_iso_smiles", "smiles", "drug", "drug_smiles", "ligan
 PROTEIN_COLUMNS = ["target_sequence", "protein", "target", "sequence", "aa_sequence"]
 LABEL_COLUMNS = ["affinity", "label", "y", "value", "interaction"]
 
+# The binary task calls a pair binding when its affinity reaches these values:
+# DeepDTA's own published thresholds, DAVIS pKd >= 7.0 and KIBA >= 12.1.
+#
+# The one definition. DeepDTA, HyperAttentionDTI and ColdSite-DTI all import
+# it, because the audit table compares their AUROCs, and three models scored
+# against three separately maintained thresholds would be three different
+# tasks presented as one.
+BINARY_THRESHOLD = {"davis": 7.0, "kiba": 12.1}
+
 
 def find_column(df: pd.DataFrame, candidates: list, role: str) -> str:
     lowered = {c.lower().strip(): c for c in df.columns}
@@ -46,19 +55,28 @@ class DTIDataset(Dataset):
         return cls.from_frame(pd.read_csv(path), drug_vocab, protein_vocab, **kwargs)
 
     @classmethod
-    def from_frame(cls, df, drug_vocab, protein_vocab, **kwargs):
+    def from_frame(cls, df, drug_vocab, protein_vocab, label_threshold=None, **kwargs):
         """Same as from_csv, for a frame already in memory.
 
         load_split needs this: it may subsample the training rows before
         building the vocabulary, so it cannot re-read the file afterwards.
+
+        `label_threshold` turns affinities into binding labels, 1.0 at or above
+        it and 0.0 below. The split files hold raw affinities, so without it a
+        binary run hands the loss pKd values of 5-11 as though they were
+        classes -- and fails at the first AUROC, which refuses continuous
+        labels.
         """
         s = find_column(df, SMILES_COLUMNS, "SMILES")
         p = find_column(df, PROTEIN_COLUMNS, "protein sequence")
         y = find_column(df, LABEL_COLUMNS, "label")
         df = df.dropna(subset=[s, p, y])
+        labels = df[y].astype(float)
+        if label_threshold is not None:
+            labels = (labels >= label_threshold).astype(float)
         return cls(df[s].astype(str).tolist(),
                    df[p].astype(str).str.upper().tolist(),
-                   df[y].astype(float).tolist(),
+                   labels.tolist(),
                    drug_vocab, protein_vocab, **kwargs)
 
     def __len__(self):
@@ -90,7 +108,7 @@ def make_loader(dataset, batch_size=64, shuffle=False, workers=0):
 
 
 def load_split(split_dir, max_protein_len=1000, batch_size=64,
-               train_subsample=None, subsample_seed=0):
+               train_subsample=None, subsample_seed=0, binary_threshold=None):
     """Build train/valid/test loaders for one split directory.
 
     Returns (train_loader, valid_loader, test_loader, drug_vocab, protein_vocab).
@@ -118,8 +136,10 @@ def load_split(split_dir, max_protein_len=1000, batch_size=64,
     )
     protein_vocab = build_protein_vocab()
 
+    # binary_threshold: see BINARY_THRESHOLD. Applied to all three parts, so a
+    # model is trained, early-stopped and tested against the same labels.
     common = dict(drug_vocab=drug_vocab, protein_vocab=protein_vocab,
-                  max_protein_len=max_protein_len)
+                  max_protein_len=max_protein_len, label_threshold=binary_threshold)
     train = DTIDataset.from_frame(train_df, **common)
     valid = DTIDataset.from_csv(f"{split_dir}/valid.csv", **common)
     test = DTIDataset.from_csv(f"{split_dir}/test.csv", **common)

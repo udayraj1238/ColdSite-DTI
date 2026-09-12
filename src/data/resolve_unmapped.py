@@ -321,7 +321,10 @@ def main():
     parser.add_argument("--delay", type=float, default=0.2)
     args = parser.parse_args()
 
-    sites_path = f"data/{args.dataset}_ground_truth_sites.json"
+    # Resolution works on the UniProt-numbered sites; for DAVIS the file evaluation
+    # reads is derived from them by align_ground_truth, and must not be written here.
+    from src.data.align_ground_truth import uniprot_numbered_path
+    sites_path = uniprot_numbered_path(args.dataset)
     provenance_path = f"data/{args.dataset}_ground_truth_sites_provenance.json"
     overrides_path = f"data/{args.dataset}_target_overrides.json"
 
@@ -340,6 +343,8 @@ def main():
     if args.apply:
         apply_overrides(args.dataset, sites_path, provenance_path,
                         overrides_path, delay=args.delay)
+        if args.dataset == "davis":
+            print("\nNow re-align to DAVIS's sequences:  python -m src.data.align_ground_truth")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,23 @@
+{
+  "tag": "davis_random_regression_seed3",
+  "dataset": "davis",
+  "split": "random",
+  "task": "regression",
+  "seed": 3,
+  "checkpoint": "/kaggle/working/results/coldsite_dti_davis_random_regression_seed3.pt",
+  "best_epoch": 51,
+  "selection": {
+    "best_epoch": 52,
+    "best_val_loss": 0.3079489777862272,
+    "min_epochs": 10,
+    "min_epochs_applied": 10
+  },
+  "train_subsample": null,
+  "n_train_rows": 21039,
+  "test_metrics": {
+    "mse": 0.28885426808974407,
+    "rmse": 0.5374516425593507,
+    "pearson": 0.7873445195278784,
+    "ci": 0.8703625295450718
+  }
+}

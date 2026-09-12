@@ -195,6 +195,28 @@ def test_headline_figure_draws_with_accuracy(tmp_path):
     assert (tmp_path / "headline.png").exists()
 
 
+def test_headline_figure_draws_chance_and_states_the_ceiling(tmp_path, monkeypatch):
+    """Real precision@k on DAVIS sits within a few hundredths of chance, and the
+    axis auto-scales to the data. Without a chance line a 0.01 wobble between
+    levels fills the panel and reads as a trend."""
+    import src.evaluation.plots as plots
+
+    captured = {}
+    monkeypatch.setattr(plots.plt, "close", lambda fig: captured.setdefault("fig", fig))
+
+    chance = {"random": 0.020, "cold_drug": 0.020, "cold_target": 0.019, "cold_pair": 0.019}
+    grid = {"m": {l: _cell(0.03, float("nan")) for l in LEVELS}}
+    plot_degradation_curve(grid, {"m": {l: 0.8 for l in LEVELS}},
+                           save_path=str(tmp_path / "h.png"),
+                           chance=chance, ceiling={l: 0.99 for l in LEVELS})
+
+    ax_fid = captured["fig"].axes[0]
+    lines = {line.get_label(): list(line.get_ydata()) for line in ax_fid.get_lines()}
+    chance_line = next(v for label, v in lines.items() if "chance" in label)
+    assert chance_line == pytest.approx([chance[l] for l in LEVELS])
+    assert "0.99" in ax_fid.get_title()
+
+
 def test_stratified_panels_refuse_underpowered_families(tmp_path):
     stratified = {"m": {l: {KINASE: {"mean": 0.4, "std": 0.02}} for l in LEVELS}}
     with pytest.raises(ValueError, match="confound control does not yet exist"):

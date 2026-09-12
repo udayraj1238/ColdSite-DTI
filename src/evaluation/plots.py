@@ -49,11 +49,19 @@ def plot_degradation_curve(grid: dict, accuracy: dict = None,
                            control_model: str = "uniform_control",
                            title: str = "Explanation fidelity vs accuracy across the ladder",
                            save_path: str = "results/headline_figure.png",
-                           metric: str = "precision_at_k"):
+                           metric: str = "precision_at_k",
+                           chance: dict = None, ceiling: dict = None):
     """The headline: fidelity per model across the ladder, accuracy beside it.
 
     grid:     {model_name: {level: {metric: {mean, std, ...}}}}
     accuracy: {model_name: {level: value}} -- REQUIRED
+    chance:   {level: precision@k of attention placed at random} -- drawn as a
+              line. Real precision@k on DAVIS sits within a few hundredths of
+              chance, and the axis auto-scales to the data; without the line a
+              0.01 wobble between levels fills the panel and reads as a trend.
+    ceiling:  {level: best precision@k any attention could reach} -- stated in
+              the panel title rather than drawn. It is near 1.0; on the same
+              axis it would flatten every model onto the floor.
     """
     if not accuracy:
         raise ValueError(
@@ -64,6 +72,14 @@ def plot_degradation_curve(grid: dict, accuracy: dict = None,
 
     fig, (ax_fid, ax_acc) = plt.subplots(1, 2, figsize=(13, 5), sharex=True)
     x = np.arange(len(LEVELS))
+
+    # Drawn first, so every model sits on top of it.
+    if chance:
+        floor = np.asarray([chance.get(l, np.nan) for l in LEVELS], float)
+        ax_fid.fill_between(x, 0, floor, color="0.5", alpha=0.10, zorder=0,
+                            label="_nolegend_")
+        ax_fid.plot(x, floor, color="black", linestyle=":", linewidth=1.8, zorder=1,
+                    label="chance (attention placed at random)")
 
     for model_name in sorted(grid):
         means, stds = _series(grid[model_name], metric)
@@ -78,7 +94,11 @@ def plot_degradation_curve(grid: dict, accuracy: dict = None,
         )
 
     ax_fid.set_ylabel(f"Explanation fidelity ({metric})")
-    ax_fid.set_title("Do explanations still point at real binding sites?")
+    fid_title = "Do explanations still point at real binding sites?"
+    if ceiling:
+        top = np.nanmean([ceiling.get(l, np.nan) for l in LEVELS])
+        fid_title += f"\n(perfect attention would score ≈ {top:.2f})"
+    ax_fid.set_title(fid_title)
 
     for model_name in sorted(accuracy):
         values = [accuracy[model_name].get(l, np.nan) for l in LEVELS]

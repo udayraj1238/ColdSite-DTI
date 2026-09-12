@@ -51,8 +51,9 @@ from src.model.deepdta_torch import (
 from src.model.train import compute_metrics
 
 # DAVIS pKd >= 7.0 and KIBA >= 12.1 are DeepDTA's own published thresholds and
-# are already verified against the real data (8.3% and 21.0% positive).
-BINARY_THRESHOLD = {"davis": 7.0, "kiba": 12.1}
+# are already verified against the real data (8.3% and 21.0% positive). Shared
+# with the other two models from src.model.dataset -- see the note there.
+from src.model.dataset import BINARY_THRESHOLD
 
 
 class DeepDTADataset(Dataset):

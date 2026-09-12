@@ -1,0 +1,23 @@
+{
+  "tag": "davis_cold_pair_regression_seed2",
+  "dataset": "davis",
+  "split": "cold_pair",
+  "task": "regression",
+  "seed": 2,
+  "checkpoint": "/kaggle/working/results/coldsite_dti_davis_cold_pair_regression_seed2.pt",
+  "best_epoch": 16,
+  "selection": {
+    "best_epoch": 17,
+    "best_val_loss": 0.7237957138003726,
+    "min_epochs": 10,
+    "min_epochs_applied": 10
+  },
+  "train_subsample": null,
+  "n_train_rows": 15190,
+  "test_metrics": {
+    "mse": 0.6634564617489371,
+    "rmse": 0.814528367676005,
+    "pearson": 0.180685015686843,
+    "ci": 0.5781409601634321
+  }
+}

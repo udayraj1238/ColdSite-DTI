@@ -14,6 +14,7 @@ Usage
 import argparse
 import json
 import os
+import time
 
 import numpy as np
 import torch
@@ -28,7 +29,7 @@ from src.model.checkpoint_naming import (
     run_tag,
 )
 from src.model.coldsite_dti import ColdSiteDTI
-from src.model.dataset import load_split, make_loader, random_dataset
+from src.model.dataset import BINARY_THRESHOLD, load_split, make_loader, random_dataset
 
 
 # --------------------------------------------------------------------------
@@ -100,9 +101,28 @@ def compute_metrics(y_true, y_pred, task: str) -> dict:
 # train / eval
 # --------------------------------------------------------------------------
 
+def _format_duration(seconds):
+    """h/m/s, whichever fits. Epochs run from tens of seconds to tens of minutes."""
+    seconds = int(seconds)
+    if seconds >= 3600:
+        return f"{seconds // 3600}h{(seconds % 3600) // 60:02d}m"
+    if seconds >= 60:
+        return f"{seconds // 60}m{seconds % 60:02d}s"
+    return f"{seconds}s"
+
+
+BAR_WIDTH = 24
+
+
+def _bar(fraction, width=BAR_WIDTH):
+    filled = int(round(width * fraction))
+    return "█" * filled + "░" * (width - filled)
+
+
 def train_one_epoch(model, dataloader, optimizer, loss_fn, device):
     model.train()
     total_loss = 0.0
+
     for drug_batch, protein_batch, label_batch in dataloader:
         drug_batch = drug_batch.to(device)
         protein_batch = protein_batch.to(device)
@@ -119,6 +139,7 @@ def train_one_epoch(model, dataloader, optimizer, loss_fn, device):
         optimizer.step()
 
         total_loss += loss.item() * drug_batch.size(0)
+
     return total_loss / len(dataloader.dataset)
 
 
@@ -159,7 +180,13 @@ def run_training(drug_vocab_size, protein_vocab_size, train_loader, val_loader,
     produced by three runs that overwrote each other.
     """
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"Training on: {device}")
+    # Says the size of the job before the first epoch line, which does not
+    # arrive until an epoch completes -- minutes on DAVIS, longer on KIBA.
+    # Without this the gap between "started" and the first bar is silent, and
+    # a slow first epoch is indistinguishable from a run that never began.
+    print(f"Training on: {device}  |  {len(train_loader)} train batches/epoch, "
+          f"{len(val_loader)} val, up to {n_epochs} epochs "
+          f"(early stopping: patience {patience}, min {min_epochs})", flush=True)
 
     model = ColdSiteDTI(drug_vocab_size, protein_vocab_size).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
@@ -175,15 +202,32 @@ def run_training(drug_vocab_size, protein_vocab_size, train_loader, val_loader,
     selector = CheckpointSelector(patience=patience, min_epochs=min_epochs,
                                   n_epochs=n_epochs)
 
+    epoch_durations = []
+
     for epoch in range(n_epochs):
         epoch_1indexed = epoch + 1
+        epoch_started = time.perf_counter()
         train_loss = train_one_epoch(model, train_loader, optimizer, loss_fn, device)
         val_loss, val_metrics = evaluate(model, val_loader, loss_fn, device, task)
         scheduler.step(val_loss)
 
+        took = time.perf_counter() - epoch_started
+        epoch_durations.append(took)
+        # Averaged rather than taken from the last epoch: the first is slower
+        # (cuDNN autotuning, warm caches) and would skew a running estimate.
+        mean_epoch = sum(epoch_durations) / len(epoch_durations)
+        # An upper bound, not a promise. Early stopping usually ends a cell well
+        # before n_epochs -- 33 and 69 on the two DAVIS cells measured so far --
+        # so this says how long the cell can still take, not how long it will.
+        worst_case = mean_epoch * (n_epochs - epoch_1indexed)
+
         metric_str = "  ".join(f"{k}={v:.4f}" for k, v in val_metrics.items())
-        print(f"Epoch {epoch_1indexed}/{n_epochs}  train_loss={train_loss:.4f}  "
-              f"val_loss={val_loss:.4f}  {metric_str}")
+        print(f"Epoch {epoch_1indexed:3d}/{n_epochs} "
+              f"[{_bar(epoch_1indexed / n_epochs)}] "
+              f"train_loss={train_loss:.4f}  val_loss={val_loss:.4f}  "
+              f"{metric_str}  "
+              f"[{_format_duration(took)}/epoch, avg {_format_duration(mean_epoch)}, "
+              f"<={_format_duration(worst_case)} left]", flush=True)
 
         if selector.consider(epoch_1indexed, val_loss):
             torch.save({"model_state": model.state_dict(), "epoch": epoch,
@@ -248,9 +292,19 @@ if __name__ == "__main__":
     else:
         if not args.split_dir:
             parser.error("--split-dir is required unless --dummy is set")
+        threshold = None
+        if args.task == "binary":
+            # The split files hold affinities, not classes; the threshold is
+            # what makes this the same binary task the baselines are scored on.
+            if args.dataset not in BINARY_THRESHOLD:
+                parser.error(f"--task binary needs --dataset in "
+                             f"{sorted(BINARY_THRESHOLD)} to know where binding "
+                             f"begins, got {args.dataset!r}")
+            threshold = BINARY_THRESHOLD[args.dataset]
         train_loader, val_loader, test_loader, drug_vocab, protein_vocab = load_split(
             args.split_dir, args.max_protein_len, args.batch_size,
-            train_subsample=args.train_subsample, subsample_seed=args.seed)
+            train_subsample=args.train_subsample, subsample_seed=args.seed,
+            binary_threshold=threshold)
         if args.train_subsample:
             print(f"VOLUME-MATCHED CONTROL: training on "
                   f"{len(train_loader.dataset)} rows "

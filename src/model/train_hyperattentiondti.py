@@ -77,8 +77,8 @@ from torch.utils.data import DataLoader, Dataset
 from src.model.early_stopping import DEFAULT_MIN_EPOCHS, CheckpointSelector
 from src.model.checkpoint_naming import checkpoint_path, results_path, run_tag
 from src.model.train import compute_metrics
-
-BINARY_THRESHOLD = {"davis": 7.0, "kiba": 12.1}
+# Shared with the other two models -- see the note in src.model.dataset.
+from src.model.dataset import BINARY_THRESHOLD
 VENDORED = os.path.join("baselines", "HpyerAttentionDTI")
 
 
