@@ -43,3 +43,17 @@ and the audit (the audit averages 500 random tie-breaks); DAVIS shows the same.
    The residue-space matched deltas (faithfulness_moltrans_*) are near zero; they answer a
    different question (residues masked via the attention's projection onto residues) and are
    a sensitivity result, not the headline.
+
+6. Integrated gradients on KIBA, 2026-09-17 04:37 - ~08:00, local CPU.
+   Same implementation and settings as DAVIS (src/evaluation/integrated_gradients.py,
+   32 steps, padding-embedding baseline), both audited models, both trained levels, 3 seeds,
+   against both ground truths:
+     python -m src.evaluation.run_ladder --model {hyperattentiondti_ig,moltrans_ig}
+       --task binary --dataset kiba --seed S --checkpoint-dir ~/ColdSite-results/kiba_binary
+       [--ground-truth data/kiba_klifs_pocket_sites.json]
+   Ladders in ig/ (UniProt) and ../analysis_kiba_policyA_klifs/ig/ (KLIFS).
+   Family correction: ig_family_kiba.md, via src/evaluation/ladder_family.py -- 3 of 4 cells
+   survive Holm, against 0 of 6 for the attention family (audit_kiba_binary.md).
+   The HAT jobs ran 6-way with 4 torch threads each and thrashed (142 min each, load 20 on
+   10 cores); the MolTrans jobs ran 6-way single-threaded at ~90% CPU efficiency. Thread
+   count changes only float reduction order, not the protocol.

@@ -230,7 +230,10 @@ def _explain_row(model_name: str, adapter, vocabs, smiles: str, sequence: str,
             encode_protein(sequence, protein_vocab, max_protein_len), dtype=torch.long)
         return np.asarray(adapter.explain(drug, protein), dtype=float)
 
-    if model_name == "hyperattentiondti":
+    if model_name in ("hyperattentiondti", "drugban"):
+        # Both encode (smiles, sequence) -> (drug, protein) and return one weight per
+        # residue; DrugBAN's drug side is a DGL graph rather than a tensor, which
+        # `explain` handles, and nothing here needs to know the difference.
         drug, protein = type(adapter).encode(smiles, sequence)
         return np.asarray(adapter.explain(drug, protein), dtype=float)
 

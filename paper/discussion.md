@@ -3,8 +3,8 @@
 Drafted 2026-09-13, rewritten 2026-09-14 once the DAVIS audit was complete (three models,
 four levels, three seeds, Holm over all sixteen cells). Every number here is in
 `paper/results.md` with its source file; nothing states a result for a model whose numbers
-are not there. Extended 2026-09-16 with §5b, the KIBA replication (Results §8); no *[PENDING]*
-marks remain. Limitations are in `paper/limitations.md`.
+are not there. Extended 2026-09-16 with §5b, the KIBA replication (Results §8), and 2026-09-18 with its
+integrated-gradient arm (Results §8.4); no *[PENDING]* marks remain. Limitations are in `paper/limitations.md`.
 
 ---
 
@@ -97,8 +97,9 @@ the pocket, 0.025 for drug contacts, 0.020 for annotations.
 
 ## 3b. What the measurement depends on
 
-Two results here are about the instrument, and both would have produced a wrong published
-claim if we had not checked.
+Three results here are about the instrument, and the first two would have produced a
+wrong published claim of our own if we had not checked. The third is about somebody
+else's, and it needed no measurement at all.
 
 **The residues a readout points at are mostly a property of the readout.** Between the
 tensor inside a network and one weight per residue, somebody chooses which axis to reduce,
@@ -112,6 +113,18 @@ audit's own verdicts do survive this: every readout of every model stays at chan
 annotated residues (0.010–0.057 against 0.020, all inside the seed spread bar one cell),
 and none lifts MolTrans above the pocket's chance level (0.120–0.189 against 0.143). What
 the choice changes is the size of the coarse signal, not the existence of the fine one.
+
+**An explanation can be incapable of the claim made for it, and the source says so.**
+A 2025 *Nature Communications* model (EviDTI) presents per-residue attention for four
+drug–target complexes and concludes that high-attention residues coincide with the binding
+site. Its attention is computed from the protein's language-model embedding alone; no drug
+tensor reaches it, and there is no cross-attention in the model. For a fixed protein,
+every drug therefore yields the identical map, for any weights (Results §7e). The claim is
+not refuted by a better measurement — it is refuted by the computation graph, which anyone
+can read before the figure is drawn. That suggests a cheap, general check for this
+literature: **state which inputs the explanation is a function of.** Our own audit's
+per-pair result (§7 of Results: the correct drug buys at most +0.011 precision@10) is the
+measured version of the same problem, and the two agree.
 
 **A masking-based faithfulness test can invert its own conclusion.** Faithfulness
 subtracts a random-masking control from the explanation's comprehensiveness, which assumes
@@ -146,16 +159,18 @@ the region, not the site, being what these models learned.
 
 **And for two of the three models the degradation is a reporting failure, not an ignorance
 failure.** Integrated gradients on the same checkpoints — same ground truth, same protein
-sets, same test, only the explanation changed — survive Holm in **seven of twelve cells,
-against one of sixteen for the attention**. HyperAttentionDTI's gradient is at 2.7–4.1×
+sets, same test, only the explanation changed — survive Holm in **seven of twelve DAVIS cells,
+against one of sixteen for the attention**, and in **three of four KIBA cells against none
+of six** — the one comparison in this paper that replicates in the direction that rescues
+the models rather than indicting them. HyperAttentionDTI's gradient is at 2.7–4.1×
 chance at *all four* levels, including the cold ones where its attention is at 1.2–1.3× and
 fails correction; ColdSite-DTI's is at 2.3–2.7× at cold-drug and cold-target, where its
 attention is at chance. The information is in the weights; the attention head does not
 report it.
 
 **MolTrans is the control that makes this a finding rather than an artefact.** Its gradient
-matches its attention to within noise (0.9–1.1× on annotated residues and on the pocket),
-and both sit at the floor. So the two failures are different in kind: for two models the
+matches its attention to within noise (0.9–1.1× on annotated residues and on the pocket on
+DAVIS; 0.9–1.2× on KIBA), and both sit at the floor. So the two failures are different in kind: for two models the
 attention under-reports a site the model does represent, and for the third there is nothing
 to report. An audit that measured only attention could not have told those apart, and would
 have filed all three under the same verdict.
@@ -207,6 +222,9 @@ three did not exist in our plan until a number forced them.
 
 ## 5b. Does the verdict replicate? KIBA
 
+*See **Figure 2** (`results/figures/fig2_seeds.pdf`): each cell as three seed dots against
+its chance level, which is the evidence for the seed-dependence argument below.*
+
 The audit's one positive residue-level result was a single cell of sixteen, so the
 replication was aimed at it. KIBA repeats the two published models at random and cold-drug,
 three seeds, with every DAVIS decision unchanged and nothing tuned on KIBA (Results §8).
@@ -221,7 +239,9 @@ depending on which seed it drew. MolTrans shows the same instability from the ot
 direction: at the uniform floor in every DAVIS cell, it produces a kinase-specific signal
 in KIBA seed 2 at both levels (0.053 and 0.063, beating every null) and nothing in seeds 1
 and 3. Three seeds are enough to see that the variance is there; they are not enough to
-estimate it, which is why we report per-seed values throughout rather than means alone.
+estimate it, which is why we report per-seed values throughout rather than means alone —
+and why Results §7f counts the disagreement across every cell instead of leaving it as two
+anecdotes.
 
 **What replicates is the coarse signal and the faithfulness.** HyperAttentionDTI's
 attention points into the KLIFS pocket in all three KIBA seeds at random (1.32–1.46×
@@ -295,9 +315,19 @@ away, under the shift the model will meet, and with more than one way of reading
 attention out.
 
 A fourth lesson came from the replication itself, and it is the one we would most like the
-field to take up: **an interpretability verdict of this size is seed-dependent**. In both
-published models, one KIBA training seed of three landed on the other side of chance from
-the other two — for HyperAttentionDTI the one seed that agrees with its DAVIS verdict of
-support, for MolTrans the one seed that contradicts its DAVIS verdict of none — so a
-single-seed attention figure, which is what published work almost always shows, cannot
-establish or refute the claim it illustrates. Report every seed, or report none.
+field to take up: **an interpretability verdict of this size is seed-dependent**. Counted
+over every cell rather than anecdotally (Results §7f, Table R12), the three seeds disagree
+about their own verdict in **11 of 16 cells**, and in **15 of 16 the spread across seeds is
+larger than the cell's distance from chance**. A paper reporting one training run would
+therefore have had an above-chance result available in eleven of these sixteen cells —
+including cells this audit reports as null, and including the model whose attention is
+otherwise indistinguishable from a uniform map. A single-seed attention figure, which is
+what published work almost always shows, cannot establish or refute the claim it
+illustrates. Report every seed, or report none.
+
+There is a reassurance inside that number, and it belongs to the method rather than to the
+models. Exactly one cell of the sixteen has all three seeds above α on their own, and it is
+the same cell — HyperAttentionDTI at DAVIS random — that survives Holm correction over the
+whole family. Agreement among replicate runs and family-wise error control were computed
+independently and select the same cell, so the correction is not discarding real effects:
+what it discards is what does not reproduce when the model is retrained.

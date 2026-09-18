@@ -90,6 +90,7 @@ MODEL_SUFFIX = {
     "deepdta": "_deepdta",
     "hyperattentiondti": "_hyperattentiondti",
     "moltrans": "_moltrans",
+    "drugban": "_drugban",
     # Integrated gradients is a second explanation of the SAME trained weights
     # (src/evaluation/integrated_gradients.py), so each variant reads its base model's
     # checkpoint. Its outputs are still named apart, because `output_tag` prefixes any

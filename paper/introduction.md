@@ -62,7 +62,7 @@ on KIBA); a panel of 60
 non-kinase proteins stands in for a family stratification the benchmarks cannot support;
 alternative attention readouts test whether a verdict belongs to the model or to the
 reduction; and integrated gradients on the same checkpoints separate a poor explanation from
-a model that never learned the site.
+a model that never learned the site. **Figure 0** shows the design in one picture.
 
 **¶6 — What we find.** One of sixteen cells supports the residue-level interpretability
 claim after correction: HyperAttentionDTI on the random split, at 1.7× chance
@@ -86,8 +86,8 @@ an attention map highlights is mostly a property of an unreported reduction choi
 choice moves a pocket-level verdict from below chance to 2.6× chance); a masking-based
 faithfulness test inverts its own sign for a sub-word model, because k residues is not a
 fixed-size intervention; and integrated gradients on the same checkpoints survive correction
-in **seven of twelve cells where the attention survives in one of sixteen** (DAVIS only;
-this comparison is not replicated on KIBA), reaching
+in **seven of twelve cells where the attention survives in one of sixteen**, and on KIBA in
+**three of four where the attention survives in none of six**, reaching
 2.3–4.1× chance at levels where the attention is at chance — so for two of the three models
 the attention under-reports a binding site the model does represent, and under-reports it
 worst under the shift where interpretability is supposed to earn its keep. The third model
@@ -99,31 +99,41 @@ sequence, and retraining without that leak accounts for 0.019 of cold-target's 0
 apparent difficulty.
 
 **¶7 — Contributions.**
-1. An audit, not a model: three attention-based DTI models (two published, one ours), one
-   measurement suite, four levels of distribution shift, three seeds, and family-wise error
-   control applied once across the whole family rather than per model — with the published
-   models' audit repeated on a second dataset, where the only cell that survived correction
-   fails to replicate.
-2. Two axes, each against its own control: plausibility against a uniform floor, three
-   ground-truth resolutions and a validated positive control that says at what dose a real
-   signal would be visible; faithfulness against random masking, matched in size to the
-   explanation in the space each model reads.
-3. Controls that changed conclusions rather than decorating them — nulls for position and
-   amino-acid preference, a per-pair ground truth from crystallographic contacts with a
-   same-pocket different-drug control, alternative readouts, and a second explanation
-   method on the same weights.
-4. Two findings about interpretability measurement itself, applicable outside DTI: the
-   readout dependence of attention-based plausibility, and the non-transferability of
-   masking-based faithfulness across tokenisations.
-5. A data-quality audit of DAVIS as the field uses it — sequence-identical mutants,
-   pocketless sequences, the leak quantified by retraining — and a kinase-family confound
-   shown to be untestable within either standard benchmark.
-6. Our own model audited on the same terms, with its results reported whether or not they
-   flatter it: ColdSite-DTI's attention is load-bearing everywhere, finely plausible
-   nowhere, and its one above-chance result off the training family is traced to an
-   amino-acid preference rather than to knowledge of binding.
-
-*[Before submission: cut ¶3 if Related Work carries it in full. The KIBA replication landed
-2026-09-16 (Results §8) and ¶5/¶6 now state it; the abstract must carry both halves — the
-non-replication of the surviving cell and the replication of the pocket-level and
-faithfulness results.]*
+1. **An audit, not a model.** Three attention-based DTI models (two published, one ours)
+   and a no-attention accuracy anchor, one measurement suite, four levels of distribution
+   shift, three seeds, and family-wise error control applied once across the whole family
+   rather than per model — with the published models' audit repeated on a second dataset,
+   where the only cell that survived correction fails to replicate.
+2. **A protocol other people can run, with its instruments validated rather than
+   asserted.** Plausibility against a uniform-attention floor, three ground-truth
+   resolutions, and a **positive control** that reports at what dose a real signal would
+   have been visible — so a null is distinguishable from a weak test, which is the
+   objection every negative interpretability result attracts. Faithfulness against random
+   masking, size-matched in the space each model reads. Nulls for position, amino-acid
+   preference and drug identity. Every instrument is released with the code that produced
+   the numbers, and each was checked on planted cases before being trusted on real ones.
+3. **Three findings about interpretability measurement itself, applicable outside DTI.**
+   Attention-based plausibility is largely a property of an unreported readout choice
+   (2–12% top-ten overlap between defensible readouts; one choice moves a pocket-level
+   verdict from below chance to 2.6× chance). Masking-based faithfulness does not transfer
+   across tokenisations, and inverts its own sign for a sub-word model. And the gradient of
+   the same weights recovers the site the attention misses (7 of 12 DAVIS cells against 1
+   of 16; 3 of 4 on KIBA against 0 of 6), so a weak attention map often indicts the report
+   rather than the model — with a third model as the control in which gradient and
+   attention agree at the floor.
+4. **A check the field can apply before publishing, and a published claim that fails it.**
+   Whether an explanation *can* depend on the drug is a property of the computation graph,
+   not an empirical question. A 2025 *Nature Communications* model presents per-residue
+   attention for four drug–target complexes; that map is computed from the protein
+   embedding alone, so for a fixed protein every drug yields the same figure (Results §7e). We
+   propose the check as routine: **state which inputs the explanation is a function of.**
+5. **A data-quality audit of DAVIS as the field uses it** — sequence-identical mutants,
+   pocketless sequences, the leak quantified by retraining (0.019 of cold-target's 0.038
+   apparent difficulty) — and a kinase-family confound shown to be untestable inside either
+   standard benchmark, with a 60-protein transfer panel built because of it.
+6. **Our own model audited on the same terms**, with its results reported whether or not
+   they flatter it: ColdSite-DTI's attention is load-bearing everywhere, finely plausible
+   nowhere, and its one above-chance result off the training family traced to an
+   amino-acid preference rather than to knowledge of binding. It is not one of the
+   published models whose claims this paper is about; it is the model we can open, which
+   is why the readout and drug-dependence comparisons that need a model's internals use it.

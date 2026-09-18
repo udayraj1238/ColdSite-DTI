@@ -6,6 +6,14 @@ drafts. Rebuild after any re-analysis.
 
 ---
 
+**Figure 0 — `fig0_design`. The audit in one picture.**
+Datasets and their split levels, the models retrained on identical splits with three seeds,
+the three ways each explanation is read (attention as published, integrated gradients on the
+same weights, a uniform map as the floor), the two measurement axes with their ground truths
+and nulls, and where the multiplicity correction is applied. Hand-laid rather than
+data-driven: it describes the protocol, so its counts must be updated with Methods.
+*Cited in:* Methods §1, Introduction ¶5.
+
 **Figure 1 — `fig1_plausibility`. Does attention mark the binding site?**
 precision@10 for every model, level and dataset against two ground truths. Bars are means
 over three training seeds, open circles are the seeds themselves, and the dashed segment
@@ -26,17 +34,15 @@ and MolTrans's cells straddle chance the same way. A single-seed attention figur
 norm in this literature — could report either side of the verdict.
 *Sources:* the same UniProt ladders as Figure 1.
 
-**Figure 3 — `fig3_attention_vs_ig`. The same checkpoints, read two ways (DAVIS).**
-Attention against integrated gradients on identical weights, all three audited models, both
-ground truths, seeds as circles, chance as a dashed segment. The gradient is at or above
-the attention in almost every cell and clears chance where the attention does not, which is
-what makes the failure a property of the *report* rather than of the model — except for
-MolTrans, whose gradient matches its attention at the floor and is the control for that
-claim. **Secondary analysis:** integrated gradients were added after the attention results
-were seen, and this comparison is DAVIS-only.
-*Sources:* `~/ColdSite-results/integrated_gradients/ig_davis{,_klifs}/ladder_*_ig_*.json`
-against the attention ladders. (Not the stale `ig_vs_attention.csv`, which predates
-MolTrans's rows.)
+**Figure 3 — `fig3_attention_vs_ig`. The same checkpoints, read two ways.**
+Attention (red) beside integrated gradients (blue) on identical trained weights, for every
+cell that has both. Top row DAVIS (three models, four levels), bottom row KIBA (the two
+audited models at the two trained levels, so it is deliberately shorter). Left column
+UniProt's annotated residues, right column the KLIFS pocket; dots are seeds, the dashed
+segment is that group's chance level. A secondary analysis: the gradient was added after
+the attention results were seen, and each dataset's family is Holm-corrected within itself
+(7 of 12 DAVIS cells, 3 of 4 KIBA cells).
+*Cited in:* Results §7c, §8.4.
 
 **Figure 4 — `fig4_faithfulness`. Is the attention load-bearing?**
 Comprehensiveness minus a size-matched random-masking control; above zero means masking

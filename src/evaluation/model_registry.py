@@ -64,6 +64,11 @@ def load_variant_plugins(name: str = "") -> None:
     # model_class('moltrans') raise "unknown model 'moltrans'" while the error message
     # -- which calls available_models() and so triggers the import -- listed it.
     from src.evaluation import baseline_adapters    # noqa: F401  (registers on import)
+    # DrugBAN lives in its own module because it needs DGL, which has no macOS-ARM wheel
+    # on PyPI. Importing the module is still safe there: every DGL import inside it is
+    # deferred to the call that needs one, so a machine without DGL can still list the
+    # model, read its class-level facts, and run the rest of the suite.
+    from src.evaluation import drugban_adapter      # noqa: F401  (same)
     if name and name not in VARIANT_BASE:
         return
     import src.evaluation.integrated_gradients      # noqa: F401  (registers on import)

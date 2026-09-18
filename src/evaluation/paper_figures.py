@@ -213,50 +213,55 @@ def figure_seeds(paths: dict, out_dir: str) -> str:
 
 
 def figure_attention_vs_ig(ig_paths: dict, attn_paths: dict, out_dir: str) -> str:
-    """Attention against integrated gradients on the same checkpoints (DAVIS).
+    """Attention against integrated gradients on the same checkpoints, both datasets.
 
     Read from the ladder files of both explainers rather than from the summary CSV, so
     every model that has an IG ladder appears (the CSV predates MolTrans's rows) and each
-    cell keeps its three seeds.
+    cell keeps its three seeds. KIBA's row exists from 2026-09-18: two audited models at
+    the two trained levels, so it is deliberately shorter than DAVIS's.
     """
     import matplotlib.pyplot as plt
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.2))
-    for ax, truth in zip(axes, ("uniprot", "klifs")):
-        attn_folder = attn_paths["davis_uniprot" if truth == "uniprot" else "davis_klifs"]
-        ig_folder = ig_paths["uniprot" if truth == "uniprot" else "klifs"]
-        labels, x, seen = [], 0, []
-        for model in MODELS:
-            attn = read_ladder_cells(attn_folder, model, "davis")
-            ig = read_ladder_cells(ig_folder, model + "_ig", "davis")
-            for level in LEVELS:
-                if level not in attn or level not in ig:
-                    continue
-                a, g = attn[level]["values"], ig[level]["values"]
-                ax.bar(x - 0.19, np.mean(a), width=0.36, color="#C44E52",
-                       label="attention" if not seen else None, zorder=2)
-                ax.bar(x + 0.19, np.mean(g), width=0.36, color="#4C72B0",
-                       label="integrated gradients" if not seen else None, zorder=2)
-                ax.scatter([x - 0.19] * len(a) + [x + 0.19] * len(g), list(a) + list(g),
-                           s=9, color="white", edgecolor="black", linewidth=0.4, zorder=3)
-                ax.plot([x - 0.42, x + 0.42], [attn[level]["chance"]] * 2, color="black",
-                        linestyle="--", linewidth=1.0, zorder=4,
-                        label="chance" if not seen else None)
-                labels.append(f'{MODEL_LABEL[model].split(" (")[0]}\n{LEVEL_LABEL[level]}')
-                seen.append(model)
-                x += 1
-        ax.set_xticks(range(len(labels)))
-        ax.set_xticklabels(labels, fontsize=5.2, rotation=90)
-        ax.set_title("UniProt annotated residues" if truth == "uniprot"
-                     else "KLIFS ATP pocket", fontsize=9)
-        ax.set_ylabel("precision@10", fontsize=8)
-        ax.tick_params(labelsize=7)
-        ax.grid(axis="y", linewidth=0.3, alpha=0.5)
-        ax.set_axisbelow(True)
-    axes[0].legend(fontsize=6.5, frameon=False, loc="upper left")
-    fig.suptitle("The same checkpoints, read two ways (DAVIS; secondary analysis)",
-                 fontsize=10)
-    fig.tight_layout(rect=(0, 0, 1, 0.93))
+    rows = [("davis", "DAVIS", MODELS),
+            ("kiba", "KIBA", [m for m in MODELS if m != "coldsite_dti"])]
+    fig, axes = plt.subplots(2, 2, figsize=(7.4, 6.0))
+    for row, (dataset, dataset_label, models) in enumerate(rows):
+        for col, truth in enumerate(("uniprot", "klifs")):
+            ax = axes[row][col]
+            attn_folder = attn_paths[f"{dataset}_{truth}"]
+            ig_folder = ig_paths[f"{dataset}_{truth}"]
+            labels, x, seen = [], 0, []
+            for model in models:
+                attn = read_ladder_cells(attn_folder, model, dataset)
+                ig = read_ladder_cells(ig_folder, model + "_ig", dataset)
+                for level in LEVELS:
+                    if level not in attn or level not in ig:
+                        continue
+                    a, g = attn[level]["values"], ig[level]["values"]
+                    ax.bar(x - 0.19, np.mean(a), width=0.36, color="#C44E52",
+                           label="attention" if not seen else None, zorder=2)
+                    ax.bar(x + 0.19, np.mean(g), width=0.36, color="#4C72B0",
+                           label="integrated gradients" if not seen else None, zorder=2)
+                    ax.scatter([x - 0.19] * len(a) + [x + 0.19] * len(g), list(a) + list(g),
+                               s=9, color="white", edgecolor="black", linewidth=0.4, zorder=3)
+                    ax.plot([x - 0.42, x + 0.42], [attn[level]["chance"]] * 2, color="black",
+                            linestyle="--", linewidth=1.0, zorder=4,
+                            label="chance" if not seen else None)
+                    labels.append(f'{MODEL_LABEL[model].split(" (")[0]}\n{LEVEL_LABEL[level]}')
+                    seen.append(model)
+                    x += 1
+            ax.set_xticks(range(len(labels)))
+            ax.set_xticklabels(labels, fontsize=5.2, rotation=90)
+            ax.set_title(f"{dataset_label} — "
+                         + ("UniProt annotated residues" if truth == "uniprot"
+                            else "KLIFS ATP pocket"), fontsize=9)
+            ax.set_ylabel("precision@10", fontsize=8)
+            ax.tick_params(labelsize=7)
+            ax.grid(axis="y", linewidth=0.3, alpha=0.5)
+            ax.set_axisbelow(True)
+    axes[0][0].legend(fontsize=6.5, frameon=False, loc="upper left")
+    fig.suptitle("The same checkpoints, read two ways (secondary analysis)", fontsize=10)
+    fig.tight_layout(rect=(0, 0, 1, 0.95))
     return _save(fig, out_dir, "fig3_attention_vs_ig")
 
 
@@ -343,6 +348,10 @@ def main():
     parser.add_argument("--ig-klifs",
                         default=os.path.expanduser(
                             "~/ColdSite-results/integrated_gradients/ig_davis_klifs"))
+    parser.add_argument("--ig-kiba-uniprot",
+                        default=os.path.expanduser("~/ColdSite-results/ig_kiba"))
+    parser.add_argument("--ig-kiba-klifs",
+                        default=os.path.expanduser("~/ColdSite-results/ig_kiba_klifs"))
     parser.add_argument("--only", default="", help="comma-separated figure numbers")
     args = parser.parse_args()
 
@@ -362,15 +371,91 @@ def main():
             return
         fn(*fn_args, args.out_dir)
 
+    if not wanted or "0" in wanted:
+        figure_design(args.out_dir)
     run("1", figure_plausibility, paths)
     run("2", figure_seeds, paths)
-    ig_paths = {"uniprot": args.ig_uniprot, "klifs": args.ig_klifs}
+    ig_paths = {"davis_uniprot": args.ig_uniprot, "davis_klifs": args.ig_klifs,
+                "kiba_uniprot": args.ig_kiba_uniprot, "kiba_klifs": args.ig_kiba_klifs}
     if all(os.path.isdir(p) for p in ig_paths.values()):
         run("3", figure_attention_vs_ig, ig_paths, paths)
     else:
         print(f"[skip] figure 3: no IG ladders at {ig_paths}")
     run("4", figure_faithfulness, paths)
 
+
+
+
+# ---------------------------------------------------------------------------
+# The design schematic: what was trained, explained, measured and corrected
+# ---------------------------------------------------------------------------
+
+def figure_design(out_dir: str) -> str:
+    """One picture of the audit, so a reader knows what is being compared before any bar.
+
+    Hand-laid rather than data-driven -- it describes the protocol, not a result -- so the
+    counts in it are the ones Methods states and must be updated with them.
+    """
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+
+    fig, ax = plt.subplots(figsize=(7.4, 6.4))
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 11.4)
+    ax.axis("off")
+
+    def box(x, y, w, h, title, body, colour="#F2F4F8", edge="#4C4C4C"):
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.10",
+                                    linewidth=0.9, edgecolor=edge, facecolor=colour))
+        ax.text(x + w / 2, y + h - 0.26, title, ha="center", va="top", fontsize=8.4,
+                fontweight="bold")
+        ax.text(x + w / 2, y + h - 0.60, body, ha="center", va="top", fontsize=6.9,
+                linespacing=1.45)
+
+    def arrow(x, y0, y1):
+        ax.add_patch(FancyArrowPatch((x, y0), (x, y1), arrowstyle="-|>", mutation_scale=9,
+                                     linewidth=0.9, color="#4C4C4C"))
+
+    box(0.2, 9.7, 4.6, 1.4, "DAVIS  (primary)",
+        "30,056 pairs · 68 drugs · 442 targets\n"
+        "4 levels: random, cold-drug,\ncold-target, cold-pair", colour="#E8EEF7")
+    box(5.2, 9.7, 4.6, 1.4, "KIBA  (replication)",
+        "118,254 pairs · 2,111 drugs · 229 targets\n"
+        "2 levels: random, cold-drug\n(422 held-out drugs vs DAVIS's 13)", colour="#EDF5EC")
+
+    arrow(2.5, 9.6, 9.05)
+    arrow(7.5, 9.6, 9.05)
+    box(0.2, 7.5, 9.6, 1.5, "Retrained on identical splits — 3 seeds per cell",
+        "ColdSite-DTI (ours) · HyperAttentionDTI · MolTrans      +  DeepDTA (accuracy anchor, no attention)\n"
+        "48 DAVIS cells  ·  18 KIBA cells  ·  every cell scored by AUROC before its explanation is read",
+        colour="#FAF4E8")
+
+    arrow(5.0, 7.4, 6.85)
+    box(0.2, 5.3, 9.6, 1.5, "The explanation, read three ways",
+        "attention (as published)   ·   integrated gradients on the same weights   ·   uniform map = the floor\n"
+        "alternative attention readouts test whether a verdict belongs to the model or to the reduction",
+        colour="#F7EDF3")
+
+    arrow(2.7, 5.2, 4.60)
+    arrow(7.3, 5.2, 4.60)
+    box(0.2, 2.35, 4.6, 2.15, "PLAUSIBILITY — does it point there?",
+        "precision@10 against\n· UniProt annotated residues\n· KLIFS 85-residue ATP pocket\n"
+        "· the drug's own crystal contacts\nnulls: borrowed map, same amino acid,\n"
+        "within the site-spanning stretch,\n60 unseen non-kinase proteins", colour="#EDF1F7")
+    box(5.2, 2.35, 4.6, 2.15, "FAITHFULNESS — is it used?",
+        "mask the top-10 and re-predict,\nagainst a control of the same size\nin the space each model reads\n"
+        "(residues; tokens for MolTrans)\n\ndelta > 0  =  load-bearing", colour="#EDF7F1")
+
+    arrow(5.0, 2.30, 1.85)
+    box(0.2, 0.25, 9.6, 1.5, "One correction per arm, and a control for the metric itself",
+        "Holm–Bonferroni once over the whole family: 16 DAVIS cells, 6 KIBA cells, 12 for the gradient\n"
+        "positive control: a planted explanation of known dose is detectable at 2% — so a null is a null, not a weak test\n"
+        "bootstrap CIs over proteins · every cell reported with its three seeds",
+        colour="#F2F2F2")
+
+    ax.text(5.0, 11.25, "The audit", ha="center", fontsize=11, fontweight="bold")
+    fig.tight_layout()
+    return _save(fig, out_dir, "fig0_design")
 
 if __name__ == "__main__":
     main()

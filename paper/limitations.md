@@ -22,6 +22,21 @@ is strictly harder than cold-target: protein, family and drugs all change at onc
 difference between the arms therefore bounds the family effect rather than isolating it,
 and rests on 60 proteins whose affinities come from different assays.
 
+**What that does and does not limit.** It limits the *generality* of the verdict, not its
+*validity*. The claims this paper audits were made on DAVIS and KIBA — they are the
+benchmarks on which DTI interpretability is reported — so testing them there is testing
+them where they live; a null found on some other family would leave the published claims
+untouched. Two things follow, and the paper needs both stated. Nothing here licenses
+"attention fails for drug-target interaction in general": it licenses "attention fails for
+these models, on the benchmarks their claims are made on, at four levels of shift, on two
+datasets". And the evidence that the failure is not merely a kinase artefact is the
+transfer panel rather than a stratification: every audited model is at chance on 60 unseen
+non-kinase proteins (Results §6), and the few above-chance non-kinase cells trace to an amino-acid
+preference — histidine, 3-15x enriched in the top ten — meeting histidine-rich metal
+sites, which is a property of the attention rather than of the family. A reader who wants
+the kinase-free version of this audit needs a kinase-free benchmark carrying residue-level
+ground truth, and building one is a paper of its own.
+
 **Three ground truths, none of them per-pair at a usable scale.** UniProt annotations
 (binding, active and nucleotide-binding sites) and the 85-residue KLIFS ATP pocket are both
 defined per protein, so every drug measured against a protein is scored against the same
@@ -81,10 +96,13 @@ Two further caveats belong to the result itself: ColdSite-DTI's gradient is **no
 it matters (cold-target 0.074 / 0.021 / 0.037 across seeds; cold-drug against the pocket
 0.352 / 0.634 / 0.366), so the effect rests on the permutation test rather than on a precise
 estimate; and **integrated gradients were added after the attention results were seen**, so
-they are a secondary analysis, Holm-corrected within their own twelve cells and never pooled
-with the sixteen attention cells. A reader should treat "7 of 12 for the gradient against 1
-of 16 for the attention" as two separately corrected families, which is how Results §7c
-states it.
+they are a secondary analysis, Holm-corrected within their own family and never pooled
+with the attention cells. A reader should treat "7 of 12 for the gradient against 1
+of 16 for the attention" on DAVIS, and "3 of 4 against 0 of 6" on KIBA, as separately
+corrected families, which is how Results §7c and §8.4 state it. Being decided in advance is
+what KIBA's arm adds: its four cells were run after DAVIS's result was known, but with the
+protocol, the step count and the family fixed by that earlier run rather than chosen to suit
+the outcome.
 
 **One split per level, three training seeds, and two kinds of interval.** Each level has a
 single fixed split, and the three seeds vary initialisation and batch order only, so reported
@@ -209,11 +227,26 @@ leave a reader to infer: it trains **random and cold_drug only** (KIBA's cold-ta
 weaker than DAVIS's, and cold_pair would repeat DAVIS's checkpoint-selection instability on
 a 1,334-row validation set); it covers the two **published** models and the accuracy anchor
 but **not ColdSite-DTI**, so our own model is audited on one dataset where the models whose
-claims this paper is about are audited on two; and the explanation-side analyses — readout
-variants, integrated gradients, per-pair drug contacts — are DAVIS-only. Anything the KIBA
-arm does not cover is a DAVIS result, and the Results section says so cell by cell. In
-particular, the finding that integrated gradients recover what the attention misses (§7c)
-is **unreplicated**; it rests on DAVIS alone.
+claims this paper is about are audited on two; and two explanation-side analyses — readout
+variants and per-pair drug contacts — remain DAVIS-only. Anything the KIBA arm does not
+cover is a DAVIS result, and the Results section says so cell by cell. Integrated gradients
+are no longer in that list: Results §8.4 replicates them on KIBA for both audited models, which
+leaves the readout-dependence result (§7b) as the largest unreplicated claim — and it is a
+claim about the instrument, so a reader should ask whether it holds for KIBA's proteins
+before relying on its magnitude.
+
+**The EviDTI result is a reading of source code, not a measurement.** Results §7e states
+that a 2025 published model's residue attention cannot depend on the drug. That claim
+rests on its released code (CC-BY-4.0, read 2026-09-18, recorded with line references in
+`results/evidti_code_audit.md`), not on retraining it: its two drug encoders need
+TensorFlow and PaddlePaddle, and the 3D encoder's pretrained weights are not in the
+repository, so it is not one of this audit's trained subjects. Two consequences belong in
+the paper rather than in a reader's inference. We report **no** precision@k, no
+faithfulness and no accuracy for EviDTI, and nothing here says its predictions are poor or
+its uncertainty quantification unsound — that is its actual contribution and we did not
+test it. And the claim is only as current as the code we read: if the authors release a
+version whose attention takes the drug as an input, Results §7e describes the version we read and
+should be re-checked against theirs, which takes a minute.
 
 **Three seeds detect seed dependence; they cannot measure it.** The replication's central
 result is that a residue-level verdict moves across chance between training seeds of the

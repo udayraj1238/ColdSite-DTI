@@ -5,7 +5,11 @@ trained cell's `_results.json` (DAVIS binary grid, Kaggle account 1, commit v1 o
 `kaggle_davis_binary_grid36.ipynb`) or from a file named beside it. The DAVIS grid is
 complete: 48 of 48 cells (4 models x 4 levels x 3 seeds), verified cell by cell against
 the AUROC each recorded. KIBA, the replication, is complete (18 of 18 cells; §8, added
-2026-09-16). *[PENDING]* now marks only the antiviral case study. All
+2026-09-16), and its integrated-gradient arm with it (§8.4, added 2026-09-18).
+No *[PENDING]* marks remain: the antiviral case study was cut on 2026-09-18, because
+after the 2026-07-31 BindingDB release put all 18,149 SARS-CoV-2 rows under one
+7,096-residue polyprotein it was three proteins, and §6's 60-protein panel is the
+non-kinase arm it was meant to be. All
 values are test-set means ± sample standard deviation over three training seeds; a
 difference smaller than the spread is not reported as one.
 
@@ -96,7 +100,7 @@ rate. Whatever its attention means at cold-pair, it is attached to a model that 
 predict there; the audit reports that beside its explanation scores, because an
 explanation of a prediction no better than chance is not an explanation of anything.
 
-*MolTrans's three seeds are the retrained ones: the first grid's seeds 2 and 3 trained as seed 1 (the vendored `models.py`
+*MolTrans's three seeds are the retrained ones: the first grid's seeds 2 and 3 trained as seed 1 (the vendored `baselines/MolTrans/models.py`
 reseeds torch on import; fixed 2026-09-13), and only the corrected cells are used here.*
 
 ## 1b. DAVIS's sequences: leakage and pseudo-variants
@@ -249,6 +253,10 @@ the sequence policy (pre-policy values: `results/positional_control_coldsite_dti
 
 ## 5. The audit table: the published model's residue-level claim holds only on the random split
 
+*See **Figure 1** (`results/figures/fig1_plausibility.pdf`), top-left panel: every DAVIS
+cell against UniProt with its three seeds, and **Figure 2** for the same cells one seed at
+a time.*
+
 Computed 2026-09-14 on two T4 GPUs (`notebooks/kaggle_analysis_davis.ipynb`), **one Holm
 correction over all sixteen cells** — three audited models and the uniform control, four
 levels each. Correcting per model would have inflated every claim in the table.
@@ -331,6 +339,9 @@ percentage of the annotated site. The audit reports it as such rather than as a 
 floor; the dose that matches a floor score is not a meaningful quantity.*
 
 ## 5b. Faithfulness, and an intervention that was not the same size in both arms
+
+*See **Figure 4** (`results/figures/fig4_faithfulness.pdf`): the residue-space panels and
+MolTrans's token-space panel, which is why the two are never plotted on one axis.*
 
 A masking test subtracts a random-masking control from the explanation's
 comprehensiveness, which is only meaningful if both arms change the input by the same
@@ -576,6 +587,9 @@ measurements say the same thing: the drug is not doing work in these explanation
 
 ## 7c. Attention versus the gradient: is it the explanation or the model?
 
+*See **Figure 3** (`results/figures/fig3_attention_vs_ig.pdf`): all twelve cells, both
+ground truths, attention beside the gradient on identical weights.*
+
 Every measurement so far scores **attention**. When attention misses the site, two
 opposite things could be true — the attention is a poor report of a model that does
 represent the site, or the model never learned it — and no attention measurement
@@ -705,7 +719,140 @@ from a different population, so the bootstrap would need its own run. The closes
 analogue is a 68-protein UniProt cell at ±0.005–0.009, which is why §6's claim rests on
 eight cells agreeing rather than on any one of them.
 
+## 7e. An explanation that cannot depend on the drug
+
+§7 asked whether attention knows *which* drug binds, and answered it by measurement: the
+correct drug's own contacts buy at most +0.011 precision@10 over another drug's contacts
+in the same pocket, and in two of nine cells the wrong drug scores higher. §7b found the
+same thing from the other side: ColdSite-DTI's protein-tower self-attention — computed by
+its forward pass, discarded, and **independent of the drug by construction** — agrees with
+the KLIFS pocket *better* than its drug-conditioned cross-attention (0.238 against 0.219
+at random, 0.268 against 0.243 at cold-target).
+
+Both are our own models measured. This section is about a published one, and the finding
+is not statistical but structural.
+
+**EviDTI** (Zhao et al., *Nature Communications* 16:6915, 2025) predicts drug–target
+interaction with evidential uncertainty and reports an interpretability analysis: its
+Figure 6 shows "attention scores of all the residues in the four randomly selected
+drug–target complexes", and the text concludes that "residues with high attention values
+coincide with the binding site, underscoring ... the attention mechanism's efficacy". It
+is a current model — its protein tower is a protein language model (ProtTrans) — and the
+claim is the one this audit exists to test.
+
+Its residue attention is computed, in each of its three model files, as
+
+```python
+attention = self.attention_convolution(t_1D)    # t_1D: the protein's ProtTrans embedding
+att_AA    = torch.mean(attention, dim=1)        # the per-residue map the figure plots
+```
+
+and the drug branches are first used afterwards, at `cat_v = torch.cat((t_o, d_o,
+atom_h), 1)`. There is no cross-attention between drug and protein anywhere in the model.
+**No drug tensor reaches `att_AA`.** The consequence needs no experiment and holds for any
+weights: for a fixed protein, every drug produces the identical residue map. Two of the
+four complexes in that figure would carry the same highlighted residues if they shared a
+target. The full record, with line references and a one-minute recipe for re-checking it,
+is `results/evidti_code_audit.md`.
+
+This does not say the model is wrong, and it says nothing about its uncertainty
+quantification, which is its contribution. It says the evidence offered for the
+interpretability claim cannot support it: a map that cannot vary with the ligand can
+agree with a binding site — an ATP pocket is a property of the kinase, not of the drug —
+while carrying no information about *this* pair. We did not retrain EviDTI (its two drug
+encoders need TensorFlow and PaddlePaddle, and the 3D encoder's pretrained weights are
+not in its repository), so we report no precision@k for it and make no claim about how
+well its map agrees with annotated residues. The claim here is about what the explanation
+is a function of, which is visible in the source and independent of training.
+
+**Three observations follow, and the third is the one for the field.**
+
+*The measured and the structural cases agree.* Our subjects' explanations are weakly
+drug-dependent where they are drug-dependent at all (§7); EviDTI's cannot be. The same
+pattern appears whether one measures it or reads it off the architecture.
+
+*A figure of drug–target complexes is the wrong evidence for a protein-only map.* Nothing
+in Figure 6 is incorrect. What makes it misleading is the pairing: showing per-complex
+pictures implies the map is per-complex. The honest version of that figure is one map per
+protein, captioned as protein saliency, and it would support a much weaker claim.
+
+*This is checkable before it is published, by anyone, in a minute.* Whether an
+explanation can depend on the drug is a property of the computation graph, not an
+empirical question — and a referee, an author or a reader can settle it with `grep`. We
+propose it as a routine check for interpretability claims in this field: **state which
+inputs the explanation is a function of.** DrugBAN passes it: its bilinear map is indexed by
+drug atom and protein position, so the drug is in the explanation by construction, and
+the adapter's tests assert that its map moves when the drug changes
+(`tests/test_drugban_adapter.py`; its trained cells are not in this draft yet).
+ColdSite-DTI passes it formally and fails it in practice, which is why §7b's comparison
+is in the paper. EviDTI does not pass it.
+
+## 7f. What would a single-seed paper have concluded?
+
+Every cell here is trained three times and the audit takes the median p over the seeds
+(§7). That is a choice, and it is worth showing what it costs — or rather, what reporting
+one seed would have bought. The table is generated by
+`src/evaluation/seed_agreement.py` from the same ladder files as §5 and §8, with each
+seed's own permutation p, **uncorrected**, because an uncorrected per-seed p is exactly
+what a single-seed report quotes.
+
+**Table R12.** Sixteen attention cells with three seeds each — three models at four DAVIS
+levels, two models at KIBA's two. `*` marks a seed that on its own clears α = 0.05;
+`spread` is the largest minus the smallest precision@10 in the cell
+(`results/seed_agreement.md`).
+
+| model | dataset | level | seed 1 | seed 2 | seed 3 | chance | spread | seeds above α |
+|---|---|---|---|---|---|---|---|---|
+| ColdSite-DTI | DAVIS | cold-drug | 0.027 | 0.027 | 0.011 | 0.020 | 0.015 | `**.` |
+| ColdSite-DTI | DAVIS | cold-pair | 0.018 | 0.013 | 0.008 | 0.019 | 0.010 | `...` |
+| ColdSite-DTI | DAVIS | cold-target | 0.015 | 0.019 | 0.018 | 0.019 | 0.004 | `...` |
+| ColdSite-DTI | DAVIS | warm | 0.023 | 0.009 | 0.013 | 0.020 | 0.013 | `...` |
+| HyperAttentionDTI | DAVIS | cold-drug | 0.025 | 0.077 | 0.019 | 0.020 | 0.057 | `**.` |
+| HyperAttentionDTI | DAVIS | cold-pair | 0.013 | 0.022 | 0.032 | 0.019 | 0.019 | `..*` |
+| HyperAttentionDTI | DAVIS | cold-target | 0.018 | 0.031 | 0.025 | 0.019 | 0.013 | `.*.` |
+| HyperAttentionDTI | DAVIS | warm | 0.035 | 0.039 | 0.028 | 0.020 | 0.011 | `***` |
+| HyperAttentionDTI | KIBA | cold-drug | 0.019 | 0.020 | 0.025 | 0.023 | 0.006 | `...` |
+| HyperAttentionDTI | KIBA | warm | 0.017 | 0.022 | 0.053 | 0.023 | 0.036 | `..*` |
+| MolTrans | DAVIS | cold-drug | 0.022 | 0.032 | 0.024 | 0.020 | 0.010 | `.*.` |
+| MolTrans | DAVIS | cold-pair | 0.004 | 0.032 | 0.024 | 0.019 | 0.028 | `.*.` |
+| MolTrans | DAVIS | cold-target | 0.012 | 0.038 | 0.029 | 0.019 | 0.026 | `.**` |
+| MolTrans | DAVIS | warm | 0.024 | 0.021 | 0.019 | 0.020 | 0.005 | `*..` |
+| MolTrans | KIBA | cold-drug | 0.028 | 0.063 | 0.017 | 0.023 | 0.046 | `.*.` |
+| MolTrans | KIBA | warm | 0.020 | 0.053 | 0.022 | 0.023 | 0.032 | `.*.` |
+
+**In 11 of the 16 cells the three seeds disagree about their own verdict**, and in **15 of
+16 the spread across seeds is larger than the cell's distance from chance**. A paper
+reporting one training run would therefore have had an above-chance, uncorrected result
+available in eleven of these sixteen cells — including cells this audit reports as null,
+and including MolTrans, whose attention is otherwise indistinguishable from a uniform map.
+Which seed was drawn decides the claim.
+
+**One cell behaves differently, and it is the one that survives.** HyperAttentionDTI at
+DAVIS random is the only cell in the table where all three seeds clear α individually
+(`***`), and it is also the only cell of sixteen that survives Holm correction over the
+whole family (§5). The two criteria were computed independently — one is agreement among
+replicate runs, the other family-wise error control over a grid — and they select the same
+cell. That is the reassurance the audit's method needs: the correction is not discarding
+real effects, because the effects it discards are the ones that do not reproduce across
+retraining, and the effect it keeps is the one that does.
+
+Four cells have no seed above α at all: three of ColdSite-DTI's four DAVIS cells (warm,
+cold-target, cold-pair) and HyperAttentionDTI's cold-drug on KIBA. Those are the audit's
+unambiguous nulls — the cells where no draw of the dice would have produced a claim.
+
+**What this does not say.** It is not a claim that these models are unusually unstable —
+we have no comparison against a field norm, because single-seed reporting is the field
+norm and there is nothing published to compare against. Nor does it apply to the
+accuracy axis: on KIBA the same three seeds give test AUROC standard deviations of
+0.001–0.009 (§8), against explanation spreads of 0.006–0.046 on precision@10 whose own
+chance level is 0.023 — the accuracy is reproducible at a scale the explanation is not. The
+instability is specific to the explanation, which is the quantity the literature reports
+from one run and a figure.
+
 ## 8. KIBA: the replication
+
+*See **Figure 1** (right-hand panels) for KIBA beside DAVIS, and **Figure 2** for the
+per-seed strip that this section's central claim rests on.*
 
 KIBA was trained and analysed after every DAVIS result above was fixed, as a replication
 rather than a second exploration: the same trainers, the same analysis code, the same
@@ -849,7 +996,51 @@ fixed on DAVIS before KIBA was run, is the one the audit uses. This matched resi
 control did not exist when DAVIS's MolTrans cells were measured, so DAVIS has no
 counterpart to compare it with.*
 
-### 8.4 Controls
+### 8.4 The gradient recovers the residues the attention misses — on KIBA too
+
+§7c's result was DAVIS-only until now: read the same trained weights with integrated
+gradients instead of attention and the residue-level signal appears. KIBA was run with the
+same code and the same settings DAVIS used — 32 steps, the path from the padding
+embedding — over both audited models, both levels and three seeds — twelve ladders, the correction over the four cells the family
+contains (`results/analysis_kiba_policyA/ig_family_kiba.md`,
+`src/evaluation/ladder_family.py`).
+
+**Table R11.** KIBA, precision@10 at k = 10, mean ± sd over seeds 1–3, one test pair per
+protein. `attention` is §8.1–8.2's audit readout; `IG` is the gradient of the same
+checkpoint. p is the median over seeds.
+
+| ground truth | model | level | attention | integrated gradients | chance | IG / attn |
+|---|---|---|---|---|---|---|
+| UniProt residues | HyperAttentionDTI | random | 0.030 ± 0.019 (p = 0.65) | **0.042 ± 0.020** (p = 0.001) | 0.023 | 1.36× |
+| | | cold-drug | 0.021 ± 0.003 (p = 0.80) | **0.043 ± 0.034** (p = 0.002) | 0.023 | **2.02×** |
+| | MolTrans | random | 0.032 ± 0.018 (p = 0.65) | 0.031 ± 0.017 (p = 0.53) | 0.023 | 0.97× |
+| | | cold-drug | 0.036 ± 0.024 (p = 0.068) | 0.031 ± 0.007 (p = 0.005) | 0.023 | 0.88× |
+| KLIFS pocket | HyperAttentionDTI | random | 0.207 ± 0.011 | **0.272 ± 0.026** | 0.151 | 1.31× |
+| | | cold-drug | 0.189 ± 0.024 | **0.257 ± 0.069** | 0.151 | 1.36× |
+| | MolTrans | random | 0.161 ± 0.049 | 0.190 ± 0.050 | 0.151 | 1.18× |
+| | | cold-drug | 0.188 ± 0.040 | 0.174 ± 0.011 | 0.151 | 0.93× |
+
+**Three of the four IG cells survive Holm, where none of the six attention cells did**
+(thresholds 0.0125 to 0.05): HyperAttentionDTI at random (p = 0.0010) and cold-drug
+(p = 0.0020), and MolTrans at cold-drug (p = 0.0050). Only MolTrans at random fails
+(p = 0.53).
+
+**The cell that carries the claim is cold-drug against annotated residues.** There
+HyperAttentionDTI's attention is at chance — 0.021 against 0.023, the audit's clearest
+null — while the gradient of those same weights is at 0.043, **1.9× chance**, over 422
+held-out drugs. The information about which residues matter is in the model; the attention
+map does not report it. That is §7c's conclusion, reproduced on the replication dataset at
+the level DAVIS could not test.
+
+**MolTrans behaves as the control it was on DAVIS.** Its gradient tracks its attention
+(0.88–1.18×) rather than beating it, which is what should happen for a model whose
+explanation is at the floor either way: the gradient is not a better readout in general,
+it is a better readout of a model that has something to report. Its cold-drug cell does
+survive where its attention did not, on equal precision (0.031 against 0.036) but a third
+of the seed spread (± 0.007 against ± 0.024) — a difference in stability, not in signal,
+and too small to carry a claim.
+
+### 8.5 Controls
 
 **Non-kinase transfer panel** (60 unseen BindingDB proteins, primary analysis excluding
 cotransport ions; `control_*_kiba_seed*_noions.md`): HyperAttentionDTI 0.014 ± 0.001
@@ -863,7 +1054,7 @@ kinases, so, as on DAVIS, the confound cannot be stratified inside the dataset
 splits and re-numbered ground truth, and a 2% dose is detected at every level, so the null
 results of §8.1 are not a failure of the metric to see a signal of the size DAVIS found.
 
-### 8.5 What KIBA changes
+### 8.6 What KIBA changes
 
 | DAVIS finding | on KIBA |
 |---|---|
@@ -872,17 +1063,29 @@ results of §8.1 are not a failure of the metric to see a signal of the size DAV
 | The attention is load-bearing at every level | **replicates** for both models (12 / 12 cells) |
 | MolTrans's attention sits at the uniform floor | holds in 2 seeds of 3; seed 2 carries a kinase-only signal |
 | Cold-drug collapses accuracy | **does not replicate**: a property of DAVIS's 13-drug split |
+| The gradient beats the attention on the same weights (7 of 12 cells) | **replicates** (3 of 4 cells; 1.9× chance where the attention is at chance) |
 
 The claim the two datasets support together is narrower and firmer than either alone:
 the published models' attention is **used** and points **into the binding pocket**, but
 does not mark **binding residues** — and the one exception on one dataset depends on the
 training seed on the other. §7c's finding that integrated gradients recover the residues the
-attention misses was measured on DAVIS only and is not replicated here.
+attention misses **replicates** (§8.4): on KIBA's 422-drug cold level the same weights
+score 1.9× chance through the gradient and at chance through the attention.
 
-## 9. *[PENDING]* Antiviral case study
+---
 
-*[Recommend cutting. The subset is three distinct proteins (HIV-1 protease, HIV-1 RT,
-influenza neuraminidase) after the 2026-07-31 BindingDB release put all 18,149 SARS-CoV-2
-rows under one 7,096-residue polyprotein; §6's 60-protein panel supersedes it as a
-non-kinase arm, and a case study on three proteins invites the objection it cannot
-answer.]*
+## Figures
+
+Built by `python -m src.evaluation.paper_figures` from the files each section cites; full
+captions and sources in `results/figures/CAPTIONS.md`. Rebuild after any re-analysis.
+
+| # | file | shows | cited in |
+|---|---|---|---|
+| 0 | `fig0_design` | the audit's design: datasets, splits, models, the three readings of the explanation, both measurement axes, and the correction | Methods §1, Introduction ¶5 |
+| 1 | `fig1_plausibility` | precision@10 for every model × level × dataset against UniProt residues and the KLIFS pocket, seeds as dots, per-level chance | §4, §5, §8.1, §8.2 |
+| 2 | `fig2_seeds` | every UniProt cell as three seed dots against chance — the seed-dependence finding | §5, §8.1, Discussion §5b |
+| 3 | `fig3_attention_vs_ig` | attention against integrated gradients on identical checkpoints, both datasets, both ground truths | §7c, §8.4 |
+| 4 | `fig4_faithfulness` | comprehensiveness delta over a size-matched control; MolTrans's token-space panel kept separate | §5b, §8.3 |
+
+**Figure 1 is the one to keep** if the venue limits the count: it carries the headline on
+its own. Figure 2 can fold into its caption, and Figures 3 and 4 into supplementary.
