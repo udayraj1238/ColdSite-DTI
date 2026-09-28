@@ -50,6 +50,11 @@ results/*DUMMY_PLACEHOLDER*
 
 baselines/**/data/
 baselines/**/dataset/
+# ...and the plural. DrugBAN's is `datasets/` (140 MB of BindingDB/BioSNAP/Human
+# splits); the singular rule above silently did not match it, and 210k lines of
+# someone else's benchmark data were staged before this was caught (2026-09-18).
+baselines/**/datasets/
+baselines/**/image/
 
 # Raw KLIFS API caches (re-fetchable; the per-pair provenance that matters is in
 # data/<dataset>_drug_sites_report.json, which records every PDB entry used)

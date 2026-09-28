@@ -131,6 +131,18 @@ def _scores(model_name: str, split_dir: str, dataset: str, ckpt: str, recorded: 
                                           device, label="test")
         return labels, scores
 
+    if model_name == "drugban":
+        # The trainer's own dataset, collate and run_epoch; the model through the adapter,
+        # which loads DrugBAN's vendored modules without colliding with MolTrans's.
+        from src.evaluation.drugban_adapter import DrugBANAdapter
+        from src.model.train_drugban import DrugBANDataset, collate, run_epoch
+        model = DrugBANAdapter(checkpoint_path=ckpt, device=device).model
+        loader = DataLoader(DrugBANDataset(test_csv, threshold),
+                            batch_size=recorded.get("batch_size", 64), collate_fn=collate)
+        _loss, labels, scores = run_epoch(model, loader, nn.BCEWithLogitsLoss(), device,
+                                          log_every=0, label="test")
+        return labels, scores
+
     raise ValueError(f"no test pass registered for {model_name!r}")
 
 

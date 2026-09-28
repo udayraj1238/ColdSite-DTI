@@ -14,6 +14,12 @@ verify anything new the same way.**
 | MolTrans 2021 | Huang K, et al. MolTrans: Molecular Interaction Transformer for drug–target interaction prediction. *Bioinformatics* 37:830–836 (2021) | doi:10.1093/bioinformatics/btaa880 | Crossref |
 | HyperAttentionDTI 2022 | Zhao Q, et al. HyperAttentionDTI: improving drug–protein interaction prediction by sequence-based deep learning with attention mechanism. *Bioinformatics* 38:655–662 (2022) | doi:10.1093/bioinformatics/btab715 | Crossref |
 
+Added 2026-09-19 (the paper cited these without a verified entry):
+
+| key | reference | identifier | verified |
+|---|---|---|---|
+| DrugBAN 2023 | Bai P, et al. Interpretable bilinear attention network with domain adaptation improves drug–target prediction. *Nature Machine Intelligence* 5:126–136 (2023) | doi:10.1038/s42256-022-00605-1 | Crossref, 2026-09-19 |
+
 ## Data
 
 | key | reference | identifier | verified |
@@ -37,6 +43,18 @@ the 2025 paper is the current one).
 | ERASER 2020 | DeYoung J, et al. ERASER: A Benchmark to Evaluate Rationalized NLP Models. *Proc. ACL 2020*, 4443–4458 — comprehensiveness and sufficiency | doi:10.18653/v1/2020.acl-main.408 | Crossref |
 | ROAR 2019 | Hooker S, Erhan D, Kindermans P-J, Kim B. A Benchmark for Interpretability Methods in Deep Neural Networks. *NeurIPS 2019* — removal takes inputs off the training distribution | arXiv:1806.10758 | arXiv API |
 | AOPC 2017 | Samek W, et al. Evaluating the Visualization of What a Deep Neural Network Has Learned. *IEEE Trans. Neural Netw. Learn. Syst.* 28:2660–2673 (2017) | doi:10.1109/TNNLS.2016.2599820 | Crossref |
+
+## Ground truth, explanation method, protein embeddings (added 2026-09-19)
+
+| key | reference | identifier | verified |
+|---|---|---|---|
+| KLIFS 2014 | van Linden OPJ, et al. KLIFS: a knowledge-based structural database to navigate kinase–ligand interaction space. *J. Med. Chem.* 57:249–277 (2014) | doi:10.1021/jm400378w | Crossref, 2026-09-19 |
+| KLIFS 2021 | Kanev GK, et al. KLIFS: an overhaul after the first 5 years of supporting kinase research. *Nucleic Acids Res.* 49:D562–D569 (2021) | doi:10.1093/nar/gkaa895 | Crossref, 2026-09-19 |
+| IG 2017 | Sundararajan M, Taly A, Yan Q. Axiomatic Attribution for Deep Networks. *Proc. ICML 2017* (PMLR 70) | arXiv:1703.01365 | arXiv API, 2026-09-19 |
+| ProtTrans 2022 | Elnaggar A, et al. ProtTrans: Toward Understanding the Language of Life Through Self-Supervised Learning. *IEEE TPAMI* 44:7112–7127 (2022) | doi:10.1109/TPAMI.2021.3095381 | Crossref, 2026-09-19 |
+
+Cite KLIFS 2014 for the 85-residue pocket definition and KLIFS 2021 for the database
+release used.
 
 ## Statistics
 

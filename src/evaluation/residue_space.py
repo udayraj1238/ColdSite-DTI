@@ -67,10 +67,11 @@ _RESIDUE_OF = {code: residue for residue, code in _CODE_OF.items()}
 # Any fixed value works; what matters is that it is the same for every call.
 PREDICT_SEED = 0
 
-SUPPORTED_MODELS = ("hyperattentiondti", "moltrans")
+SUPPORTED_MODELS = ("hyperattentiondti", "moltrans", "drugban")
 # Models whose input is sub-word tokens rather than residues, so that masking k residues
 # is not a fixed-size intervention -- see control_positions below.
 SUBWORD_MODELS = ("moltrans",)
+RESIDUE_LEVEL_MODELS = ("hyperattentiondti", "drugban")
 
 
 def encode_residues(sequence: str) -> torch.Tensor:
@@ -121,7 +122,11 @@ class ResidueSpaceModel:
     # -- tokenising the way each model's authors do -------------------------
 
     def _encode(self, smiles: str, sequence: str):
-        if self.model_name == "hyperattentiondti":
+        if self.model_name in RESIDUE_LEVEL_MODELS:
+            # One token per residue for both, so masking a residue to X is a
+            # one-token intervention and the uniform random control is already
+            # size-matched (X is in DrugBAN's 25-letter table, index 24, and in
+            # HyperAttentionDTI's) -- no token matching needed, unlike MolTrans.
             drug, protein = type(self.adapter).encode(smiles, sequence)
             return {"drug": drug, "protein": protein}
 
@@ -146,7 +151,7 @@ class ResidueSpaceModel:
             devices = [torch.device(self.device).index or 0]
         with torch.random.fork_rng(devices=devices):
             torch.manual_seed(PREDICT_SEED)
-            if self.model_name == "hyperattentiondti":
+            if self.model_name in RESIDUE_LEVEL_MODELS:
                 return float(self.adapter.predict(encoded["drug"], encoded["protein"]))
             return float(self.adapter.predict(
                 encoded["drug"], encoded["protein"],
@@ -171,7 +176,7 @@ class ResidueSpaceModel:
         """
         sequence = str(sequence).upper()
         encoded = self._encode(smiles, sequence)
-        if self.model_name == "hyperattentiondti":
+        if self.model_name in RESIDUE_LEVEL_MODELS:
             attention = self.adapter.explain(encoded["drug"], encoded["protein"])
         else:
             attention = self.adapter.explain(

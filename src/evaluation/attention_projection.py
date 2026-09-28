@@ -393,6 +393,17 @@ PROJECTION_DECISIONS = {
                    "MolTrans's own paper visualises. The audit measures "
                    "published interpretability claims, so the published "
                    "artefact is the defensible subject.",
+        "resolved": "2026-09-20: both readouts are scored and both are reported. "
+                    "MolTrans's full text confirms the published artefact -- "
+                    "'visualize the strength of individual sub-structural "
+                    "interaction pair from the interaction map', its Fig. 3 -- so "
+                    "the map is registered as `moltrans_interaction` (max over "
+                    "drug substructures; `_sum` the alternative) in "
+                    "readout_variants.py. The encoder self-attention stays the "
+                    "default and is reported beside it. Leaving it as the only "
+                    "readout was not defensible once measured: it returns the "
+                    "identical map for different drugs on the same protein "
+                    "(src/evaluation/drug_dependence.py).",
         "owner": "124AD0008, with 124AD0067 (it affects what claim is audited)",
     },
     "moltrans.span_weighting": {

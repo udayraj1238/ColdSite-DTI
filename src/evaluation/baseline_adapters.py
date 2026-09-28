@@ -273,7 +273,8 @@ class MolTransAdapter(ExplainableDTIModel):
     clone_hint = "cd baselines && git clone <MolTrans url> MolTrans"
 
     def __init__(self, checkpoint_path: str = None, device: str = "cpu",
-                 head_reduce: str = "mean", attention_layer: int = -1):
+                 head_reduce: str = "mean", attention_layer: int = -1,
+                 explanation: str = "encoder", interaction_reduce: str = "max"):
         import torch
 
         _vendored("MolTrans", self.clone_hint)
@@ -283,6 +284,8 @@ class MolTransAdapter(ExplainableDTIModel):
         self.device = device
         self.checkpoint_path = checkpoint_path
         self.head_reduce = head_reduce
+        self.explanation = explanation
+        self.interaction_reduce = interaction_reduce
         # Which protein-encoder layer the explanation is read from. The last layer is the
         # published choice and the default; an earlier one is a readout the audit varies
         # deliberately (src/evaluation/readout_variants.py).
@@ -437,6 +440,10 @@ class MolTransAdapter(ExplainableDTIModel):
         dm = _as_batch(drug_mask) if drug_mask is not None else (d != 0).long()
         pm = _as_batch(protein_mask) if protein_mask is not None else (p != 0).long()
 
+        if self.explanation == "interaction":
+            token_weights = self._interaction_token_weights(d, p, dm, pm)
+            return project_token_attention(token_weights, protein_tokens)
+
         layers = self.model.p_encoder.layer
         if not -len(layers) <= self.attention_layer < len(layers):
             raise ValueError(f"attention_layer {self.attention_layer} is outside the "
@@ -469,6 +476,80 @@ class MolTransAdapter(ExplainableDTIModel):
         token_weights = weights.mean(dim=0).cpu().numpy()
 
         return project_token_attention(token_weights, protein_tokens)
+
+    def _interaction_token_weights(self, d, p, dm, pm):
+        """One weight per protein token from the DRUG x PROTEIN interaction map.
+
+        This is the artefact MolTrans's own paper visualises -- "we can later
+        visualize the strength of individual sub-structural interaction pair from
+        the interaction map", heat-mapped in its Figure 3 -- and the one its
+        interpretability claim is made about. The encoder self-attention this
+        adapter reads by default is computed before the drug is involved and
+        cannot vary with it (`src/evaluation/drug_dependence.py`), so the two
+        readouts answer different questions and the paper reports both.
+
+        The map is rebuilt exactly as `BIN_Interaction_Flat.forward` builds it,
+        including its `view(B, -1, max_d, max_p)` -- which does not transpose the
+        hidden axis into place, so the sum that follows mixes elements a
+        `d_enc @ p_enc.T` would keep apart. That is what the published model
+        computes and feeds to its CNN, so it is what gets scored; "correcting" it
+        would audit a model MolTrans never released. Dropout is not applied: the
+        vendored forward drops out this tensor even at inference, and an
+        explanation that changes between calls is not one.
+
+        Reduction over the drug axis is `max` by default (the strongest
+        substructure pair a protein token takes part in, which is what their
+        threshold-filtered figure shows); `sum` is the registered alternative.
+        Only real tokens take part on both axes. The result is shifted so its
+        minimum is zero, because the map is a product of embeddings and can be
+        negative while the contract requires non-negative weights; every metric
+        here reads the ranking, which a shift leaves untouched.
+        """
+        import torch
+
+        store = {}
+        handles = [
+            self.model.d_encoder.register_forward_hook(
+                lambda _m, _i, out: store.__setitem__("d", out)),
+            self.model.p_encoder.register_forward_hook(
+                lambda _m, _i, out: store.__setitem__("p", out)),
+        ]
+        try:
+            self.model.eval()
+            self._fit_batch_size(d.shape[0])
+            with torch.no_grad():
+                self.model(d.to(self.device), p.to(self.device),
+                           dm.to(self.device), pm.to(self.device))
+        finally:
+            for handle in handles:
+                handle.remove()
+
+        d_enc, p_enc = store.get("d"), store.get("p")
+        if d_enc is None or p_enc is None:
+            raise RuntimeError(
+                "the encoder hooks captured nothing -- the vendored layout may "
+                "differ from model.d_encoder / model.p_encoder; check "
+                "baselines/MolTrans/models.py before trusting any number.")
+        if isinstance(d_enc, tuple):
+            d_enc = d_enc[0]
+        if isinstance(p_enc, tuple):
+            p_enc = p_enc[0]
+
+        max_d, max_p = int(self.model.max_d), int(self.model.max_p)
+        d_aug = torch.unsqueeze(d_enc, 2).repeat(1, 1, max_p, 1)
+        p_aug = torch.unsqueeze(p_enc, 1).repeat(1, max_d, 1, 1)
+        interaction = (d_aug * p_aug).view(d_enc.shape[0], -1, max_d, max_p).sum(dim=1)
+
+        drug_rows = dm[0].to(interaction.device).bool()
+        cells = interaction[0][drug_rows]                      # real drug tokens x max_p
+        if cells.numel() == 0:
+            raise RuntimeError("no unmasked drug tokens: the drug mask is empty")
+        token_weights = (cells.max(dim=0).values if self.interaction_reduce == "max"
+                         else cells.sum(dim=0))
+        token_weights = token_weights.detach().cpu().numpy()
+        n_tokens = int(pm[0].sum())
+        token_weights = token_weights[:n_tokens]
+        return token_weights - token_weights.min()
 
 
 # ---------------------------------------------------------------------------

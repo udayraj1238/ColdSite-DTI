@@ -1,0 +1,252 @@
+{
+  "grid": {
+    "coldsite_dti": {
+      "random": {
+        "precision_at_k": {
+          "label": "coldsite_dti|kiba|random",
+          "mean": 0.018641390205371245,
+          "std": 0.007347245468709943,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.010327199273013834,
+          "ci95_high": 0.026955581137728654,
+          "values": [
+            0.01848341232227488,
+            0.011374407582938388,
+            0.026066350710900472
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "coldsite_dti|kiba|cold_drug",
+          "mean": 0.019968553459119496,
+          "std": 0.0047248362268291575,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.014621897942943544,
+          "ci95_high": 0.025315208975295447,
+          "values": [
+            0.024528301886792454,
+            0.02028301886792453,
+            0.01509433962264151
+          ]
+        }
+      }
+    },
+    "hyperattentiondti": {
+      "random": {
+        "precision_at_k": {
+          "label": "hyperattentiondti|kiba|random",
+          "mean": 0.0320695102685624,
+          "std": 0.019952175099369866,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.009491498686064505,
+          "ci95_high": 0.05464752185106029,
+          "values": [
+            0.01848341232227488,
+            0.02274881516587678,
+            0.05497630331753554
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "hyperattentiondti|kiba|cold_drug",
+          "mean": 0.024528301886792458,
+          "std": 0.001700731733709429,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.02260374275521056,
+          "ci95_high": 0.026452861018374355,
+          "values": [
+            0.025000000000000005,
+            0.022641509433962266,
+            0.025943396226415096
+          ]
+        }
+      }
+    },
+    "moltrans": {
+      "random": {
+        "precision_at_k": {
+          "label": "moltrans|kiba|random",
+          "mean": 0.0320695102685624,
+          "std": 0.018209992104146668,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.011462964335753122,
+          "ci95_high": 0.05267605620137167,
+          "values": [
+            0.02085308056872038,
+            0.05308056872037915,
+            0.02227488151658768
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "moltrans|kiba|cold_drug",
+          "mean": 0.03553459119496855,
+          "std": 0.02428367368993899,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.008055027533041905,
+          "ci95_high": 0.0630141548568952,
+          "values": [
+            0.027830188679245284,
+            0.06273584905660377,
+            0.016037735849056604
+          ]
+        }
+      }
+    },
+    "uniform_control": {
+      "random": {
+        "precision_at_k": {
+          "label": "uniform_control|kiba|random",
+          "mean": 0.023064770932069514,
+          "std": 0.0035885676750712628,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.01900392432618265,
+          "ci95_high": 0.02712561753795638,
+          "values": [
+            0.025592417061611375,
+            0.018957345971563982,
+            0.024644549763033177
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "uniform_control|kiba|cold_drug",
+          "mean": 0.025471698113207552,
+          "std": 0.0014150943396226412,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.02387036812130425,
+          "ci95_high": 0.027073028105110853,
+          "values": [
+            0.02547169811320755,
+            0.02688679245283019,
+            0.024056603773584907
+          ]
+        }
+      }
+    }
+  },
+  "stratified": {
+    "coldsite_dti": {},
+    "hyperattentiondti": {},
+    "moltrans": {},
+    "uniform_control": {}
+  },
+  "p_values_raw": {
+    "coldsite_dti|kiba|random": 0.9262073792620737,
+    "coldsite_dti|kiba|cold_drug": 0.7963203679632037,
+    "hyperattentiondti|kiba|random": 0.5175482451754825,
+    "hyperattentiondti|kiba|cold_drug": 0.2623737626237376,
+    "moltrans|kiba|random": 0.5736426357364264,
+    "moltrans|kiba|cold_drug": 0.07279272072792721,
+    "uniform_control|kiba|random": 0.2953704629537046,
+    "uniform_control|kiba|cold_drug": 0.22507749225077492
+  },
+  "p_values_corrected": {
+    "moltrans|kiba|cold_drug": {
+      "p_value": 0.07279272072792721,
+      "adjusted_alpha": 0.00625,
+      "rank": 1,
+      "significant": false
+    },
+    "uniform_control|kiba|cold_drug": {
+      "p_value": 0.22507749225077492,
+      "adjusted_alpha": 0.0071428571428571435,
+      "rank": 2,
+      "significant": false
+    },
+    "hyperattentiondti|kiba|cold_drug": {
+      "p_value": 0.2623737626237376,
+      "adjusted_alpha": 0.008333333333333333,
+      "rank": 3,
+      "significant": false
+    },
+    "uniform_control|kiba|random": {
+      "p_value": 0.2953704629537046,
+      "adjusted_alpha": 0.01,
+      "rank": 4,
+      "significant": false
+    },
+    "hyperattentiondti|kiba|random": {
+      "p_value": 0.5175482451754825,
+      "adjusted_alpha": 0.0125,
+      "rank": 5,
+      "significant": false
+    },
+    "moltrans|kiba|random": {
+      "p_value": 0.5736426357364264,
+      "adjusted_alpha": 0.016666666666666666,
+      "rank": 6,
+      "significant": false
+    },
+    "coldsite_dti|kiba|cold_drug": {
+      "p_value": 0.7963203679632037,
+      "adjusted_alpha": 0.025,
+      "rank": 7,
+      "significant": false
+    },
+    "coldsite_dti|kiba|random": {
+      "p_value": 0.9262073792620737,
+      "adjusted_alpha": 0.05,
+      "rank": 8,
+      "significant": false
+    }
+  },
+  "missing_cells": [
+    "coldsite_dti/kiba/cold_target/seed1",
+    "coldsite_dti/kiba/cold_target/seed2",
+    "coldsite_dti/kiba/cold_target/seed3",
+    "coldsite_dti/kiba/cold_pair/seed1",
+    "coldsite_dti/kiba/cold_pair/seed2",
+    "coldsite_dti/kiba/cold_pair/seed3",
+    "hyperattentiondti/kiba/cold_target/seed1",
+    "hyperattentiondti/kiba/cold_target/seed2",
+    "hyperattentiondti/kiba/cold_target/seed3",
+    "hyperattentiondti/kiba/cold_pair/seed1",
+    "hyperattentiondti/kiba/cold_pair/seed2",
+    "hyperattentiondti/kiba/cold_pair/seed3",
+    "moltrans/kiba/cold_target/seed1",
+    "moltrans/kiba/cold_target/seed2",
+    "moltrans/kiba/cold_target/seed3",
+    "moltrans/kiba/cold_pair/seed1",
+    "moltrans/kiba/cold_pair/seed2",
+    "moltrans/kiba/cold_pair/seed3"
+  ],
+  "k": 10,
+  "seeds": [
+    1,
+    2,
+    3
+  ],
+  "skipped_reasons": [
+    "coldsite_dti/kiba/cold_target/seed1: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed1.pt",
+    "coldsite_dti/kiba/cold_target/seed2: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed2.pt",
+    "coldsite_dti/kiba/cold_target/seed3: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed3.pt",
+    "coldsite_dti/kiba/cold_pair/seed1: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed1.pt",
+    "coldsite_dti/kiba/cold_pair/seed2: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed2.pt",
+    "coldsite_dti/kiba/cold_pair/seed3: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed3.pt",
+    "hyperattentiondti/kiba/cold_target/seed1: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed1_hyperattentiondti.pt",
+    "hyperattentiondti/kiba/cold_target/seed2: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed2_hyperattentiondti.pt",
+    "hyperattentiondti/kiba/cold_target/seed3: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed3_hyperattentiondti.pt",
+    "hyperattentiondti/kiba/cold_pair/seed1: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed1_hyperattentiondti.pt",
+    "hyperattentiondti/kiba/cold_pair/seed2: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed2_hyperattentiondti.pt",
+    "hyperattentiondti/kiba/cold_pair/seed3: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed3_hyperattentiondti.pt",
+    "moltrans/kiba/cold_target/seed1: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed1_moltrans.pt",
+    "moltrans/kiba/cold_target/seed2: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed2_moltrans.pt",
+    "moltrans/kiba/cold_target/seed3: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_target_binary_seed3_moltrans.pt",
+    "moltrans/kiba/cold_pair/seed1: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed1_moltrans.pt",
+    "moltrans/kiba/cold_pair/seed2: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed2_moltrans.pt",
+    "moltrans/kiba/cold_pair/seed3: no checkpoint at /Users/mahimagarwal/ColdSite-results/kiba_binary/coldsite_dti_kiba_cold_pair_binary_seed3_moltrans.pt"
+  ]
+}

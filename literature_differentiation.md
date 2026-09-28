@@ -35,10 +35,19 @@ than an interpretability analysis reported alongside a generalization result.
 
 Computes a binding-site hit ratio for high-attention residues *and* evaluates robustness
 on novel, unseen drug–target pairs — but, as far as the abstract and tables show, as two
-independent experiments *(confirm in the full text)*. Interpretive fidelity is never expressed as a
+independent experiments. Interpretive fidelity is never expressed as a
 function of generalization difficulty. **What we add:** the connection. The
 two axes are measured on the same splits, the same proteins and the same
 checkpoints, so a change in one can be read against the other.
+
+*Read in full, with the released code, 2026-09-18.* Its Figure 6 shows per-residue
+attention for four drug–target complexes and concludes that high-attention residues
+coincide with the binding site. That attention is computed from the protein's ProtTrans
+embedding alone — no drug tensor reaches it, and the model has no cross-attention — so for
+a fixed protein it is the same map whatever the drug binds (Results §7e;
+`results/evidti_code_audit.md`). This is stated as a structural fact about the released
+model, not as a failure of its uncertainty quantification, which is its contribution and
+which this audit does not test.
 
 ### 1.3 ColdDTI (Zhang et al., 2025, arXiv preprint)
 
@@ -158,6 +167,36 @@ for this paper's design:
 - **Wiegreffe & Pinter (2019), *Attention is not not Explanation*** — pushes
   back: the claim depends on what "explanation" is taken to mean, and under
   reasonable definitions attention can be faithful.
+
+**What that literature could not settle, and what this paper adds.** A reviewer will ask
+whether "attention is not explanation" was established in 2019 and this is its application
+to a new domain. The honest answer names what was missing there. Those results argue from
+*internal* evidence — adversarial attention distributions, erasure, correlation with
+gradients — because in sentiment or NLI there is no external fact about which token is the
+true evidence. A protein has one: annotated binding residues, a structurally defined
+pocket, and the contacts a specific ligand makes in a crystal. That external ground truth
+is what turns "attention may not be explanation" into a measurable quantity with a chance
+level, a ceiling, a positive control and a p-value, and it is what makes the two axes
+separable rather than conflated: this audit finds explanations that are **faithful and not
+plausible**, a cell the 2019 methodology cannot name because it has no notion of
+plausibility to place against faithfulness.
+
+Three further things have no precedent in that work, and each cost this paper a control
+rather than an argument. (i) The verdict is measured **as a function of distribution
+shift**, which is the setting these models are sold for and where no attention study of
+either field reports interpretability. (ii) The **readout** between a network's tensor and
+a per-residue weight is shown to carry most of the apparent signal (2-12% top-ten overlap
+between defensible reductions) — a degree of freedom that does not arise for one attention
+weight per token in NLP, and is undocumented in every DTI paper we read. (iii) Masking
+faithfulness is shown **not to transfer across tokenisations**, inverting its own sign for
+a sub-word model; the 2019 erasure results assume, correctly for their setting and
+incorrectly here, that erasing k units is the same intervention in both arms.
+
+So the debt is real and the differentiation is narrow: they asked whether attention is
+explanation, without a way to check where the explanation should point. We ask whether it
+survives *correction, shift, replication and its own readout* against a ground truth that
+says where it should point — and answer for the models a reader of the DTI literature is
+actually being asked to trust.
 
 **Why this determines our methodology.** Plausibility and faithfulness are
 independent properties:

@@ -1,0 +1,1 @@
+hyperattentiondti: top-10 overlap between different drugs on the same protein: mean 9.72/10, identical top-10 in 72% of 150 drug pairs (25 proteins x 4 drugs)

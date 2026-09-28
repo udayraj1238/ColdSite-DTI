@@ -1,0 +1,1217 @@
+[
+  {
+    "model": "deepdta",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 1,
+    "recorded_auroc": 0.9039438690261148,
+    "all_rows": {
+      "auroc": 0.9039432642186209,
+      "auprc": 0.6109276088532416,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8800938099150917,
+      "auprc": 0.4334827554149508,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "deepdta",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 2,
+    "recorded_auroc": 0.9103528124354872,
+    "all_rows": {
+      "auroc": 0.9103528124354872,
+      "auprc": 0.6180956072152092,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8860829224869898,
+      "auprc": 0.45526226581920265,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "deepdta",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 3,
+    "recorded_auroc": 0.9080537375490297,
+    "all_rows": {
+      "auroc": 0.9080537375490297,
+      "auprc": 0.6148636307563088,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8860849767187071,
+      "auprc": 0.4539223619337107,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "deepdta",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 1,
+    "recorded_auroc": 0.7680188208455121,
+    "all_rows": {
+      "auroc": 0.7680188208455121,
+      "auprc": 0.21055338968597756,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.798920558454882,
+      "auprc": 0.14577082528630186,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "deepdta",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 2,
+    "recorded_auroc": 0.7125258430170386,
+    "all_rows": {
+      "auroc": 0.7125258430170386,
+      "auprc": 0.2146780910257442,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.7292921182925198,
+      "auprc": 0.11259759747748474,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "deepdta",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 3,
+    "recorded_auroc": 0.7027019319883082,
+    "all_rows": {
+      "auroc": 0.7027019319883082,
+      "auprc": 0.19130479099297598,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.7182746777287122,
+      "auprc": 0.11792081589512127,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "coldsite_dti",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 1,
+    "recorded_auroc": 0.8501119700273534,
+    "all_rows": {
+      "auroc": 0.8501119700273534,
+      "auprc": 0.4151336485360922,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.819453916735141,
+      "auprc": 0.27644169592434953,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "coldsite_dti",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 2,
+    "recorded_auroc": 0.8512502177306979,
+    "all_rows": {
+      "auroc": 0.8512502177306978,
+      "auprc": 0.507803237144029,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8495799096138045,
+      "auprc": 0.3415751017212829,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "coldsite_dti",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 3,
+    "recorded_auroc": 0.8696141892676507,
+    "all_rows": {
+      "auroc": 0.8696141892676507,
+      "auprc": 0.46959662209926534,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8365999041358533,
+      "auprc": 0.2954432558122941,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "coldsite_dti",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 1,
+    "recorded_auroc": 0.7375204961859271,
+    "all_rows": {
+      "auroc": 0.7375204961859271,
+      "auprc": 0.16454924246354025,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.7515946295552879,
+      "auprc": 0.11015066047965041,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "coldsite_dti",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 2,
+    "recorded_auroc": 0.5567976046196621,
+    "all_rows": {
+      "auroc": 0.5567976046196621,
+      "auprc": 0.12124264035915673,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.5101699451358224,
+      "auprc": 0.07698005060347418,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "coldsite_dti",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 3,
+    "recorded_auroc": 0.5765167177586084,
+    "all_rows": {
+      "auroc": 0.5765167177586084,
+      "auprc": 0.11161695829809615,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.5590124448012846,
+      "auprc": 0.058537021995012664,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "hyperattentiondti",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 1,
+    "recorded_auroc": 0.9151602256012593,
+    "all_rows": {
+      "auroc": 0.9151606288062553,
+      "auprc": 0.6376570127686395,
+      "rows": 5984,
+      "positive_rate": 0.0748663101604278
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8937732812927965,
+      "auprc": 0.47851084253783027,
+      "rows": 5168,
+      "positive_rate": 0.05804953560371517
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "hyperattentiondti",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 2,
+    "recorded_auroc": 0.9161013060616227,
+    "all_rows": {
+      "auroc": 0.9161013060616227,
+      "auprc": 0.6603667655634338,
+      "rows": 5984,
+      "positive_rate": 0.0748663101604278
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8946764585045193,
+      "auprc": 0.5217370387670638,
+      "rows": 5168,
+      "positive_rate": 0.05804953560371517
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "hyperattentiondti",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 3,
+    "recorded_auroc": 0.9132187935461396,
+    "all_rows": {
+      "auroc": 0.9132183903411436,
+      "auprc": 0.6339891653095414,
+      "rows": 5984,
+      "positive_rate": 0.0748663101604278
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8919429608326486,
+      "auprc": 0.46631504874410806,
+      "rows": 5168,
+      "positive_rate": 0.05804953560371517
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "hyperattentiondti",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 1,
+    "recorded_auroc": 0.6964425750338633,
+    "all_rows": {
+      "auroc": 0.6964425750338633,
+      "auprc": 0.15673287314533604,
+      "rows": 1144,
+      "positive_rate": 0.056818181818181816
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.7159106115348588,
+      "auprc": 0.0819905031401138,
+      "rows": 1001,
+      "positive_rate": 0.04695304695304695
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "hyperattentiondti",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 2,
+    "recorded_auroc": 0.6551935552862337,
+    "all_rows": {
+      "auroc": 0.6551935552862337,
+      "auprc": 0.19199083200465303,
+      "rows": 1144,
+      "positive_rate": 0.056818181818181816
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.6610241313171863,
+      "auprc": 0.07238019597049912,
+      "rows": 1001,
+      "positive_rate": 0.04695304695304695
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "hyperattentiondti",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 3,
+    "recorded_auroc": 0.730134740144008,
+    "all_rows": {
+      "auroc": 0.730134740144008,
+      "auprc": 0.21144915270710243,
+      "rows": 1144,
+      "positive_rate": 0.056818181818181816
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.7613631294883804,
+      "auprc": 0.12370372015795499,
+      "rows": 1001,
+      "positive_rate": 0.04695304695304695
+    },
+    "reproduces_recorded": true,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "moltrans",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 1,
+    "recorded_auroc": 0.8679922971717589,
+    "all_rows": {
+      "auroc": 0.8674339792139761,
+      "auprc": 0.5291678414563175,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104,
+      "auroc_draws": [
+        0.8671510099478738,
+        0.8668850962530966,
+        0.8681834163398018,
+        0.867544336421346,
+        0.8674060371077621
+      ],
+      "auprc_draws": [
+        0.5274868654686282,
+        0.5287140168145688,
+        0.5311009659167857,
+        0.5301170513087066,
+        0.5284203077728978
+      ]
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8243895508079978,
+      "auprc": 0.29117084727494214,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889,
+      "auroc_draws": [
+        0.823926663927691,
+        0.8236476307860859,
+        0.8254320734045468,
+        0.8244165981922761,
+        0.8245247877293893
+      ],
+      "auprc_draws": [
+        0.28871776138353344,
+        0.293022629368344,
+        0.29232509849958344,
+        0.2917632840179705,
+        0.29002546310527927
+      ]
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 5,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "moltrans",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 2,
+    "recorded_auroc": 0.8785131251290256,
+    "all_rows": {
+      "auroc": 0.8785085689125722,
+      "auprc": 0.5239247328597412,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104,
+      "auroc_draws": [
+        0.8783195867310073,
+        0.878135926855388,
+        0.8785566712685798,
+        0.878678035972337,
+        0.8788526237355491
+      ],
+      "auprc_draws": [
+        0.5228827061756113,
+        0.5232969147556727,
+        0.5243664549337217,
+        0.5238935196612948,
+        0.5251840687724048
+      ]
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.839332580115037,
+      "auprc": 0.3069518589537316,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889,
+      "auroc_draws": [
+        0.8388571624212545,
+        0.8387000136948781,
+        0.83957819775404,
+        0.8393816762530814,
+        0.8401458504519309
+      ],
+      "auprc_draws": [
+        0.30589824205860366,
+        0.3056216965824464,
+        0.3083032475070946,
+        0.3071018402846711,
+        0.30783426833584243
+      ]
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 5,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "moltrans",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 3,
+    "recorded_auroc": 0.8755721478891412,
+    "all_rows": {
+      "auroc": 0.8755524714853428,
+      "auprc": 0.5424187247149309,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104,
+      "auroc_draws": [
+        0.8755636805842278,
+        0.8754378806255162,
+        0.8756193228736582,
+        0.8757334298874898,
+        0.8754080434558216
+      ],
+      "auprc_draws": [
+        0.5418236056057244,
+        0.5433456941517109,
+        0.5419342364787745,
+        0.5428105439094268,
+        0.542179543429018
+      ]
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8345794302930705,
+      "auprc": 0.3183593695210155,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889,
+      "auroc_draws": [
+        0.8345521774856204,
+        0.8343940016433853,
+        0.8347041906327034,
+        0.8348000547795125,
+        0.8344467269241304
+      ],
+      "auprc_draws": [
+        0.31784159966892056,
+        0.3201449474702135,
+        0.3173400405109677,
+        0.3191460694734679,
+        0.3173241904815078
+      ]
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 5,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "moltrans",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 1,
+    "recorded_auroc": 0.5898766664290297,
+    "all_rows": {
+      "auroc": 0.5905125828758822,
+      "auprc": 0.12453885749293792,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559,
+      "auroc_draws": [
+        0.5916019106009838,
+        0.5925144364440008,
+        0.5933841876381265,
+        0.5945818778070864,
+        0.5804805018892136
+      ],
+      "auprc_draws": [
+        0.12351183186819188,
+        0.12239776075652253,
+        0.1262340434017144,
+        0.12694320118137298,
+        0.12360745025688775
+      ]
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.5453276238904501,
+      "auprc": 0.051084348591817055,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076,
+      "auroc_draws": [
+        0.5479950042374772,
+        0.5483518444176814,
+        0.5478834916811632,
+        0.5526562290913957,
+        0.5297515500245328
+      ],
+      "auprc_draws": [
+        0.051206601473442706,
+        0.05050810968948616,
+        0.05166282381206429,
+        0.05247637111975123,
+        0.049567836864340874
+      ]
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 5,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "moltrans",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 2,
+    "recorded_auroc": 0.5673914593284382,
+    "all_rows": {
+      "auroc": 0.5605304056462537,
+      "auprc": 0.09494762281940128,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559,
+      "auroc_draws": [
+        0.5551864261780851,
+        0.5624296000570329,
+        0.5597775718257646,
+        0.5630854780067014,
+        0.5621729521636842
+      ],
+      "auprc_draws": [
+        0.09235525736430023,
+        0.10143478898229272,
+        0.09422158174414114,
+        0.09335398916076,
+        0.09337249684551233
+      ]
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.501998305009144,
+      "auprc": 0.045189885351209824,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076,
+      "auroc_draws": [
+        0.49400062447031534,
+        0.5039921495160355,
+        0.5007805878941969,
+        0.5064231232436773,
+        0.5047950399214951
+      ],
+      "auprc_draws": [
+        0.0447428931662335,
+        0.045043181234547126,
+        0.04536824810496391,
+        0.04537088610620632,
+        0.04542421814409824
+      ]
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 5,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "moltrans",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 3,
+    "recorded_auroc": 0.5482711912739716,
+    "all_rows": {
+      "auroc": 0.5481457189705569,
+      "auprc": 0.07559279562795221,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559,
+      "auroc_draws": [
+        0.5490126185214229,
+        0.5489413274399372,
+        0.5476723461894917,
+        0.5479289940828403,
+        0.5471733086190919
+      ],
+      "auprc_draws": [
+        0.07561731237238707,
+        0.0758535314658467,
+        0.07551846449665457,
+        0.07535476757212009,
+        0.0756199022327526
+      ]
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.5414068424104554,
+      "auprc": 0.04870097049347745,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076,
+      "auroc_draws": [
+        0.5427316115794639,
+        0.5426424015344128,
+        0.5405459654757125,
+        0.5409474106784424,
+        0.5401668227842455
+      ],
+      "auprc_draws": [
+        0.04887607268819999,
+        0.048820701690034427,
+        0.04861710788443427,
+        0.048643985202944356,
+        0.048546985001774234
+      ]
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 5,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "drugban",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 1,
+    "recorded_auroc": 0.850150879309455,
+    "all_rows": {
+      "auroc": 0.8501526937319364,
+      "auprc": 0.4714077074905754,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8093566831005203,
+      "auprc": 0.2654879558922846,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 1,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "drugban",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 2,
+    "recorded_auroc": 0.8534549426481213,
+    "all_rows": {
+      "auroc": 0.8534545394431255,
+      "auprc": 0.4794027585337959,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.8059555601205151,
+      "auprc": 0.2860779964593974,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 1,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "drugban",
+    "dataset": "davis",
+    "level": "cold_target",
+    "seed": 3,
+    "recorded_auroc": 0.8355709866587531,
+    "all_rows": {
+      "auroc": 0.8355715914662469,
+      "auprc": 0.46415718693694213,
+      "rows": 5984,
+      "positive_rate": 0.07486630976200104
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.7869429608326486,
+      "auprc": 0.2678215054626108,
+      "rows": 5168,
+      "positive_rate": 0.05804953724145889
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 1,
+    "leaked_targets": [
+      "ABL1(F317I)",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FLT3(D835H)",
+      "FLT3(K663Q)",
+      "FLT3(R834Q)",
+      "KIT(L576P)",
+      "MET",
+      "PIK3CA(E542K)",
+      "RET(V804M)",
+      "RSK3(KinDom.2-C-terminal)",
+      "TYK2(JH1domain-catalytic)"
+    ],
+    "rows_dropped": 816
+  },
+  {
+    "model": "drugban",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 1,
+    "recorded_auroc": 0.6291723105439511,
+    "all_rows": {
+      "auroc": 0.6291723105439511,
+      "auprc": 0.13987948232545513,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.5841696775056872,
+      "auprc": 0.0688865703728011,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 1,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "drugban",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 2,
+    "recorded_auroc": 0.5854281029443218,
+    "all_rows": {
+      "auroc": 0.5854281029443217,
+      "auprc": 0.11098273401967065,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.5133592042463981,
+      "auprc": 0.04675201496135381,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 1,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  },
+  {
+    "model": "drugban",
+    "dataset": "davis",
+    "level": "cold_pair",
+    "seed": 3,
+    "recorded_auroc": 0.6446781207670921,
+    "all_rows": {
+      "auroc": 0.6446567334426464,
+      "auprc": 0.16497949251483013,
+      "rows": 1144,
+      "positive_rate": 0.05681818351149559
+    },
+    "unseen_by_sequence": {
+      "auroc": 0.5793969400954548,
+      "auprc": 0.06775699165077032,
+      "rows": 1001,
+      "positive_rate": 0.046953048557043076
+    },
+    "reproduces_recorded": true,
+    "dropout_draws": 1,
+    "leaked_targets": [
+      "ABL1p",
+      "EGFR(G719S)",
+      "EGFR(L858RT790M)",
+      "FGFR3(G697C)",
+      "FLT3(N841I)",
+      "MET",
+      "PIK3CA(H1047L)",
+      "PIK3CA(H1047Y)",
+      "PIK3CA(Q546K)",
+      "RET(V804M)",
+      "RPS6KA4(KinDom.2-C-terminal)"
+    ],
+    "rows_dropped": 143
+  }
+]

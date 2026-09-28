@@ -1,0 +1,817 @@
+{
+  "grid": {
+    "coldsite_dti": {
+      "random": {
+        "precision_at_k": {
+          "label": "coldsite_dti|davis|random",
+          "mean": 0.015090735434574976,
+          "std": 0.006997116679041972,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.007172752526110614,
+          "ci95_high": 0.023008718343039337,
+          "values": [
+            0.022922636103151862,
+            0.009455587392550143,
+            0.012893982808022923
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "coldsite_dti|davis|cold_drug",
+          "mean": 0.02168099331423114,
+          "std": 0.008851657875146256,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.011664399482530423,
+          "ci95_high": 0.031697587145931856,
+          "values": [
+            0.02693409742120344,
+            0.026647564469914044,
+            0.011461318051575931
+          ]
+        }
+      },
+      "cold_target": {
+        "precision_at_k": {
+          "label": "coldsite_dti|davis|cold_target",
+          "mean": 0.017156862745098044,
+          "std": 0.0022463606347822756,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.014614866387408535,
+          "ci95_high": 0.019698859102787555,
+          "values": [
+            0.014705882352941176,
+            0.01911764705882353,
+            0.017647058823529415
+          ]
+        }
+      },
+      "cold_pair": {
+        "precision_at_k": {
+          "label": "coldsite_dti|davis|cold_pair",
+          "mean": 0.012962962962962966,
+          "std": 0.0048776174781725665,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.007443419185470135,
+          "ci95_high": 0.018482506740455797,
+          "values": [
+            0.01805555555555556,
+            0.0125,
+            0.008333333333333335
+          ]
+        }
+      }
+    },
+    "hyperattentiondti": {
+      "random": {
+        "precision_at_k": {
+          "label": "hyperattentiondti|davis|random",
+          "mean": 0.03400191021967527,
+          "std": 0.005902393335427077,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.02732272339277439,
+          "ci95_high": 0.040681097046576145,
+          "values": [
+            0.034670487106017195,
+            0.03954154727793696,
+            0.027793696275071632
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "hyperattentiondti|davis|cold_drug",
+          "mean": 0.04001910219675262,
+          "std": 0.031232529811250184,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.004676167588515946,
+          "ci95_high": 0.07536203680498929,
+          "values": [
+            0.024928366762177648,
+            0.07593123209169055,
+            0.019197707736389687
+          ]
+        }
+      },
+      "cold_target": {
+        "precision_at_k": {
+          "label": "hyperattentiondti|davis|cold_target",
+          "mean": 0.023529411764705885,
+          "std": 0.00818788876886768,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.014263943386496966,
+          "ci95_high": 0.0327948801429148,
+          "values": [
+            0.014705882352941176,
+            0.030882352941176472,
+            0.025000000000000005
+          ]
+        }
+      },
+      "cold_pair": {
+        "precision_at_k": {
+          "label": "hyperattentiondti|davis|cold_pair",
+          "mean": 0.022222222222222223,
+          "std": 0.00972222222222222,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.011220492092664356,
+          "ci95_high": 0.03322395235178009,
+          "values": [
+            0.0125,
+            0.022222222222222223,
+            0.03194444444444444
+          ]
+        }
+      }
+    },
+    "moltrans": {
+      "random": {
+        "precision_at_k": {
+          "label": "moltrans|davis|random",
+          "mean": 0.02139446036294174,
+          "std": 0.0029407458105712783,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.01806669320765262,
+          "ci95_high": 0.02472222751823086,
+          "values": [
+            0.02464183381088825,
+            0.020630372492836675,
+            0.01891117478510029
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "moltrans|davis|cold_drug",
+          "mean": 0.026552053486150907,
+          "std": 0.005207757738382267,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.020658920835177362,
+          "ci95_high": 0.03244518613712445,
+          "values": [
+            0.022349570200573068,
+            0.032378223495702005,
+            0.024928366762177648
+          ]
+        }
+      },
+      "cold_target": {
+        "precision_at_k": {
+          "label": "moltrans|davis|cold_target",
+          "mean": 0.027941176470588237,
+          "std": 0.015906843862341133,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.009940888122263437,
+          "ci95_high": 0.045941464818913036,
+          "values": [
+            0.010294117647058823,
+            0.0411764705882353,
+            0.03235294117647059
+          ]
+        }
+      },
+      "cold_pair": {
+        "precision_at_k": {
+          "label": "moltrans|davis|cold_pair",
+          "mean": 0.019907407407407412,
+          "std": 0.014254448442908014,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.00377698050190875,
+          "ci95_high": 0.036037834312906074,
+          "values": [
+            0.0041666666666666675,
+            0.03194444444444445,
+            0.023611111111111114
+          ]
+        }
+      }
+    },
+    "drugban": {
+      "random": {
+        "precision_at_k": {
+          "label": "drugban|davis|random",
+          "mean": 0.017765042979942695,
+          "std": 0.002733350147326492,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.014671966110979727,
+          "ci95_high": 0.020858119848905662,
+          "values": [
+            0.019197707736389687,
+            0.014613180515759314,
+            0.019484240687679084
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "drugban|davis|cold_drug",
+          "mean": 0.021012416427889213,
+          "std": 0.0006617195062345282,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.020263610315186253,
+          "ci95_high": 0.021761222540592172,
+          "values": [
+            0.02177650429799427,
+            0.02063037249283668,
+            0.020630372492836675
+          ]
+        }
+      },
+      "cold_target": {
+        "precision_at_k": {
+          "label": "drugban|davis|cold_target",
+          "mean": 0.02254901960784314,
+          "std": 0.005164536153359183,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.016704796784615443,
+          "ci95_high": 0.028393242431070838,
+          "values": [
+            0.017647058823529415,
+            0.027941176470588233,
+            0.02205882352941177
+          ]
+        }
+      },
+      "cold_pair": {
+        "precision_at_k": {
+          "label": "drugban|davis|cold_pair",
+          "mean": 0.027314814814814816,
+          "std": 0.0076494035378973655,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.01865869983899438,
+          "ci95_high": 0.03597092979063525,
+          "values": [
+            0.036111111111111115,
+            0.022222222222222223,
+            0.023611111111111114
+          ]
+        }
+      }
+    },
+    "uniform_control": {
+      "random": {
+        "precision_at_k": {
+          "label": "uniform_control|davis|random",
+          "mean": 0.02005730659025788,
+          "std": 0.0013130589383827601,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.018571440524445103,
+          "ci95_high": 0.02154317265607066,
+          "values": [
+            0.01977077363896848,
+            0.02148997134670487,
+            0.01891117478510029
+          ]
+        }
+      },
+      "cold_drug": {
+        "precision_at_k": {
+          "label": "uniform_control|davis|cold_drug",
+          "mean": 0.02005730659025788,
+          "std": 0.0012489681786649498,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.01864396604650137,
+          "ci95_high": 0.021470647134014392,
+          "values": [
+            0.01862464183381089,
+            0.020916905444126076,
+            0.02063037249283668
+          ]
+        }
+      },
+      "cold_target": {
+        "precision_at_k": {
+          "label": "uniform_control|davis|cold_target",
+          "mean": 0.018137254901960786,
+          "std": 0.0047272797848004686,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.012787834239633901,
+          "ci95_high": 0.02348667556428767,
+          "values": [
+            0.01470588235294118,
+            0.016176470588235296,
+            0.023529411764705885
+          ]
+        }
+      },
+      "cold_pair": {
+        "precision_at_k": {
+          "label": "uniform_control|davis|cold_pair",
+          "mean": 0.01666666666666667,
+          "std": 0.001388888888888891,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.015094990933872687,
+          "ci95_high": 0.018238342399460653,
+          "values": [
+            0.01805555555555556,
+            0.01666666666666667,
+            0.015277777777777779
+          ]
+        }
+      }
+    }
+  },
+  "stratified": {
+    "coldsite_dti": {
+      "random": {
+        "kinase": {
+          "label": "coldsite_dti|davis|random|kinase",
+          "mean": 0.012065439672801636,
+          "std": 0.005895106464376104,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.005394498716747904,
+          "ci95_high": 0.018736380628855367,
+          "values": [
+            0.018404907975460124,
+            0.006748466257668713,
+            0.011042944785276074
+          ]
+        }
+      },
+      "cold_drug": {
+        "kinase": {
+          "label": "coldsite_dti|davis|cold_drug|kinase",
+          "mean": 0.023108384458077707,
+          "std": 0.0068407888276800525,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.015367303166661999,
+          "ci95_high": 0.030849465749493415,
+          "values": [
+            0.028220858895705518,
+            0.025766871165644172,
+            0.015337423312883436
+          ]
+        }
+      },
+      "cold_target": {
+        "kinase": {
+          "label": "coldsite_dti|davis|cold_target|kinase",
+          "mean": 0.01888888888888889,
+          "std": 0.006938886664887108,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.011036799444545092,
+          "ci95_high": 0.026740978333232687,
+          "values": [
+            0.013333333333333334,
+            0.026666666666666665,
+            0.016666666666666666
+          ]
+        }
+      },
+      "cold_pair": {
+        "kinase": {
+          "label": "coldsite_dti|davis|cold_pair|kinase",
+          "mean": 0.020833333333333332,
+          "std": 0.00721687836487032,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.012666666666666668,
+          "ci95_high": 0.028999999999999998,
+          "values": [
+            0.016666666666666666,
+            0.029166666666666664,
+            0.016666666666666666
+          ]
+        }
+      }
+    },
+    "hyperattentiondti": {
+      "random": {
+        "kinase": {
+          "label": "hyperattentiondti|davis|random|kinase",
+          "mean": 0.03578732106339468,
+          "std": 0.005532821782604776,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.0295263438180871,
+          "ci95_high": 0.04204829830870226,
+          "values": [
+            0.041104294478527606,
+            0.03619631901840491,
+            0.030061349693251537
+          ]
+        }
+      },
+      "cold_drug": {
+        "kinase": {
+          "label": "hyperattentiondti|davis|cold_drug|kinase",
+          "mean": 0.0394683026584867,
+          "std": 0.03171448840257569,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.0035799805622675554,
+          "ci95_high": 0.07535662475470584,
+          "values": [
+            0.02208588957055215,
+            0.07607361963190183,
+            0.020245398773006136
+          ]
+        }
+      },
+      "cold_target": {
+        "kinase": {
+          "label": "hyperattentiondti|davis|cold_target|kinase",
+          "mean": 0.02888888888888889,
+          "std": 0.010715167512214395,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.016763535387614617,
+          "ci95_high": 0.041014242390163165,
+          "values": [
+            0.016666666666666666,
+            0.03666666666666667,
+            0.03333333333333333
+          ]
+        }
+      },
+      "cold_pair": {
+        "kinase": {
+          "label": "hyperattentiondti|davis|cold_pair|kinase",
+          "mean": 0.024999999999999998,
+          "std": 0.007216878364870323,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.016833333333333332,
+          "ci95_high": 0.033166666666666664,
+          "values": [
+            0.020833333333333332,
+            0.020833333333333332,
+            0.03333333333333333
+          ]
+        }
+      }
+    },
+    "moltrans": {
+      "random": {
+        "kinase": {
+          "label": "moltrans|davis|random|kinase",
+          "mean": 0.020245398773006133,
+          "std": 0.0038312871155818397,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.01590988926385925,
+          "ci95_high": 0.024580908282153015,
+          "values": [
+            0.019018404907975465,
+            0.017177914110429446,
+            0.024539877300613498
+          ]
+        }
+      },
+      "cold_drug": {
+        "kinase": {
+          "label": "moltrans|davis|cold_drug|kinase",
+          "mean": 0.02883435582822086,
+          "std": 0.006748466257668714,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.02119774735967587,
+          "ci95_high": 0.03647096429676585,
+          "values": [
+            0.022085889570552145,
+            0.03558282208588957,
+            0.02883435582822086
+          ]
+        }
+      },
+      "cold_target": {
+        "kinase": {
+          "label": "moltrans|davis|cold_target|kinase",
+          "mean": 0.022222222222222227,
+          "std": 0.021688023662159044,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": -0.002320086924873229,
+          "ci95_high": 0.046764531369317686,
+          "values": [
+            0.0,
+            0.04333333333333334,
+            0.02333333333333333
+          ]
+        }
+      },
+      "cold_pair": {
+        "kinase": {
+          "label": "moltrans|davis|cold_pair|kinase",
+          "mean": 0.020833333333333332,
+          "std": 0.0125,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.0066882517381875,
+          "ci95_high": 0.03497841492847917,
+          "values": [
+            0.008333333333333333,
+            0.03333333333333333,
+            0.020833333333333332
+          ]
+        }
+      }
+    },
+    "drugban": {
+      "random": {
+        "kinase": {
+          "label": "drugban|davis|random|kinase",
+          "mean": 0.015746421267893662,
+          "std": 0.0015439334223457564,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.013999296128969385,
+          "ci95_high": 0.01749354640681794,
+          "values": [
+            0.01717791411042945,
+            0.014110429447852763,
+            0.015950920245398775
+          ]
+        }
+      },
+      "cold_drug": {
+        "kinase": {
+          "label": "drugban|davis|cold_drug|kinase",
+          "mean": 0.021676891615541927,
+          "std": 0.00035420261913474165,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.021276073619631904,
+          "ci95_high": 0.02207770961145195,
+          "values": [
+            0.02147239263803681,
+            0.02208588957055215,
+            0.02147239263803681
+          ]
+        }
+      },
+      "cold_target": {
+        "kinase": {
+          "label": "drugban|davis|cold_target|kinase",
+          "mean": 0.02444444444444445,
+          "std": 0.013877773329774221,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.008740265555756847,
+          "ci95_high": 0.04014862333313205,
+          "values": [
+            0.02,
+            0.04000000000000001,
+            0.013333333333333334
+          ]
+        }
+      },
+      "cold_pair": {
+        "kinase": {
+          "label": "drugban|davis|cold_pair|kinase",
+          "mean": 0.02638888888888889,
+          "std": 0.012729376930432886,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.011984242861981676,
+          "ci95_high": 0.0407935349157961,
+          "values": [
+            0.0375,
+            0.012500000000000002,
+            0.029166666666666664
+          ]
+        }
+      }
+    },
+    "uniform_control": {
+      "random": {
+        "kinase": {
+          "label": "uniform_control|davis|random|kinase",
+          "mean": 0.01860940695296524,
+          "std": 0.0012770957051939469,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.017164237116582944,
+          "ci95_high": 0.020054576789347536,
+          "values": [
+            0.019018404907975465,
+            0.0196319018404908,
+            0.01717791411042945
+          ]
+        }
+      },
+      "cold_drug": {
+        "kinase": {
+          "label": "uniform_control|davis|cold_drug|kinase",
+          "mean": 0.02106339468302659,
+          "std": 0.004765308874327625,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.015670940054751645,
+          "ci95_high": 0.026455849311301533,
+          "values": [
+            0.0196319018404908,
+            0.017177914110429453,
+            0.026380368098159513
+          ]
+        }
+      },
+      "cold_target": {
+        "kinase": {
+          "label": "uniform_control|davis|cold_target|kinase",
+          "mean": 0.018888888888888893,
+          "std": 0.009622504486493766,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.008,
+          "ci95_high": 0.029777777777777785,
+          "values": [
+            0.013333333333333334,
+            0.030000000000000006,
+            0.013333333333333334
+          ]
+        }
+      },
+      "cold_pair": {
+        "kinase": {
+          "label": "uniform_control|davis|cold_pair|kinase",
+          "mean": 0.018055555555555557,
+          "std": 0.00240562612162344,
+          "n_seeds": 3,
+          "sufficient_seeds": true,
+          "ci95_low": 0.015333333333333336,
+          "ci95_high": 0.02077777777777778,
+          "values": [
+            0.016666666666666666,
+            0.020833333333333332,
+            0.016666666666666666
+          ]
+        }
+      }
+    }
+  },
+  "p_values_raw": {
+    "coldsite_dti|davis|random": 0.9997000299970003,
+    "coldsite_dti|davis|cold_drug": 0.0065993400659934,
+    "coldsite_dti|davis|cold_target": 0.6581341865813418,
+    "coldsite_dti|davis|cold_pair": 0.9296070392960704,
+    "hyperattentiondti|davis|random": 9.999000099990002e-05,
+    "hyperattentiondti|davis|cold_drug": 0.0372962703729627,
+    "hyperattentiondti|davis|cold_target": 0.12188781121887811,
+    "hyperattentiondti|davis|cold_pair": 0.29347065293470653,
+    "moltrans|davis|random": 0.4781521847815218,
+    "moltrans|davis|cold_drug": 0.031796820317968204,
+    "moltrans|davis|cold_target": 0.014098590140985901,
+    "moltrans|davis|cold_pair": 0.20357964203579643,
+    "drugban|davis|random": 0.710928907109289,
+    "drugban|davis|cold_drug": 0.44765523447655237,
+    "drugban|davis|cold_target": 0.2927707229277072,
+    "drugban|davis|cold_pair": 0.20357964203579643,
+    "uniform_control|davis|random": 0.6326367363263674,
+    "uniform_control|davis|cold_drug": 0.44615538446155384,
+    "uniform_control|davis|cold_target": 0.7656234376562344,
+    "uniform_control|davis|cold_pair": 0.696030396960304
+  },
+  "p_values_corrected": {
+    "hyperattentiondti|davis|random": {
+      "p_value": 9.999000099990002e-05,
+      "adjusted_alpha": 0.0025,
+      "rank": 1,
+      "significant": true
+    },
+    "coldsite_dti|davis|cold_drug": {
+      "p_value": 0.0065993400659934,
+      "adjusted_alpha": 0.002631578947368421,
+      "rank": 2,
+      "significant": false
+    },
+    "moltrans|davis|cold_target": {
+      "p_value": 0.014098590140985901,
+      "adjusted_alpha": 0.002777777777777778,
+      "rank": 3,
+      "significant": false
+    },
+    "moltrans|davis|cold_drug": {
+      "p_value": 0.031796820317968204,
+      "adjusted_alpha": 0.0029411764705882353,
+      "rank": 4,
+      "significant": false
+    },
+    "hyperattentiondti|davis|cold_drug": {
+      "p_value": 0.0372962703729627,
+      "adjusted_alpha": 0.003125,
+      "rank": 5,
+      "significant": false
+    },
+    "hyperattentiondti|davis|cold_target": {
+      "p_value": 0.12188781121887811,
+      "adjusted_alpha": 0.0033333333333333335,
+      "rank": 6,
+      "significant": false
+    },
+    "moltrans|davis|cold_pair": {
+      "p_value": 0.20357964203579643,
+      "adjusted_alpha": 0.0035714285714285718,
+      "rank": 7,
+      "significant": false
+    },
+    "drugban|davis|cold_pair": {
+      "p_value": 0.20357964203579643,
+      "adjusted_alpha": 0.0038461538461538464,
+      "rank": 8,
+      "significant": false
+    },
+    "drugban|davis|cold_target": {
+      "p_value": 0.2927707229277072,
+      "adjusted_alpha": 0.004166666666666667,
+      "rank": 9,
+      "significant": false
+    },
+    "hyperattentiondti|davis|cold_pair": {
+      "p_value": 0.29347065293470653,
+      "adjusted_alpha": 0.004545454545454546,
+      "rank": 10,
+      "significant": false
+    },
+    "uniform_control|davis|cold_drug": {
+      "p_value": 0.44615538446155384,
+      "adjusted_alpha": 0.005,
+      "rank": 11,
+      "significant": false
+    },
+    "drugban|davis|cold_drug": {
+      "p_value": 0.44765523447655237,
+      "adjusted_alpha": 0.005555555555555556,
+      "rank": 12,
+      "significant": false
+    },
+    "moltrans|davis|random": {
+      "p_value": 0.4781521847815218,
+      "adjusted_alpha": 0.00625,
+      "rank": 13,
+      "significant": false
+    },
+    "uniform_control|davis|random": {
+      "p_value": 0.6326367363263674,
+      "adjusted_alpha": 0.0071428571428571435,
+      "rank": 14,
+      "significant": false
+    },
+    "coldsite_dti|davis|cold_target": {
+      "p_value": 0.6581341865813418,
+      "adjusted_alpha": 0.008333333333333333,
+      "rank": 15,
+      "significant": false
+    },
+    "uniform_control|davis|cold_pair": {
+      "p_value": 0.696030396960304,
+      "adjusted_alpha": 0.01,
+      "rank": 16,
+      "significant": false
+    },
+    "drugban|davis|random": {
+      "p_value": 0.710928907109289,
+      "adjusted_alpha": 0.0125,
+      "rank": 17,
+      "significant": false
+    },
+    "uniform_control|davis|cold_target": {
+      "p_value": 0.7656234376562344,
+      "adjusted_alpha": 0.016666666666666666,
+      "rank": 18,
+      "significant": false
+    },
+    "coldsite_dti|davis|cold_pair": {
+      "p_value": 0.9296070392960704,
+      "adjusted_alpha": 0.025,
+      "rank": 19,
+      "significant": false
+    },
+    "coldsite_dti|davis|random": {
+      "p_value": 0.9997000299970003,
+      "adjusted_alpha": 0.05,
+      "rank": 20,
+      "significant": false
+    }
+  },
+  "missing_cells": [],
+  "k": 10,
+  "seeds": [
+    1,
+    2,
+    3
+  ]
+}

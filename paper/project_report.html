@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>PROJECT_REPORT</title>
+  <style>
+
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+</head>
+<body>
+<h1 id="coldsite-dti-project-report">ColdSite-DTI — Project Report</h1>
+<p><strong>Mahim Agarwal</strong> · Supervisor: <strong>Dr. Chandra
+Mohan Dasari</strong> Report date: 20 September 2026 · Work period: 31
+July – 20 September 2026</p>
+<p><em>Companion document: <code>draft_for_supervisor.docx</code> — the
+condensed paper draft with the figures. This report covers the project
+as a whole: what was built, what was run, what went wrong, how we know
+the numbers are right, and what is left.</em></p>
+<hr />
+<h2 id="the-project-in-one-page">1. The project in one page</h2>
+<p><strong>The question.</strong> Papers on drug–target interaction
+(DTI) prediction routinely show a plot of the model’s attention over a
+protein and conclude that the model has found the binding site. That
+claim is usually made on a random split, from one training run, by eye,
+and without a chance level. <strong>Does it survive a realistic
+evaluation?</strong></p>
+<p><strong>What we did.</strong> We retrained four attention-based DTI
+models — three published (MolTrans 2021, HyperAttentionDTI 2022, DrugBAN
+2023) and our own ColdSite-DTI — plus a no-attention accuracy anchor
+(DeepDTA), on identical data splits at four levels of difficulty, three
+times each, on two benchmarks. We then scored their explanations against
+experimentally annotated binding sites, with a chance level, a ceiling,
+a uniform-attention floor, a positive control and several nulls, and
+applied one statistical correction across the whole family of tests.</p>
+<p><strong>What we found.</strong> Of twenty DAVIS cells,
+<strong>one</strong> supports the residue-level claim after correction,
+and it does not replicate on KIBA. In twelve of twenty-two cells the
+three training seeds disagree about their own verdict. What does survive
+is coarser and worth reporting: the attention is genuinely used by the
+model, and it concentrates on the binding <em>pocket region</em> rather
+than on the annotated residues. Three findings about the measurement
+itself generalise beyond DTI (§5).</p>
+<p><strong>Status.</strong> All training and analysis are complete: 84
+trained cells, both audits, the replication, the controls, the figures.
+The paper’s sections are drafted. What remains is editorial — condensing
+to a venue’s length, the citation style, and a DOI for the code release.
+Nothing in the scientific plan is outstanding.</p>
+<hr />
+<h2 id="why-an-audit-and-why-this-is-not-a-model-paper">2. Why an audit,
+and why this is not a model paper</h2>
+<p>The easy version of this project would have been “our model gets a
+better AUROC”. We deliberately did not do that, for three reasons:</p>
+<ol type="1">
+<li><strong>The gap is real and unfilled.</strong> The NLP community
+established in 2019 that attention weights need not be explanations. DTI
+papers continued to present attention as binding-site evidence, and
+nobody had tested those claims under the distribution shift the models
+are built for.</li>
+<li><strong>An audit can be wrong in a way a model paper
+cannot.</strong> If we report a null, the first objection is “your test
+is too weak”. That forced the protocol to carry its own evidence: a
+positive control that says at what strength a real signal would have
+been detected, a uniform-attention floor, and nulls that a spurious
+signal would pass.</li>
+<li><strong>Our own model is a subject, not a hero.</strong>
+ColdSite-DTI is audited on exactly the same terms, and the report
+includes results that are unfavourable to it (§5, §6).</li>
+</ol>
+<hr />
+<h2 id="what-was-built">3. What was built</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it does</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data pipeline</td>
+<td>DAVIS and KIBA loading, four split levels per dataset, binary
+thresholds, a non-kinase transfer panel (60 BindingDB proteins), an
+antiviral subset</td>
+<td><code>src/data/</code></td>
+</tr>
+<tr>
+<td>Ground truth</td>
+<td>UniProt binding-site residues re-numbered onto each dataset’s own
+sequences; the 85-residue KLIFS ATP pocket; per-pair crystallographic
+contacts from KLIFS interaction fingerprints</td>
+<td>3 independent ground truths</td>
+</tr>
+<tr>
+<td>Trainers</td>
+<td>One per model, each using its authors’ own recipe and tokeniser from
+the vendored repository, with only data loading replaced; epoch-level
+resume so an 11-hour cloud session can continue</td>
+<td>5 models</td>
+</tr>
+<tr>
+<td>Model adapters</td>
+<td>A uniform interface (<code>predict</code>, <code>explain</code>)
+over five very different architectures, so every metric runs unchanged
+on each</td>
+<td><code>src/evaluation/</code></td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>Plausibility ladders, faithfulness, the audit grid with Holm
+correction, positional and residue-identity nulls, the non-kinase
+control, the positive control, readout variants, integrated gradients,
+seed agreement, drug-dependence, clean accuracy</td>
+<td>33 modules</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td><code>run_all</code> — one command that runs the whole analysis for
+a dataset and writes a summary; resumable</td>
+<td>1 entry point</td>
+</tr>
+<tr>
+<td>Cloud notebooks</td>
+<td>Kaggle notebooks for each training grid, with self-stop before the
+platform’s time limit, restore-from-previous-commit, and pre-flight
+checks that refuse to start if the splits do not match the record</td>
+<td>20 notebooks</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td>Unit and integration tests, including tests on planted cases where
+the right answer is known</td>
+<td><strong>938 tests</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Totals:</strong> 67 Python modules, ~17,300 lines, 200
+commits over eight weeks.</p>
+<hr />
+<h2 id="what-was-run">4. What was run</h2>
+<p><strong>Training — 84 cells, each a full training run with its own
+checkpoint and test pass:</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>dataset</th>
+<th>models</th>
+<th>levels</th>
+<th>seeds</th>
+<th>cells</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DAVIS</td>
+<td>DeepDTA, ColdSite-DTI, HyperAttentionDTI, MolTrans</td>
+<td>random, cold-drug, cold-target, cold-pair</td>
+<td>3</td>
+<td>48</td>
+</tr>
+<tr>
+<td>DAVIS</td>
+<td>DrugBAN (added Sept 18)</td>
+<td>all four</td>
+<td>3</td>
+<td>12</td>
+</tr>
+<tr>
+<td>KIBA</td>
+<td>DeepDTA, HyperAttentionDTI, MolTrans</td>
+<td>random, cold-drug</td>
+<td>3</td>
+<td>18</td>
+</tr>
+<tr>
+<td>KIBA</td>
+<td>ColdSite-DTI (added Sept 19)</td>
+<td>random, cold-drug</td>
+<td>3</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>All training ran on free cloud GPUs (Kaggle T4s), because the work
+does not fit on a laptop: the KIBA arm alone took about <strong>101
+GPU-hours</strong> across four accounts. Checkpoints total 4.6 GB and
+are backed up outside the machine.</p>
+<p><strong>Analysis</strong> runs locally on CPU: plausibility ladders
+against two ground truths, faithfulness, both audits, the nulls and
+controls, integrated gradients, readout variants, and the figures.</p>
+<hr />
+<h2 id="what-we-found">5. What we found</h2>
+<p>Full numbers, tables and figures are in the companion draft. In
+brief:</p>
+<ol type="1">
+<li><strong>One cell of twenty survives correction</strong>
+(HyperAttentionDTI, random split, 1.7× chance), and it beats every null.
+It <strong>does not replicate on KIBA</strong>, where none of eight
+survives.</li>
+<li><strong>Attention is used but coarse.</strong> Masking the attended
+residues moves the prediction more than masking random ones in every
+cell of both datasets (for the three 2021–2022 models), and attention
+concentrates on the ATP pocket at 1.3–2.1× chance — while missing the
+annotated residues inside it.</li>
+<li><strong>A single training run cannot support the claim.</strong> In
+12 of 22 cells the three seeds disagree about their own verdict; in 21
+of 22 the seed spread exceeds the cell’s distance from chance.</li>
+<li><strong>The verdict can belong to the readout.</strong> Alternative,
+equally defensible ways of reducing the same attention tensor share only
+2–12% of their top-ten residues, and one choice moves a pocket-level
+verdict from 2.6× chance to below chance.</li>
+<li><strong>The gradient finds what the attention misses.</strong>
+Integrated gradients on the <em>same</em> checkpoints survive correction
+in 7 of 12 DAVIS cells against 1 of 20 for attention. A weak attention
+map often indicts the report, not the model.</li>
+<li><strong>The newest model is the clearest failure.</strong> DrugBAN
+(2023) is at chance against both ground truths in all 12 cells and its
+attention is not load-bearing — while being the only model whose map
+genuinely changes with the drug.</li>
+<li><strong>A check the field can adopt before publishing:</strong>
+state which inputs the explanation is a function of. A 2025 <em>Nature
+Communications</em> model’s residue attention cannot depend on the drug
+at all — visible in its source code, no experiment needed.</li>
+<li><strong>A benchmark finding:</strong> in the DAVIS protein file this
+literature uses, all 54 mutant targets carry the wild-type sequence, so
+“unseen” targets are partly seen. Leakage inflated cold-target accuracy
+for every model.</li>
+</ol>
+<hr />
+<h2 id="problems-found-during-the-work-and-how-each-was-handled">6.
+Problems found during the work, and how each was handled</h2>
+<p>This section is the honest core of the project: most of the effort
+went into catching mistakes that would have produced confident wrong
+numbers.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Consequence if missed</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>DAVIS mutants carry wild-type sequences</strong> (found
+while building the KLIFS ground truth)</td>
+<td>“Unseen” targets are seen; cold-target accuracy inflated for every
+model</td>
+<td>Re-scored all cold cells on genuinely unseen targets; explanation
+metrics exclude seen-by-sequence targets; reported as a benchmark
+finding</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>MolTrans seed bug</strong> — its vendored code reseeds
+PyTorch on import, so three “seeds” trained identically</td>
+<td>Three copies of one run reported as a seed spread</td>
+<td>Fixed; seeds 2 and 3 retrained; seed 1 verified bit-for-bit
+identical, so it stands</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Masking arms not the same size</strong> for a sub-word
+model</td>
+<td>Its faithfulness delta was negative in 11 of 12 cells — would have
+read as “anti-faithful attention”</td>
+<td>Measured the asymmetry (48% vs 95% of tokens changed), built a
+size-matched control, re-ran in token space; sign reverses in all
+12</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>We were scoring the wrong MolTrans map</strong></td>
+<td>The audit’s MolTrans verdict would not have been about the map its
+paper actually shows</td>
+<td>Read their paper’s full text, implemented their interaction map as a
+second readout, scored both; at chance either way, so the verdict
+holds</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Permutation resolution capped the p-values</strong> at
+1/501</td>
+<td>The one surviving result looked marginal (0.0020 vs a 0.0025
+threshold)</td>
+<td>Re-ran both audits at 10,000 permutations: p = 0.0001, a 25-fold
+margin, no verdict changed</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Two vendored repositories both define
+<code>models.py</code></strong></td>
+<td>The audit crashed when it loaded both models in one process</td>
+<td>Isolated module loading, with a test that loads both in either
+order</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong><code>run_all</code> skips finished outputs</strong> —
+running it on a partial grid would silently freeze partial results</td>
+<td>A level trained later would never be scored, with no error</td>
+<td>Rule and guard: probe partial grids into a scratch folder only</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>A control crashed on one molecule of 16,033</strong> —
+DrugBAN’s loader caps a drug at 290 atoms</td>
+<td>Every DrugBAN control run aborted; the easy response would have been
+to drop the panel</td>
+<td>The collector skips such a row, reports it, and refuses to continue
+if more than 1% of rows are lost</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Faithfulness depends on the dose</strong> (k = 10 vs k =
+50)</td>
+<td>“Load-bearing at every level” was broader than the evidence</td>
+<td>Ran the sensitivity; the claim is now stated at its pre-specified k,
+with the k = 50 result reported</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>A plausible but wrong interpretation</strong> — we had
+attributed leakage sensitivity to model size</td>
+<td>An unsupported causal story in the paper</td>
+<td>DrugBAN contradicted it; the claim was removed rather than
+defended</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="how-we-know-the-numbers-are-right">7. How we know the numbers
+are right</h2>
+<ul>
+<li><strong>938 automated tests</strong>, including tests on
+<em>planted</em> cases — synthetic data where the correct answer is
+known — for every metric that produces a headline number.</li>
+<li><strong>A positive control for the metric itself</strong>: synthetic
+explanations of known quality, scored by the audit’s own code on the
+real splits. It detects a signal as weak as 2% of true sites, so our
+nulls are nulls and not weak tests. It also <em>fails</em> on the
+pre-correction ground truth, which proves it can catch that class of
+bug.</li>
+<li><strong>Exact reproduction across machines.</strong> The DAVIS audit
+was first computed on cloud GPUs and later recomputed on the laptop with
+a fourth model added: all sixteen original p-values reproduced to the
+last digit. The KIBA audit reproduced the same way.</li>
+<li><strong>Every number traces to a committed file.</strong> The
+paper’s sections cite the file each number comes from, and the figure
+captions name their sources; no number is typed by hand into a
+figure.</li>
+<li><strong>Protocol decisions are recorded, not implicit</strong> —
+including the ones we later revisited (§6, item 4).</li>
+</ul>
+<hr />
+<h2 id="where-the-project-stands">8. Where the project stands</h2>
+<p><strong>Done:</strong> data pipeline, three ground truths, five
+trainers, five adapters, the full analysis suite, 84 trained cells, both
+audits with correction, the KIBA replication, all controls and nulls,
+integrated gradients, readout variants, the seed analysis, four figures,
+and drafts of every paper section (~27,600 words).</p>
+<p><strong>Completed since this report was drafted:</strong> DrugBAN’s
+last two controls. Its own data loader refuses one ligand in the
+non-kinase panel (322 atoms against its 290-atom cap), and that single
+molecule out of 16,033 was aborting the run; the collector now drops
+such a row, names it, and fails the cell if more than 1% of rows would
+be lost. DrugBAN shows no transfer off kinases, and its one above-chance
+seed-cell beats all four positional nulls while the other two seeds of
+that cell beat none — the seed-dependence finding reaching even the
+model that is at chance everywhere.</p>
+<p><strong>Remaining, editorial:</strong> 1. <strong>Condense</strong>
+the ~27,600 words of section drafts into a main text (a journal allows
+roughly 5,000–8,000) plus a supplement. This is the largest remaining
+task and depends on the venue. 2. <strong>Citation style</strong>, which
+follows the venue. 3. <strong>A DOI for the code release</strong>
+(Zenodo) and the repository URL in the paper.</p>
+<p><strong>Optional, not required for any claim:</strong> integrated
+gradients for DrugBAN, DrugBAN on KIBA, readout variants on KIBA. Each
+is currently stated as a limitation, which is how papers handle
+scope.</p>
+<hr />
+<h2 id="questions-for-you">9. Questions for you</h2>
+<ol type="1">
+<li><strong>Venue.</strong> Undecided. Candidates: <em>Briefings in
+Bioinformatics</em> (publishes benchmarking and critical-assessment
+work, flexible length — our best fit), <em>Bioinformatics</em> (needs
+heavy condensing), ISMB (most competitive, tightest limit). The choice
+fixes the length target and the citation style.</li>
+<li><strong>Framing.</strong> An audit of published claims (current), or
+a benchmark-and-protocol contribution with the audit as the
+demonstration?</li>
+<li><strong>Scope.</strong> Is the current evidence sufficient, or would
+you want DrugBAN on KIBA as well (about 20–30 GPU-hours) before
+submission?</li>
+<li><strong>Our own model’s role.</strong> ColdSite-DTI is currently a
+subject audited on the same terms, named only in Methods and
+Limitations. Should it stay that way?</li>
+</ol>
+<hr />
+<h2 id="appendix-where-everything-lives">Appendix — where everything
+lives</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>What</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paper sections (full)</td>
+<td><code>paper/introduction.md</code>,
+<code>methods_data_and_evaluation.md</code>,
+<code>methods_track_b.md</code>, <code>results.md</code>,
+<code>discussion.md</code>, <code>limitations.md</code>,
+<code>abstract.md</code>, <code>references.md</code></td>
+</tr>
+<tr>
+<td>Condensed draft + figures</td>
+<td><code>paper/DRAFT_FOR_SUPERVISOR.md</code> → <code>.docx</code> /
+<code>.html</code></td>
+</tr>
+<tr>
+<td>Figures</td>
+<td><code>results/figures/</code> (PDF and PNG) with
+<code>CAPTIONS.md</code></td>
+</tr>
+<tr>
+<td>Analysis outputs</td>
+<td><code>results/analysis_davis_policyA*/</code>,
+<code>results/analysis_kiba_policyA*/</code></td>
+</tr>
+<tr>
+<td>Trained checkpoints</td>
+<td>outside the repository (4.6 GB), backed up to Drive</td>
+</tr>
+<tr>
+<td>Code</td>
+<td><code>src/data/</code>, <code>src/model/</code>,
+<code>src/evaluation/</code>; tests in <code>tests/</code></td>
+</tr>
+<tr>
+<td>Training notebooks</td>
+<td><code>notebooks/</code></td>
+</tr>
+<tr>
+<td>Verified citations</td>
+<td><code>paper/references.md</code> — every entry checked against
+Crossref or arXiv</td>
+</tr>
+<tr>
+<td>Project status and rules</td>
+<td><code>CLAUDE.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reproducing the analysis:</strong> with the checkpoints in
+place, one command per dataset —
+<code>python -m src.evaluation.run_all --dataset davis --checkpoint-dir &lt;checkpoints&gt;</code>
+— runs faithfulness, the ladders, the audit, the controls and the
+summary, and is resumable.</p>
+</body>
+</html>

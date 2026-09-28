@@ -15,6 +15,10 @@ results. Citations are by model name and year until the venue's style is fixed.
 
 ## 1. Data
 
+***Figure 0*** (`results/figures/fig0_design.pdf`) is this section and the next eight in
+one picture: what was trained, how each explanation is read, what it is scored against,
+and where the correction is applied.
+
 ### 1.1 Datasets
 
 DAVIS and KIBA are loaded directly from the files published with DeepDTA (2018),
@@ -106,7 +110,7 @@ seeds, each seed drawing its own subsample; validation and test are not cut, so 
 control is scored on exactly the random test set. Full random minus the control is the
 cost of fewer rows; the control minus cold-pair is the genuine cold-pair difficulty.
 (`notebooks/colab_volume_control.ipynb`; outputs are renamed `_trainsub15190` and kept
-apart from the grid, since `train.py` would otherwise name them exactly like the full
+apart from the grid, since `src/model/train.py` would otherwise name them exactly like the full
 random cells.)
 
 A second comparability gap cannot be fixed by subsampling: plausibility is averaged per
@@ -269,7 +273,10 @@ dative bond, which no audited model's alphabet can represent, are excluded for a
 models alike; all 60 proteins remain. DAVIS and KIBA contain neither. The panel is
 sized to clear the ≥20-target minimum the analysis sets for any family comparison; the
 antiviral targets (HIV-1 protease and reverse transcriptase, influenza neuraminidase)
-remain inside it as a named case study.
+remain inside it as ordinary members. They were once planned as a case study of their
+own; that was cut, because the 2026-07-31 BindingDB release collapsed all 18,149
+SARS-CoV-2 rows under a single 7,096-residue polyprotein and what remained was three
+proteins — too few to carry a claim, and already covered by the panel.
 
 ---
 
@@ -280,7 +287,8 @@ remain inside it as a named case study.
 | DeepDTA (2018) | accuracy anchor | none; never audited |
 | ColdSite-DTI (this work) | subject | single-query cross-attention (`methods_track_b.md` §1) |
 | HyperAttentionDTI (2022) | subject | attention over convolution positions, projected to residues |
-| MolTrans (2021) | subject | attention over ESPF subword tokens, projected to residues |
+| MolTrans (2021) | subject | two readouts, both reported: protein-encoder self-attention over ESPF subword tokens, projected to residues (the default; drug-independent by construction, Results §7e), and the drug × protein interaction map its own paper visualises (`moltrans_interaction`, max over drug substructures, Results §7b) |
+| DrugBAN (2023) | subject | bilinear attention (drug atom × protein position), softmax per head as in its code, summed over atoms, mean over heads, projected from convolution positions to residues |
 
 DeepDTA has no attention and is not given one: a saliency map computed for it would put
 a different method's output in a table read as DeepDTA's. It is present so a reader can
@@ -289,6 +297,18 @@ see whether the interpretable models pay an accuracy cost.
 Each published model is trained with its authors' recipe and tokeniser, from the
 vendored repository, with only the data loading replaced; an audit that retrained a
 subject under a different optimiser would measure a model its authors never released.
+
+**A published model can also be audited without retraining it, when the claim is about
+what its explanation is a function of.** Results §7e reports one such case. The procedure
+is stated here because it is a method, not an anecdote: obtain the released code at a
+recorded commit and licence, locate the tensor the paper's figure plots, and trace which
+inputs reach it in the forward pass. If a drug tensor never reaches a per-residue map,
+then for a fixed protein that map is identical for every ligand, for any weights — a fact
+about the computation graph that no amount of retraining can change and no measurement is
+needed to establish. What such a reading cannot support is any statement about how well
+that model's map agrees with a ground truth, or about its accuracy; we report neither for
+a model we did not train. The record for the one case in this paper, with line references,
+licence, access date and a re-check recipe, is `results/evidti_code_audit.md`.
 
 - **DeepDTA**: a PyTorch port of the published architecture (the original is TF1-era
   Keras), Adam, learning rate 10⁻³, batch 256, `BCEWithLogitsLoss`, gradient clipping at 5.
@@ -308,6 +328,20 @@ subject under a different optimiser would measure a model its authors never rele
   (`_fit_batch_size`). And its interaction map calls dropout without the training flag,
   so dropout stays on at inference and test predictions carry that noise, as in the
   published model.
+- **DrugBAN**: Adam, learning rate 5×10⁻⁵, batch 64, up to 100 epochs, its architecture
+  from its own `configs.py` unmodified (`src/model/train_drugban.py`, vendored repository
+  under `baselines/DrugBAN/` with `PROVENANCE.md`). Domain adaptation is off, the authors'
+  setting for in-domain evaluation. Two changes align it with the audit's other cells: the
+  checkpoint is selected by validation loss with the shared patience and floor, instead of
+  their fixed 100 epochs with the best-validation-AUROC epoch kept; and the decoder emits
+  one logit (`DECODER.BINARY = 1`) trained with `BCEWithLogitsLoss`, instead of
+  cross-entropy over a two-way head, so that faithfulness and AUROC read the same
+  quantity. Drugs are DGL graphs padded to
+  290 nodes and proteins integer-encoded to 1,200 positions, as in their data loader;
+  full precision; 12 DAVIS cells on two T4 GPUs
+  (`notebooks/kaggle_drugban_davis.ipynb`). Its vendored `models.py` shares a module name
+  with MolTrans's, so the adapter loads DrugBAN's modules in isolation
+  (`tests/test_drugban_import_isolation.py`).
 
 All four share one checkpoint-selection rule (`src/model/early_stopping.py`): up to 100
 epochs; the checkpoint is the lowest validation loss **among epochs ≥ 10**; early
@@ -368,6 +402,18 @@ cold-pair (KIBA 211, 212, 42, 41).
 
 ## 7. Significance and aggregation
 
+**MolTrans's two readouts.** Its paper's interpretability figure is a heat map of the
+interaction map `i = d_aug * p_aug` summed to drug × protein and fed to its CNN, so that
+map is scored alongside the protein encoder's self-attention the adapter reads by default.
+It is rebuilt exactly as `BIN_Interaction_Flat.forward` builds it, including the
+`view(B, -1, max_d, max_p)` whose sum mixes hidden-axis elements — the published
+computation, not a corrected one — with its inference-time dropout omitted so the
+explanation is the same on every call. Real tokens only on both axes; the drug axis is
+reduced by max (`sum` is registered as the alternative); the result is shifted so its
+minimum is zero, since the map is a product of embeddings and can be negative while every
+metric here reads only the ranking. Faithfulness and the per-pair contact analysis use the
+default readout.
+
 **Split-level permutation test** (`src/evaluation/significance_test.py`). The null draws
 *k* uniformly random positions for every protein in the split and takes the mean,
 repeated 1,000 times (ladder) or 500 (audit grid). Drawing per protein keeps the split's
@@ -384,11 +430,13 @@ A cell's p-value is the median over its seeds, not the smallest.
 **Multiple comparisons.** Holm–Bonferroni is applied once, over the whole audit family
 (every model × dataset × level), after every cell's raw p-value has been collected.
 Correcting within each model and pooling would define the family after seeing the
-results. Each dataset's arm is its own family, sized by the cells that arm measures: **16
-on DAVIS** (three audited models and the uniform control × four levels) and **6 on KIBA**
-(two audited models and the uniform control × two levels, §11). The control is scored only
+results. Each dataset's arm is its own family, sized by the cells that arm measures: **20
+on DAVIS** (four audited models and the uniform control × four levels; 16 before DrugBAN
+was added on 2026-09-19, and those sixteen p-values are unchanged in the larger run) and
+**8 on KIBA** (three audited models and the uniform control × two levels, §11; 6 before
+ColdSite-DTI's KIBA cells were added the same day). The control is scored only
 at levels the arm trains, so an untrained level cannot enlarge a family and make every
-threshold stricter than the design specifies. DAVIS's sixteen attention cells and the
+threshold stricter than the design specifies. DAVIS's twenty attention cells and the
 twelve integrated-gradient cells of Results §7c are separate families, and no claim
 compares a corrected p from one with a corrected p from another.
 
@@ -474,9 +522,13 @@ seeds, the same nulls and the same positive control — and nothing in it was tu
 (HyperAttentionDTI, MolTrans) and the DeepDTA accuracy anchor: 18 cells. Cold-drug is the
 level KIBA can support and DAVIS cannot (422 held-out drugs against 13); cold-target and
 cold-pair are weaker on KIBA than on DAVIS (45 held-out targets against 88) and are not
-trained. ColdSite-DTI is not included, so our own model is audited on one dataset and the
-published ones on two. The explanation-side analyses of Results §7–§7c (readout variants,
-integrated gradients, per-pair drug contacts) are DAVIS-only.
+trained. ColdSite-DTI's six cells at the same two levels were added on 2026-09-19, trained
+with its DAVIS recipe in full precision (`notebooks/kaggle_coldsite_kiba.ipynb`), after the
+other 18 had been analysed; they are reported as an addition to the pre-specified scope
+(24 cells, Holm family of 8). DrugBAN is DAVIS-only. The explanation-side analyses of Results §7–§7c (readout variants,
+per-pair drug contacts) are DAVIS-only. Integrated gradients run on both: KIBA uses the
+identical implementation and settings (32 steps, the padding-embedding baseline), over the
+two audited models at both trained levels, three seeds each.
 
 **Numerical precision is per model.** DeepDTA and HyperAttentionDTI train under float16
 autocast with loss scaling; MolTrans trains in full precision, because its vendored
@@ -492,3 +544,52 @@ pocket. The policy therefore excludes no KIBA target, and `clean_accuracy` is no
 **Cells longer than one compute session** continue from their last finished epoch,
 restoring model, optimiser, scheduler, loss scaler and every random-number generator, so a
 cell interrupted by a session limit is not restarted and not partially scored.
+
+---
+
+## 12. Reproducibility: what a reader needs to re-run this
+
+Every number in Results is written by a command in this repository, into a file the
+Results section names. Nothing is typed by hand, and nothing is averaged in a spreadsheet.
+
+**The commands.** Training is one entry point per model
+(`src/model/train.py`, `train_deepdta.py`, `train_hyperattentiondti.py`,
+`train_moltrans.py`, `train_drugban.py`), each taking `--split-dir --dataset --split
+--seed` and writing a checkpoint plus a `_results.json` with its test metrics, selected
+epoch and the arguments it ran under. Analysis is one command over a finished grid:
+
+    python -m src.evaluation.run_all --dataset {davis|kiba} --checkpoint-dir <grid>
+
+which runs faithfulness, both ladders, the audit with its Holm correction, the non-kinase
+control in both ion settings and the positive control, and writes
+`analysis_summary_<dataset>.md`. The explanation variants (integrated gradients,
+alternative readouts) are `run_ladder --model <name>_ig`; their family correction is
+`src/evaluation/ladder_family.py`; the figures are `src/evaluation/paper_figures.py`.
+
+**Determinism and what is not deterministic.** Splits are built by
+`src/data/build_splits.py` from the published DAVIS and KIBA files and are byte-identical
+on rebuild (checked 2026-09-18) and across three machines. Ground-truth re-numbering is
+`src/data/align_ground_truth.py`, run once per dataset, and its output is in the
+repository. Training on a GPU is *not* bit-reproducible — cuDNN kernel selection is
+nondeterministic — which is why every cell is trained three times and no claim rests on a
+single seed. Interrupted cells resume from their last finished epoch
+(`src/model/resume.py`), and resumption is bit-identical on a CPU, which the tests assert.
+
+**Where the numbers came from, physically.** Training ran on Kaggle's two-T4 sessions
+under the notebooks in `notebooks/`; each notebook records its plan, self-stops an hour
+inside the session limit, and writes the same file layout as a local run. Analysis ran
+locally on CPU except where a section says otherwise. Result folders are committed as
+their markdown tables (`results/analysis_*`), with `RUN_NOTES.txt` in each recording any
+way that run departed from a plain `run_all` and why.
+
+**Checks.** 924 tests run against the analysis and training code, including planted-case
+tests for every instrument the audit trusts: the positive control detects a 2% dose, the
+projection from convolution positions to residues is checked on synthetic maps, the
+matched masking control is checked draw-for-draw against the unmatched one, and the
+adapter contract is checked on every registered model before it is used for real.
+
+**Vendored models.** The three published subjects are cloned unmodified into `baselines/`
+with their licences (MolTrans BSD-3, DrugBAN MIT) and a `PROVENANCE.md` recording the
+commit and date. An audit that edited its subject would be measuring something else; every
+adaptation lives outside those directories, in an adapter that exposes `predict` and
+`explain` and nothing more.

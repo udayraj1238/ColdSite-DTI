@@ -21,7 +21,7 @@ def test_every_variant_is_registered_and_reads_its_base_models_checkpoint():
     for name in list(READOUTS) + ["coldsite_dti_selfattn"]:
         assert name in available_models(), name
         base = base_model_name(name)
-        assert base != name and base in ("coldsite_dti", "hyperattentiondti", "moltrans")
+        assert base != name and base in ("coldsite_dti", "hyperattentiondti", "moltrans", "drugban")
         assert model_suffix(name) == model_suffix(base), name
 
 

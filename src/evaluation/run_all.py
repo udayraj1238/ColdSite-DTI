@@ -52,7 +52,7 @@ import time
 from src.model.checkpoint_naming import checkpoint_path, results_path, run_tag
 
 LEVELS = ("random", "cold_drug", "cold_target", "cold_pair")
-AUDITED = ("coldsite_dti", "hyperattentiondti", "moltrans")
+AUDITED = ("coldsite_dti", "hyperattentiondti", "moltrans", "drugban")
 ANCHOR = "deepdta"
 STEPS = ("inventory", "faithfulness", "ladder", "audit", "control", "positive",
          "summary")

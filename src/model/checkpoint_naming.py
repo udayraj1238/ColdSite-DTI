@@ -90,6 +90,7 @@ MODEL_SUFFIX = {
     "deepdta": "_deepdta",
     "hyperattentiondti": "_hyperattentiondti",
     "moltrans": "_moltrans",
+    "drugban": "_drugban",
     # Integrated gradients is a second explanation of the SAME trained weights
     # (src/evaluation/integrated_gradients.py), so each variant reads its base model's
     # checkpoint. Its outputs are still named apart, because `output_tag` prefixes any
@@ -103,6 +104,11 @@ MODEL_SUFFIX = {
     "hyperattentiondti_maxchannel": "_hyperattentiondti",
     "hyperattentiondti_receptive": "_hyperattentiondti",
     "moltrans_maxhead": "_moltrans",
+    "moltrans_interaction": "_moltrans",
+    "moltrans_interaction_sum": "_moltrans",
+    "drugban_maxhead": "_drugban",
+    "drugban_maxatom": "_drugban",
+    "drugban_receptive": "_drugban",
     "moltrans_firstlayer": "_moltrans",
 }
 
@@ -117,7 +123,12 @@ VARIANT_BASE = {
     "hyperattentiondti_maxchannel": "hyperattentiondti",
     "hyperattentiondti_receptive": "hyperattentiondti",
     "moltrans_maxhead": "moltrans",
+    "moltrans_interaction": "moltrans",
+    "moltrans_interaction_sum": "moltrans",
     "moltrans_firstlayer": "moltrans",
+    "drugban_maxhead": "drugban",
+    "drugban_maxatom": "drugban",
+    "drugban_receptive": "drugban",
 }
 IG_SUFFIX = "_ig"
 

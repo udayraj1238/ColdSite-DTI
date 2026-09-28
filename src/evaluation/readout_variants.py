@@ -20,6 +20,13 @@ readouts that another author could reasonably have picked:
                                    on the centre residue
     moltrans_maxhead               head max instead of mean over the attention heads
     moltrans_firstlayer            the first protein-encoder layer rather than the last
+    moltrans_interaction           the drug x protein interaction map MolTrans's own
+                                   paper visualises (Fig. 3), rather than the protein
+                                   encoder's self-attention, which cannot depend on
+                                   the drug at all
+    drugban_maxhead                bilinear-head max instead of mean
+    drugban_maxatom                max over drug atoms instead of their sum
+    drugban_receptive              receptive-field projection, as for HyperAttentionDTI
     coldsite_dti_selfattn          the protein tower's own self-attention, which its
                                    forward pass computes and discards, instead of the
                                    drug-conditioned cross-attention
@@ -58,6 +65,22 @@ READOUTS = {
     "moltrans_firstlayer": (
         "moltrans", {"attention_layer": 0},
         "the first protein-encoder layer instead of the last"),
+    "moltrans_interaction": (
+        "moltrans", {"explanation": "interaction"},
+        "the drug x protein interaction map their paper visualises, max over drug "
+        "substructures, instead of the protein encoder's self-attention"),
+    "moltrans_interaction_sum": (
+        "moltrans", {"explanation": "interaction", "interaction_reduce": "sum"},
+        "the same interaction map, summed over drug substructures"),
+    "drugban_maxhead": (
+        "drugban", {"head_reduce": "max"},
+        "bilinear-head max instead of mean"),
+    "drugban_maxatom": (
+        "drugban", {"atom_reduce": "max"},
+        "the strongest drug atom per position instead of the sum over atoms"),
+    "drugban_receptive": (
+        "drugban", {"projection_mode": "receptive_field"},
+        "convolution weight spread over its receptive field, not placed on the centre"),
 }
 
 

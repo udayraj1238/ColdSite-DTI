@@ -22,6 +22,21 @@ is strictly harder than cold-target: protein, family and drugs all change at onc
 difference between the arms therefore bounds the family effect rather than isolating it,
 and rests on 60 proteins whose affinities come from different assays.
 
+**What that does and does not limit.** It limits the *generality* of the verdict, not its
+*validity*. The claims this paper audits were made on DAVIS and KIBA — they are the
+benchmarks on which DTI interpretability is reported — so testing them there is testing
+them where they live; a null found on some other family would leave the published claims
+untouched. Two things follow, and the paper needs both stated. Nothing here licenses
+"attention fails for drug-target interaction in general": it licenses "attention fails for
+these models, on the benchmarks their claims are made on, at four levels of shift, on two
+datasets". And the evidence that the failure is not merely a kinase artefact is the
+transfer panel rather than a stratification: every audited model is at chance on 60 unseen
+non-kinase proteins (Results §6), and the few above-chance non-kinase cells trace to an amino-acid
+preference — histidine, 3-15x enriched in the top ten — meeting histidine-rich metal
+sites, which is a property of the attention rather than of the family. A reader who wants
+the kinase-free version of this audit needs a kinase-free benchmark carrying residue-level
+ground truth, and building one is a paper of its own.
+
 **Three ground truths, none of them per-pair at a usable scale.** UniProt annotations
 (binding, active and nucleotide-binding sites) and the 85-residue KLIFS ATP pocket are both
 defined per protein, so every drug measured against a protein is scored against the same
@@ -81,10 +96,13 @@ Two further caveats belong to the result itself: ColdSite-DTI's gradient is **no
 it matters (cold-target 0.074 / 0.021 / 0.037 across seeds; cold-drug against the pocket
 0.352 / 0.634 / 0.366), so the effect rests on the permutation test rather than on a precise
 estimate; and **integrated gradients were added after the attention results were seen**, so
-they are a secondary analysis, Holm-corrected within their own twelve cells and never pooled
-with the sixteen attention cells. A reader should treat "7 of 12 for the gradient against 1
-of 16 for the attention" as two separately corrected families, which is how Results §7c
-states it.
+they are a secondary analysis, Holm-corrected within their own family and never pooled
+with the attention cells. A reader should treat "7 of 12 for the gradient against 1
+of 20 for the attention" on DAVIS, and "3 of 4 against 0 of 8" on KIBA, as separately
+corrected families, which is how Results §7c and §8.4 state it. Being decided in advance is
+what KIBA's arm adds: its four cells were run after DAVIS's result was known, but with the
+protocol, the step count and the family fixed by that earlier run rather than chosen to suit
+the outcome.
 
 **One split per level, three training seeds, and two kinds of interval.** Each level has a
 single fixed split, and the three seeds vary initialisation and batch order only, so reported
@@ -198,22 +216,81 @@ loss scaler and RNG state. The arm's scope was **decided on compute
 grounds, 2026-09-14**: random and cold-drug only, for HyperAttentionDTI, MolTrans and the
 DeepDTA anchor — 18 cells, ~101 GPU-hours over four accounts. The honest statement is that
 the replication's breadth was set by available GPU hours, not by the question, and the
-paragraph below says exactly what that leaves uncovered.
+paragraph below says exactly what that leaves uncovered. ColdSite-DTI's six KIBA cells were
+added on 2026-09-19, after the rest of the arm had been analysed; they use the DAVIS recipe
+unchanged and enlarge the family from 6 to 8, and the verdict does not depend on them
+(Results §8.1).
 
-**An asymmetric replication.** KIBA is the replication (Results §8) and repairs DAVIS's weakest axis (422 held-out drugs at
+**A narrower replication.** KIBA is the replication (Results §8) and repairs DAVIS's weakest axis (422 held-out drugs at
 cold-drug against 13), but it cannot repair the family confound — it is also kinases — and
 its cold-target level holds out only 45 targets (42 with usable sites), fewer than DAVIS's
 68. The KIBA arm is also narrower than the DAVIS one in three ways, all decided by
 available GPU hours rather than by the question, and all of which we state rather than
 leave a reader to infer: it trains **random and cold_drug only** (KIBA's cold-target is
 weaker than DAVIS's, and cold_pair would repeat DAVIS's checkpoint-selection instability on
-a 1,334-row validation set); it covers the two **published** models and the accuracy anchor
-but **not ColdSite-DTI**, so our own model is audited on one dataset where the models whose
-claims this paper is about are audited on two; and the explanation-side analyses — readout
-variants, integrated gradients, per-pair drug contacts — are DAVIS-only. Anything the KIBA
-arm does not cover is a DAVIS result, and the Results section says so cell by cell. In
-particular, the finding that integrated gradients recover what the attention misses (§7c)
-is **unreplicated**; it rests on DAVIS alone.
+a 1,334-row validation set); **DrugBAN is DAVIS-only** (Results §9), so the one current
+model is audited on one dataset; and two explanation-side analyses — readout variants and
+per-pair drug contacts — remain DAVIS-only. ColdSite-DTI, previously the model missing
+from KIBA, is now in it (Results §8), and its pocket-level signal did not replicate
+cleanly there — a result against our own model, reported in §8.2. Anything the KIBA arm does not
+cover is a DAVIS result, and the Results section says so cell by cell. Integrated gradients
+are no longer in that list: Results §8.4 replicates them on KIBA for both audited models, which
+leaves the readout-dependence result (§7b) as the largest unreplicated claim — and it is a
+claim about the instrument, so a reader should ask whether it holds for KIBA's proteins
+before relying on its magnitude.
+
+**MolTrans is scored through two readouts, and neither is privileged.** The explanation
+this audit reads by default is its protein encoder's self-attention, which is computed
+before drug and protein meet and never changes with the drug (Results §7e). Its paper's
+interpretation figure is instead a heat map of the drug × protein interaction map, so that
+map is scored too (`moltrans_interaction`, Results §7b, §8.1) and both are reported: on
+DAVIS and KIBA, against both ground truths, the published map is at chance in every cell,
+as the default readout is. The verdict does not depend on the choice. What the pair does
+show is that two defensible readouts of one checkpoint can highlight almost disjoint
+residues (1.1 of 10 shared between drugs for one, 10 of 10 for the other), which is §7b's
+finding rather than a limitation of this audit. Two gaps remain: faithfulness and the
+per-pair contact analysis were run for the default readout only, so "MolTrans's attention
+is load-bearing" (§5b, token space) is a statement about the encoder readout, not about the
+interaction map.
+
+**DrugBAN: one dataset, one readout family, and a faithfulness test of uncertain power.**
+DrugBAN (Results §9) was trained on DAVIS only, with domain adaptation off (its authors'
+setting for in-domain evaluation; its cross-domain mode is a different model and is not
+audited). Its explanation is its own bilinear map reduced to residues by our adapter; the
+alternative reductions leave its top residues almost unchanged (§9), but a reduction its
+authors used in a figure and we did not try cannot be excluded; one of ours (the
+receptive-field projection) moves its cold-pair residue-level cell above chance in two
+seeds of three. Its non-kinase panel covers 59 of 60 proteins: one ligand exceeds the
+290-atom cap of DrugBAN's own data loader, and that row is dropped and reported rather than
+scored (Results §9).
+
+**"Load-bearing" is a statement at k = 10.** The faithfulness verdicts use the ten
+top-attended residues, fixed before any result. At k = 50 (Results §5, §9) HyperAttentionDTI's
+margin survives only at random, and DrugBAN — whose ten-residue test lacked power — stays
+at zero at three levels with a small effect on unseen drugs. The older models' claim is
+therefore that their top ten residues are load-bearing, not that their attention as a whole
+is; we did not sweep k further.
+
+**Permutation resolution limits how large a Holm family can be.** The audit grid uses 500
+permutations per seed (Methods §7), so the smallest p it can return is 1/501 ≈ 0.0020 —
+exactly the surviving cell's p. At that resolution a family of 26 or more cells could not
+have produced a survivor however strong the effect, and the survivor's margin (0.0020
+against 0.0025) is a statement about the resolution as much as the effect. Re-run at
+10,000 permutations (Results §5) the survivor's p is 0.0001 and every verdict in both
+families is unchanged, so the resolution limited the reported margin, not the result.
+
+**The EviDTI result is a reading of source code, not a measurement.** Results §7e states
+that a 2025 published model's residue attention cannot depend on the drug. That claim
+rests on its released code (CC-BY-4.0, read 2026-09-18, recorded with line references in
+`results/evidti_code_audit.md`), not on retraining it: its two drug encoders need
+TensorFlow and PaddlePaddle, and the 3D encoder's pretrained weights are not in the
+repository, so it is not one of this audit's trained subjects. Two consequences belong in
+the paper rather than in a reader's inference. We report **no** precision@k, no
+faithfulness and no accuracy for EviDTI, and nothing here says its predictions are poor or
+its uncertainty quantification unsound — that is its actual contribution and we did not
+test it. And the claim is only as current as the code we read: if the authors release a
+version whose attention takes the drug as an input, Results §7e describes the version we read and
+should be re-checked against theirs, which takes a minute.
 
 **Three seeds detect seed dependence; they cannot measure it.** The replication's central
 result is that a residue-level verdict moves across chance between training seeds of the

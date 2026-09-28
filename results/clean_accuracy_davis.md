@@ -30,3 +30,11 @@ MolTrans keeps dropout on at inference (as published): its re-scores are the mea
 | moltrans | cold_pair | 1 | 0.5899 | 0.5905 | yes | 0.5453 | -0.0452 | 1001 of 1144 |
 | moltrans | cold_pair | 2 | 0.5674 | 0.5605 | yes | 0.5020 | -0.0585 | 1001 of 1144 |
 | moltrans | cold_pair | 3 | 0.5483 | 0.5481 | yes | 0.5414 | -0.0067 | 1001 of 1144 |
+| drugban | cold_target | 1 | 0.8502 | 0.8502 | yes | 0.8094 | -0.0408 | 5168 of 5984 |
+| drugban | cold_target | 2 | 0.8535 | 0.8535 | yes | 0.8060 | -0.0475 | 5168 of 5984 |
+| drugban | cold_target | 3 | 0.8356 | 0.8356 | yes | 0.7869 | -0.0486 | 5168 of 5984 |
+| drugban | cold_pair | 1 | 0.6292 | 0.6292 | yes | 0.5842 | -0.0450 | 1001 of 1144 |
+| drugban | cold_pair | 2 | 0.5854 | 0.5854 | yes | 0.5134 | -0.0721 | 1001 of 1144 |
+| drugban | cold_pair | 3 | 0.6447 | 0.6447 | yes | 0.5794 | -0.0653 | 1001 of 1144 |
+
+*DrugBAN rows added 2026-09-19 from a separate `clean_accuracy --models drugban` run (DGL environment); the other 24 rows are unchanged.*

@@ -230,7 +230,10 @@ def _explain_row(model_name: str, adapter, vocabs, smiles: str, sequence: str,
             encode_protein(sequence, protein_vocab, max_protein_len), dtype=torch.long)
         return np.asarray(adapter.explain(drug, protein), dtype=float)
 
-    if model_name == "hyperattentiondti":
+    if model_name in ("hyperattentiondti", "drugban"):
+        # Both encode (smiles, sequence) -> (drug, protein) and return one weight per
+        # residue; DrugBAN's drug side is a DGL graph rather than a tensor, which
+        # `explain` handles, and nothing here needs to know the difference.
         drug, protein = type(adapter).encode(smiles, sequence)
         return np.asarray(adapter.explain(drug, protein), dtype=float)
 
@@ -247,6 +250,12 @@ def _explain_row(model_name: str, adapter, vocabs, smiles: str, sequence: str,
         f"src/evaluation/collect.py::_explain_row — guessing an encoding "
         f"produces an array of the wrong length, which misaligns every "
         f"ground-truth index and yields a plausible wrong number.")
+
+
+# A cell may lose a row whose drug or protein its own model cannot represent, but losing
+# many would change the population being scored without saying so. Above this, a cell fails.
+UNENCODABLE_LIMIT_FRACTION = 0.01
+UNENCODABLE_LIMIT_MIN = 3
 
 
 def collect_cell(model_name: str, dataset: str, level: str, seed: int, *,
@@ -297,6 +306,7 @@ def collect_cell(model_name: str, dataset: str, level: str, seed: int, *,
 
     weights, sites, used_ids = [], [], []
     skipped_no_sites = 0
+    unencodable = []
     for row in rows:
         target_id, drug_id, smiles, sequence = (
             row if lookup.pair_keyed else (row[0], None, row[1], row[2]))
@@ -309,8 +319,20 @@ def collect_cell(model_name: str, dataset: str, level: str, seed: int, *,
         # and HyperAttentionDTI never read past it; MolTrans's 545 tokens reach
         # ~1,400 residues on long proteins (115 of DAVIS's 442), and attention
         # there competes for the top k while no site can exist there to hit.
-        weights.append(_explain_row(model_name, adapter, vocabs, smiles,
-                                    sequence, max_protein_len)[:max_protein_len])
+        try:
+            row_weights = _explain_row(model_name, adapter, vocabs, smiles,
+                                       sequence, max_protein_len)[:max_protein_len]
+        except ValueError as exc:
+            # A model may refuse an input its own published loader refuses. DrugBAN caps a
+            # drug at DRUG.MAX_NODES = 290 atoms, and the non-kinase panel (BindingDB) holds
+            # one ligand of 322, which aborted every control run for that model (2026-09-20).
+            # Dropping such a row is right; dropping many would quietly change the population
+            # being scored, so they are counted, named, and the cell fails if they pass
+            # UNENCODABLE_LIMIT. Only ValueError -- the encoders' way of saying "I cannot
+            # represent this input" -- is caught, never a misalignment (RuntimeError).
+            unencodable.append((target_id, str(exc).split(";")[0]))
+            continue
+        weights.append(row_weights)
         sites.append(site_set.positions)
         used_ids.append(f"{drug_id}|{target_id}" if lookup.pair_keyed else target_id)
         if max_proteins and len(weights) >= max_proteins:
@@ -324,6 +346,19 @@ def collect_cell(model_name: str, dataset: str, level: str, seed: int, *,
                "pairs with a co-crystal structure, and a cold split may hold none"
                if lookup.pair_keyed else
                "matches this dataset's Target_ID spelling"))
+
+    if unencodable:
+        limit = max(UNENCODABLE_LIMIT_MIN, int(UNENCODABLE_LIMIT_FRACTION * len(rows)))
+        if len(unencodable) > limit:
+            raise MissingCell(
+                f"{model_name} could not encode {len(unencodable)} of {len(rows)} rows "
+                f"(limit {limit}). Scoring the rest would silently change which proteins "
+                f"this cell covers. First: {unencodable[0][0]} -- {unencodable[0][1]}")
+        # Printed even when the caller asked for quiet (run_control does): a dropped row
+        # changes which proteins this cell covers, so it is never a detail to suppress.
+        names = ", ".join(t for t, _ in unencodable[:3])
+        print(f"  {model_name}: skipped {len(unencodable)} row(s) its own encoder "
+              f"refuses ({names}) -- {unencodable[0][1]}")
 
     if verbose:
         unit = "drug-protein pairs" if lookup.pair_keyed else "proteins"
